@@ -1,5 +1,4 @@
-﻿using System.Web.Security;
-using AmplaData.AmplaData2008;
+﻿using AmplaData.AmplaData2008;
 using AmplaData.Web.Authentication.Forms;
 
 namespace AmplaData.Web.Authentication
@@ -8,18 +7,24 @@ namespace AmplaData.Web.Authentication
     {
         private readonly IFormsAuthenticationService formsAuthenticationService;
 
-        public FormsAuthenticationCredentialsProvider(IFormsAuthenticationService formsAuthenticationService)
+        public FormsAuthenticationCredentialsProvider(
+            IFormsAuthenticationService formsAuthenticationService)
         {
             this.formsAuthenticationService = formsAuthenticationService;
         }
 
         public Credentials GetCredentials()
         {
-            FormsAuthenticationTicket ticket = formsAuthenticationService.GetUserTicket();
+            AuthenticationTicket ticket =
+                formsAuthenticationService.GetUserTicket();
+
             if (ticket != null)
             {
-                return CredentialsProvider.ForSession(ticket.UserData).GetCredentials();
+                return CredentialsProvider
+                    .ForSession(ticket.UserData)
+                    .GetCredentials();
             }
+
             return null;
         }
     }

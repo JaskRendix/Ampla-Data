@@ -18,7 +18,7 @@ namespace AmplaData.Binding.ModelData.Validation
                 isValid = !string.IsNullOrEmpty(location);
                 if (!isValid)
                 {
-                    string message = string.Format("The Location property is not specified. Type='{0}'", typeof (TModel));
+                    string message = string.Format("The Location property is not specified. Type='{0}'", typeof(TModel));
                     validationMessages.Add(message);
                 }
             }

@@ -29,7 +29,7 @@ namespace AmplaData.Attributes
                 Location = filter.Location;
                 WithRecurse = filter.WithRecurse;
             }
-            
+
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace AmplaData.Attributes
         {
             location = null;
             AmplaLocationAttribute attribute;
-            if (typeof (TModel).TryGetAttribute(out attribute))
+            if (typeof(TModel).TryGetAttribute(out attribute))
             {
                 location = new LocationFilter(attribute.Location, attribute.WithRecurse);
                 if (string.IsNullOrEmpty(location.Location))

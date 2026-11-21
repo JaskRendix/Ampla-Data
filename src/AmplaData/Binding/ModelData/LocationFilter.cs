@@ -48,7 +48,7 @@ namespace AmplaData.Binding.ModelData
                 filter = new LocationFilter(location, withRecurse);
                 return true;
             }
-            
+
             filter = null;
             return false;
         }

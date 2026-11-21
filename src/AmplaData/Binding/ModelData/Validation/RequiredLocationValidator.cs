@@ -31,7 +31,7 @@ namespace AmplaData.Binding.ModelData.Validation
             string newlocation = modelProperties.GetLocation(model);
 
             bool isValid = string.Compare(location, newlocation, StringComparison.InvariantCulture) == 0;
-            
+
             if (!isValid)
             {
                 validationMessages.Add("The Location property is not the required value: " + location);

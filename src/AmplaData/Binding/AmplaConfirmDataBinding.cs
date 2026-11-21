@@ -6,7 +6,7 @@ namespace AmplaData.Binding
 {
     public class AmplaConfirmDataBinding<TModel> : AmplaUpdateRecordStatusBinding<TModel> where TModel : new()
     {
-        public AmplaConfirmDataBinding(List<TModel> models, List<UpdateRecordStatus> records, IModelProperties<TModel> modelProperties) 
+        public AmplaConfirmDataBinding(List<TModel> models, List<UpdateRecordStatus> records, IModelProperties<TModel> modelProperties)
             : base(models, records, modelProperties, UpdateRecordStatusAction.Confirm)
         {
         }

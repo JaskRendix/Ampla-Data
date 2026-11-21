@@ -9,7 +9,7 @@ namespace AmplaData.Database
         private readonly Dictionary<string, Dictionary<int, InMemoryRecord>> recordsByModule = new Dictionary<string, Dictionary<int, InMemoryRecord>>();
         private readonly Dictionary<string, int> setIdsByModule = new Dictionary<string, int>();
         private readonly Dictionary<string, List<InMemoryAuditRecord>> auditRecordsByModule = new Dictionary<string, List<InMemoryAuditRecord>>();
-        
+
         public void EnableModule(string module)
         {
             recordsByModule.Add(module, new Dictionary<int, InMemoryRecord>());

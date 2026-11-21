@@ -1,55 +1,37 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using AmplaData.Web.Sessions;
 
 namespace AmplaData.Web.Authentication
 {
     /// <summary>
-    /// Ampla Authentication Module to hookup events on the HttpApplication
+    /// Ampla Authentication Middleware for modern .NET 10 pipelines
     /// </summary>
-    public class AmplaAuthenticationModule
+    public class AmplaAuthenticationMiddleware
     {
-        /// <summary>
-        /// Initializes the specified HTTP application.
-        /// </summary>
-        /// <param name="httpApplication">The HTTP application.</param>
-        public void Initialize(HttpApplication httpApplication)
+        private readonly RequestDelegate _next;
+
+        public AmplaAuthenticationMiddleware(RequestDelegate next)
         {
-            httpApplication.AuthenticateRequest += AuthenticateRequest;
-            httpApplication.PostAcquireRequestState += PostAcquireRequestState;
+            _next = next;
         }
 
-        /// <summary>
-        ///     Ensure the Session is aligned with FormsAuthentication
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PostAcquireRequestState(object sender, EventArgs e)
+        public async Task InvokeAsync(HttpContext context)
         {
-            AlignSessionWithFormsAuthentication ensureAlignedSession = DependencyResolver.Current.GetService<AlignSessionWithFormsAuthentication>();
-            if (ensureAlignedSession != null)
+            // 1. Authenticate Request equivalent: Check for AmplaSession in query string if not authenticated
+            if (context.User?.Identity?.IsAuthenticated != true)
             {
-                ensureAlignedSession.Execute();
+                var loginAmplaSession = context.RequestServices.GetService<LoginAmplaSessionUsingQueryString>();
+                loginAmplaSession?.Execute();
             }
-        }
 
-        /// <summary>
-        ///     When the Authenticate Request is complete check for AmplaSession in the Query string
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="eventArgs">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void AuthenticateRequest(object sender, EventArgs eventArgs)
-        {
-            if (!HttpContext.Current.Request.IsAuthenticated)
-            {
-                var loginAmplaSession = DependencyResolver.Current.GetService<LoginAmplaSessionUsingQueryString>();
+            // Continue down the request pipeline (this handles controllers, views, etc.)
+            await _next(context);
 
-                if (loginAmplaSession != null)
-                {
-                    loginAmplaSession.Execute();
-                }
-            }
+            // 2. Post Acquire Request State equivalent: Ensure session is aligned with authentication
+            var ensureAlignedSession = context.RequestServices.GetService<AlignSessionWithFormsAuthentication>();
+            ensureAlignedSession?.Execute();
         }
     }
 }

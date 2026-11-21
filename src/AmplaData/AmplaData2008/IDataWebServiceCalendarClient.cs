@@ -5,7 +5,7 @@
         DeleteCalendarValueResponse DeleteCalendarValue(DeleteCalendarValueRequest request);
 
         string[] GetCalendarNames(GetCalendarNamesRequest request);
-        
+
         GetCalendarValuesResponse GetCalendarValues(GetCalendarValuesRequest request);
 
         SubmitCalendarValuesResponse SubmitCalendarValues(SubmitCalendarValuesRequest request);

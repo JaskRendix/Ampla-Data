@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Web.Routing;
 
 namespace AmplaData.Web.Sample.NavigationRoutes

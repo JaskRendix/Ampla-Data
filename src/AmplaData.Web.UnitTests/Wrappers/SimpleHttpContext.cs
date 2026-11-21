@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web;
+using System.Collections.Generic;
 
 namespace AmplaData.Web.Wrappers
 {
@@ -17,9 +17,12 @@ namespace AmplaData.Web.Wrappers
             return new SimpleHttpContext(requestUrl);
         }
 
-        private SimpleHttpContext(string requestUrl) 
+        private SimpleHttpContext(string requestUrl)
         {
-            request = SimpleHttpRequest.Create(requestUrl, new HttpCookieCollection(), true);
+            request = SimpleHttpRequest.Create(
+                requestUrl,
+                new Dictionary<string, string>(),
+                true);
             response = SimpleHttpResponse.Create(Redirect);
             session = SimpleHttpSession.Create(true);
         }
@@ -27,9 +30,9 @@ namespace AmplaData.Web.Wrappers
         public SimpleHttpContext WithSessionsDisabled()
         {
             SimpleHttpContext newContext = new SimpleHttpContext(request.Url.ToString())
-                {
-                    Session = SimpleHttpSession.Create(false)
-                };
+            {
+                Session = SimpleHttpSession.Create(false)
+            };
             request.Dispose();
             response.Dispose();
             return newContext;
@@ -56,7 +59,7 @@ namespace AmplaData.Web.Wrappers
             private set
             {
                 request.Dispose();
-                request = (SimpleHttpRequest) value;
+                request = (SimpleHttpRequest)value;
             }
         }
 
@@ -68,7 +71,7 @@ namespace AmplaData.Web.Wrappers
         public IHttpSessionWrapper Session
         {
             get { return session; }
-            private set { session = (SimpleHttpSession) value; }
+            private set { session = (SimpleHttpSession)value; }
         }
 
         private SimpleHttpRequest request;

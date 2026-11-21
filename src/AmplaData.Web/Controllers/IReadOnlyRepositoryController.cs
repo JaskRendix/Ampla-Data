@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AmplaData.Web.Controllers
 {
@@ -28,5 +28,5 @@ namespace AmplaData.Web.Controllers
         /// <returns></returns>
         ActionResult Record(int id = 0);
 
-   }
+    }
 }

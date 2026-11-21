@@ -12,7 +12,7 @@ namespace AmplaData.Binding
         private readonly IModelProperties<TModel> modelProperties;
         private readonly string idProperty;
 
-        public AmplaDataSubmissionResultBinding(DataSubmissionResult[] dataSubmissionResults, List<TModel> models, IModelProperties<TModel> modelProperties )
+        public AmplaDataSubmissionResultBinding(DataSubmissionResult[] dataSubmissionResults, List<TModel> models, IModelProperties<TModel> modelProperties)
         {
             this.dataSubmissionResults = dataSubmissionResults ?? new DataSubmissionResult[0];
             this.models = models;

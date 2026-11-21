@@ -53,7 +53,7 @@ namespace AmplaData.AmplaRepository
             get { return calendarClient; }
         }
 
- 
+
 
         /// <summary>
         /// Creates the credentials.

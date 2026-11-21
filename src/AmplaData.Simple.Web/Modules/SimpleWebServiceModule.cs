@@ -27,7 +27,7 @@ namespace AmplaData.Simple.Web.Modules
                 StandardViews.Field<double>("Weight"),
                 StandardViews.Field<string>("Material", "Material", false, true)
                 ));
-            
+
             configuration.EnableModule("Quality");
             configuration.AddLocation("Quality", "Enterprise.Site.Area.Quality");
             configuration.SetDefaultView("Quality", QualityViews.StandardViewPlus(
@@ -48,7 +48,7 @@ namespace AmplaData.Simple.Web.Modules
             builder.RegisterInstance(securityClient).SingleInstance();
 
             builder.RegisterType<SimpleDataWebServiceClient>().As<IDataWebServiceClient>();
-            
+
         }
     }
 }

@@ -20,13 +20,13 @@ namespace AmplaData.Modules.Planning
         public void SubmitWithBasicFields()
         {
             SimplePlanningModel model = new SimplePlanningModel
-                {
-                    Location = location,
-                    PlannedStart = DateTime.Today,
-                    PlannedEnd = DateTime.Today.AddDays(1),
-                    State = "Available",
-                    ActivityId = "ABC-123"
-                };
+            {
+                Location = location,
+                PlannedStart = DateTime.Today,
+                PlannedEnd = DateTime.Today.AddDays(1),
+                State = "Available",
+                ActivityId = "ABC-123"
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -99,7 +99,7 @@ namespace AmplaData.Modules.Planning
         [Test]
         public void WithActivityId()
         {
-            SimplePlanningModel model = new SimplePlanningModel { Location = location, ActivityId = "New Activity"};
+            SimplePlanningModel model = new SimplePlanningModel { Location = location, ActivityId = "New Activity" };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

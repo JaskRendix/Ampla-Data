@@ -6,7 +6,7 @@ namespace AmplaData.Binding.Mapping.Modules
     /// <summary>
     ///     Mapping lookup for specific Field Mappings per module
     /// </summary>
-    public class ModuleMapping 
+    public class ModuleMapping
     {
         private class NullModuleMapping : StandardModuleMapping
         {
@@ -32,13 +32,13 @@ namespace AmplaData.Binding.Mapping.Modules
         /// </summary>
         /// <param name="module">The module.</param>
         /// <returns></returns>
-         public static IModuleMapping GetModuleMapping(AmplaModules module)
-         {
-             IModuleMapping moduleMapping;
-             ModuleMappings.TryGetValue(module, out moduleMapping);
-             
-             return moduleMapping;
-         }
+        public static IModuleMapping GetModuleMapping(AmplaModules module)
+        {
+            IModuleMapping moduleMapping;
+            ModuleMappings.TryGetValue(module, out moduleMapping);
+
+            return moduleMapping;
+        }
 
     }
 }

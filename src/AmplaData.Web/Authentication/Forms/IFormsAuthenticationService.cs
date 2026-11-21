@@ -1,33 +1,34 @@
-﻿using System.Web.Security;
-
-namespace AmplaData.Web.Authentication.Forms
+﻿namespace AmplaData.Web.Authentication.Forms
 {
     /// <summary>
-    ///     Service that wraps the FormsAuthenicationService
+    /// Service that wraps authentication logic.
     /// </summary>
     public interface IFormsAuthenticationService
     {
         /// <summary>
-        ///     Sign out of FormsAuthentication
+        /// Sign out the current user.
         /// </summary>
         void SignOut();
 
         /// <summary>
-        ///     Expire the Session (and Ticket the ticket)
+        /// Expire the current session.
         /// </summary>
         void SessionExpired();
 
         /// <summary>
-        /// Stores the user ticket.
+        /// Store user authentication information.
         /// </summary>
-        /// <param name="amplaUser">The ampla user.</param>
-        /// <param name="createPersistentCookie">if set to <c>true</c> [create persistent cookie].</param>
-        void StoreUserTicket(AmplaUser amplaUser, bool createPersistentCookie);
+        /// <param name="amplaUser">The Ampla user.</param>
+        /// <param name="createPersistentCookie">
+        /// True to create a persistent cookie.
+        /// </param>
+        void StoreUserTicket(
+            AmplaUser amplaUser,
+            bool createPersistentCookie);
 
         /// <summary>
-        /// Gets the user ticket.
+        /// Gets the current authentication ticket.
         /// </summary>
-        /// <returns></returns>
-        FormsAuthenticationTicket GetUserTicket();
+        AuthenticationTicket GetUserTicket();
     }
 }

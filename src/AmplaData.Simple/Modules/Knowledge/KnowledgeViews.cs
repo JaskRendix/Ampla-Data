@@ -10,12 +10,12 @@ namespace AmplaData.Modules.Knowledge
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Knowledge.DiaryView",
-                    DisplayName = "Knowledge",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll().Disallow(ViewAllowedOperations.SplitRecord),
-                };
+            {
+                name = "Knowledge.DiaryView",
+                DisplayName = "Knowledge",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll().Disallow(ViewAllowedOperations.SplitRecord),
+            };
             return view;
         }
 

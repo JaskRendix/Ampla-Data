@@ -22,7 +22,7 @@
 
         public override bool Matches(InMemoryAuditRecord auditRecord)
         {
-            return auditRecord.Field == field && auditRecord.EditedValue == stringValue; 
+            return auditRecord.Field == field && auditRecord.EditedValue == stringValue;
         }
     }
 }

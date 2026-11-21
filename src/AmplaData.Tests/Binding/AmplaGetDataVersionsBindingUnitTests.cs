@@ -33,39 +33,39 @@ namespace AmplaData.Binding
         [Test]
         public void BindWithEmptyOriginalValue_double()
         {
-            AmplaRecord amplaRecord = new AmplaRecord(100) {Location = location, Module = module, ModelName = ""};
-            amplaRecord.AddColumn("Value", typeof (double));
-            amplaRecord.AddColumn("Area", typeof (string));
+            AmplaRecord amplaRecord = new AmplaRecord(100) { Location = location, Module = module, ModelName = "" };
+            amplaRecord.AddColumn("Value", typeof(double));
+            amplaRecord.AddColumn("Area", typeof(string));
             amplaRecord.SetValue("Value", "100.0");
             amplaRecord.SetValue("Area", "ROM");
 
             AmplaAuditRecord auditRecord = new AmplaAuditRecord
-                {
-                    Id = amplaRecord.Id,
-                    Location = amplaRecord.Location,
-                    Module = amplaRecord.Module,
-                    Changes = new List<AmplaAuditSession>
+            {
+                Id = amplaRecord.Id,
+                Location = amplaRecord.Location,
+                Module = amplaRecord.Module,
+                Changes = new List<AmplaAuditSession>
                         {
                             new AmplaAuditSession("User", DateTime.Today)
                         }
-                };
+            };
             auditRecord.Changes[0].Fields.Add(new AmplaAuditField
-                {
-                    Name = "Value",
-                    OriginalValue = "",
-                    EditedValue = "100"
-                });
+            {
+                Name = "Value",
+                OriginalValue = "",
+                EditedValue = "100"
+            });
 
-            AreaValueModel model = new AreaValueModel {Id = 100, Area = "ROM", Value = 100.0d};
+            AreaValueModel model = new AreaValueModel { Id = 100, Area = "ROM", Value = 100.0d };
             ModelVersions modelVersions = new ModelVersions(amplaRecord);
             IModelProperties<AreaValueModel> modelProperties = new ModelProperties<AreaValueModel>();
 
             AmplaViewProperties<AreaValueModel> viewProperties = new AmplaViewProperties<AreaValueModel>(modelProperties);
             GetViewsResponse view = new GetViewsResponse
-                {
-                    Context = new GetViewsResponseContext(),
-                    Views = new[] {ProductionViews.AreaValueModelView()}
-                };
+            {
+                Context = new GetViewsResponseContext(),
+                Views = new[] { ProductionViews.AreaValueModelView() }
+            };
             viewProperties.Initialise(view);
             AmplaGetDataVersionsBinding<AreaValueModel> binding =
                 new AmplaGetDataVersionsBinding<AreaValueModel>(amplaRecord, auditRecord, model, modelVersions,
@@ -76,8 +76,8 @@ namespace AmplaData.Binding
             Assert.That(modelVersions.Versions, Is.Not.Empty);
             Assert.That(modelVersions.Versions.Count, Is.EqualTo(2));
 
-            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>) modelVersions.Versions[0];
-            ModelVersion<AreaValueModel> current = (ModelVersion<AreaValueModel>) modelVersions.Versions[1];
+            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>)modelVersions.Versions[0];
+            ModelVersion<AreaValueModel> current = (ModelVersion<AreaValueModel>)modelVersions.Versions[1];
 
             Assert.That(last.IsCurrentVersion, Is.False);
             Assert.That(current.IsCurrentVersion, Is.True);
@@ -124,7 +124,7 @@ namespace AmplaData.Binding
                 EditedValue = "True"
             });
 
-            AreaValueModel model = new AreaValueModel { Id = 100, Area = "ROM", Value = 100.0d, Confirmed = true};
+            AreaValueModel model = new AreaValueModel { Id = 100, Area = "ROM", Value = 100.0d, Confirmed = true };
             ModelVersions modelVersions = new ModelVersions(amplaRecord);
             IModelProperties<AreaValueModel> modelProperties = new ModelProperties<AreaValueModel>();
 

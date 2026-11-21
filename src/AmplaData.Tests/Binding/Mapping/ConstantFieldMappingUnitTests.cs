@@ -27,6 +27,6 @@ namespace AmplaData.Binding.Mapping
             Assert.That(fieldMapping.TryResolveValue(modelProperties, model, out value), Is.True);
             Assert.That(value, Is.EqualTo("John Doe"));
         }
-    
+
     }
 }

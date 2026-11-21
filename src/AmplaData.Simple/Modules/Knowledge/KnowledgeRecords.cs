@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Knowledge
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(KnowledgeViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Knowledge",
-                    Module = "Knowledge"
-                };
+            {
+                Location = "Enterprise.Site.Area.Knowledge",
+                Module = "Knowledge"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);

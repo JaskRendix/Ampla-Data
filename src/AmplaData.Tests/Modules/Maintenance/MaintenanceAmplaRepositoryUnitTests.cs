@@ -20,11 +20,11 @@ namespace AmplaData.Modules.Maintenance
         public void SubmitWithBasicFields()
         {
             SimpleMaintenanceModel model = new SimpleMaintenanceModel
-                {
-                    Location = location,
-                    SamplePeriod = DateTime.Today,
-                    Duration = 600
-                };
+            {
+                Location = location,
+                SamplePeriod = DateTime.Today,
+                Duration = 600
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

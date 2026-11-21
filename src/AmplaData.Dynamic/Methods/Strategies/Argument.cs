@@ -86,7 +86,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
                 return "Named: " + name;
             }
         }
-        
+
         protected Type Type { get; private set; }
 
         protected Argument(Type type)
@@ -96,13 +96,13 @@ namespace AmplaData.Dynamic.Methods.Strategies
 
         public static NamedArgument Named<T>(string name)
         {
-            NamedArgument argument = new NamedArgument(name, typeof (T));
+            NamedArgument argument = new NamedArgument(name, typeof(T));
             return argument;
         }
 
         public static PositionalArgument Position<T>(int position)
         {
-            return new PositionalArgument(position, typeof (T));
+            return new PositionalArgument(position, typeof(T));
         }
 
         protected bool CompareType(Type argType, Type requiredType)

@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Web.Routing;
 
 //nuget:mvc4futures

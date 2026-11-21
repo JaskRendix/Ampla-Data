@@ -44,7 +44,7 @@ namespace AmplaData.AmplaRepository
             DateTime beforeLocal = beforeUtc.ToLocalTime();
             DateTime afterLocal = afterUtc.ToLocalTime();
 
-            AreaValueModel model = new AreaValueModel {Area = "ROM", Value = 100};
+            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100 };
 
             Repository.Add(model);
             Assert.That(Records, Is.Not.Empty);
@@ -71,7 +71,7 @@ namespace AmplaData.AmplaRepository
 
             DateTime localHour = DateTime.Now.TrimToHour();
 
-            AreaValueModel model = new AreaValueModel {Area = "ROM", Value = 100, Sample = localHour};
+            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100, Sample = localHour };
 
             DateTime utcHour = localHour.ToUniversalTime();
 
@@ -127,12 +127,12 @@ namespace AmplaData.AmplaRepository
             Repository.Add(model);
 
             ModelVersions versions = Repository.GetVersions(model.Id);
-            
+
             Assert.That(versions, Is.Not.Null);
             Assert.That(versions.Versions, Is.Not.Empty);
             Assert.That(versions.Versions.Count, Is.EqualTo(1));
 
-            ModelVersion<AreaValueModel> version = (ModelVersion<AreaValueModel>) versions.Versions[0];
+            ModelVersion<AreaValueModel> version = (ModelVersion<AreaValueModel>)versions.Versions[0];
 
             Assert.That(version.Display, Is.EqualTo("User created record"));
             Assert.That(version.Model.Id, Is.EqualTo(model.Id));
@@ -156,7 +156,7 @@ namespace AmplaData.AmplaRepository
 
             Repository.Add(model);
 
-            AreaValueModel update = new AreaValueModel {Id = model.Id, Area = "ROM", Value = 100, Sample = model.Sample.AddMinutes(1)};
+            AreaValueModel update = new AreaValueModel { Id = model.Id, Area = "ROM", Value = 100, Sample = model.Sample.AddMinutes(1) };
             Repository.Update(update);
 
             ModelVersions versions = Repository.GetVersions(model.Id);

@@ -19,7 +19,7 @@ namespace AmplaData.Binding.Mapping
         {
             IdFieldMapping fieldMapping = new IdFieldMapping("Id");
 
-            Model model = new Model {Id = 100};
+            Model model = new Model { Id = 100 };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 
@@ -33,7 +33,7 @@ namespace AmplaData.Binding.Mapping
         {
             IdFieldMapping fieldMapping = new IdFieldMapping("Id");
 
-            Model model = new Model {Id = 0};
+            Model model = new Model { Id = 0 };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 

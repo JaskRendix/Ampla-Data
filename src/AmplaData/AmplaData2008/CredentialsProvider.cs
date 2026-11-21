@@ -21,9 +21,9 @@
         {
             if (session == null)
             {
-                return new Credentials {Username = userName, Password = password};
+                return new Credentials { Username = userName, Password = password };
             }
-            return new Credentials {Session = session};
+            return new Credentials { Session = session };
         }
 
         public static CredentialsProvider ForSession(string session)

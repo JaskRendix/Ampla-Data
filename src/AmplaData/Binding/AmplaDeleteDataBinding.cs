@@ -11,7 +11,7 @@ namespace AmplaData.Binding
         private readonly IModelProperties<TModel> modelProperties;
         private readonly string idProperty;
 
-        public AmplaDeleteDataBinding(List<TModel> models, List<DeleteRecord> records, IModelProperties<TModel> modelProperties )
+        public AmplaDeleteDataBinding(List<TModel> models, List<DeleteRecord> records, IModelProperties<TModel> modelProperties)
         {
             this.models = models;
             this.records = records;
@@ -26,14 +26,14 @@ namespace AmplaData.Binding
             foreach (TModel model in models)
             {
                 DeleteRecord record = new DeleteRecord
+                {
+                    Location = modelProperties.GetLocation(model),
+                    Module = modelProperties.Module,
+                    MergeCriteria = new DeleteRecordsMergeCriteria
                     {
-                        Location = modelProperties.GetLocation(model),
-                        Module = modelProperties.Module,
-                        MergeCriteria = new DeleteRecordsMergeCriteria
-                            {
-                                SetId = ModelIdentifier.GetValue<TModel, long>(model)
-                            }
-                    };
+                        SetId = ModelIdentifier.GetValue<TModel, long>(model)
+                    }
+                };
                 records.Add(record);
             }
 

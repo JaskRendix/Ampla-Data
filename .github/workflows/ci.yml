@@ -1,0 +1,36 @@
+name: .NET Build and Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore src/AmplaData.sln
+
+    - name: Verify formatting
+      run: dotnet format src/AmplaData.sln --verify-no-changes
+
+    - name: Build project
+      run: dotnet build src/AmplaData.sln --configuration Release --no-restore
+
+    - name: Test AmplaData
+      run: dotnet test src/AmplaData.Tests/AmplaData.Tests.csproj --configuration Release --no-build
+
+    - name: Test Dynamic
+      run: dotnet test src/AmplaData.Dynamic.Tests/AmplaData.Dynamic.Tests.csproj --configuration Release --no-build
+
+    - name: Test Web
+      run: dotnet test src/AmplaData.Web.UnitTests/AmplaData.Web.UnitTests.csproj --configuration Release --no-build

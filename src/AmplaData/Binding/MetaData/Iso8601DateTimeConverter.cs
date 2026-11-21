@@ -14,12 +14,12 @@ namespace AmplaData.Binding.MetaData
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            return destinationType == typeof (DateTime) || base.CanConvertTo(context, destinationType);
+            return destinationType == typeof(DateTime) || base.CanConvertTo(context, destinationType);
         }
 
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return sourceType == typeof (DateTime) || base.CanConvertFrom(context, sourceType);
+            return sourceType == typeof(DateTime) || base.CanConvertFrom(context, sourceType);
         }
 
         /// <summary>
@@ -35,12 +35,12 @@ namespace AmplaData.Binding.MetaData
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
                                          Type destinationType)
         {
-            if (context == null && destinationType == typeof (string) && CultureInfo.InvariantCulture.Equals(culture))
+            if (context == null && destinationType == typeof(string) && CultureInfo.InvariantCulture.Equals(culture))
             {
-                DateTime localTime = (DateTime) value;
+                DateTime localTime = (DateTime)value;
                 return localTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
-            if (context == null && destinationType == typeof (DateTime))
+            if (context == null && destinationType == typeof(DateTime))
             {
                 return Convert.ToDateTime(value);
             }
@@ -79,7 +79,7 @@ namespace AmplaData.Binding.MetaData
 
             if (result != null)
             {
-                return (DateTime) result;
+                return (DateTime)result;
             }
             return DateTime.MinValue;
         }

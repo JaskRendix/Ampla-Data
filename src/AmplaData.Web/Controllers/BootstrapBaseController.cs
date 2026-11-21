@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using AmplaData.Web.BootstrapSupport;
 
 namespace AmplaData.Web.Controllers

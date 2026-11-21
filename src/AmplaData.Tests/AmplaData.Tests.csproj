@@ -1,200 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F262B484-F272-4514-BEE2-D630D1C997A6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>AmplaData</RootNamespace>
     <AssemblyName>AmplaData.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
+    <Compile Include="..\Assembly.Common.cs" Link="Properties\Assembly.Common.cs" />
+    <Compile Include="..\Assembly.Version.cs" Link="Properties\Assembly.Version.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\AmplaData.Simple\AmplaData.Simple.csproj">
-      <Project>{B3E658CF-5F5A-492A-87E0-9D8E200E22C0}</Project>
-      <Name>AmplaData.Simple</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AmplaData\AmplaData.csproj">
-      <Project>{EA920285-DB3C-46AB-97D9-17EA716B70AF}</Project>
-      <Name>AmplaData</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\AmplaData.Simple\AmplaData.Simple.csproj" />
+    <ProjectReference Include="..\AmplaData\AmplaData.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Assembly.Common.cs">
-      <Link>Properties\Assembly.Common.cs</Link>
-    </Compile>
-    <Compile Include="..\Assembly.Version.cs">
-      <Link>Properties\Assembly.Version.cs</Link>
-    </Compile>
-    <Compile Include="AmplaData2008\LoggingDataWebServiceClient.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryDeletedFilterUnitTests.cs" />
-    <Compile Include="AmplaRepository\ValidateMappingUnitTests.cs" />
-    <Compile Include="AmplaRepository\CustomViewRepositoryUnitTests.cs" />
-    <Compile Include="Attributes\Calendar\AmplaCalendarValueAttributeUnitTests.cs" />
-    <Compile Include="Attributes\Calendar\AmplaCalendarAttributeUnitTests.cs" />
-    <Compile Include="Binding\AmplaGetDataVersionsBindingUnitTests.cs" />
-    <Compile Include="Binding\History\AmplaRecordHistoryUnitTests.cs" />
-    <Compile Include="Binding\History\ModifyRecordEventDectectionUnitTests.cs" />
-    <Compile Include="Binding\History\CreateRecordEventDectectionUnitTests.cs" />
-    <Compile Include="Binding\History\RecordEventDetectionTestFixture.cs" />
-    <Compile Include="Binding\Mapping\RequiredValueFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\MetaData\AllowEmptyStringConverterUnitTests.cs" />
-    <Compile Include="Binding\MetaData\Iso8601DateTimeConverterUnitTests.cs" />
-    <Compile Include="Binding\MetaData\TimeSpanIntConverterUnitTests.cs" />
-    <Compile Include="Binding\ModelData\CalendarPropertiesUnitTests.cs" />
-    <Compile Include="Binding\ViewData\EnsureViewPermissionsAdapterUnitTests.cs" />
-    <Compile Include="Binding\ViewData\ValidateViewPermissionsUnitTests.cs" />
-    <Compile Include="Binding\ViewData\ViewPermissionsBaseUnitTests.cs" />
-    <Compile Include="Display\DisplayStringExtensionsUnitTests.cs" />
-    <Compile Include="Display\DateTimeDisplayExtensionsUnitTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Records\AmplaAuditSessionUnitTests.cs" />
-    <Compile Include="AmplaData2008\SimpleDataWebServiceClientUnitTests.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryDefaultFilterUnitTests.cs" />
-    <Compile Include="AmplaRepository\TimeSpanDurationUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\EnergyModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\PlanningModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\KnowledgeModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\QualityModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\MaintenanceModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\MetricsModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\DowntimeModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\Modules\ModuleMappingTestFixture.cs" />
-    <Compile Include="Binding\Mapping\Modules\ProductionModuleMappingUnitTests.cs" />
-    <Compile Include="Binding\ModelData\ModelPropertyTimeSpanUnitTests.cs" />
-    <Compile Include="Binding\ModelData\DowntimeModelPropertiesUnitTests.cs" />
-    <Compile Include="Modules\Energy\EnergyAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Energy\IdentifierEnergyModel.cs" />
-    <Compile Include="Modules\Energy\ResolveIdentifiersAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Energy\SimpleEnergyModel.cs" />
-    <Compile Include="Modules\Maintenance\MaintenanceAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Maintenance\SimpleMaintenanceModel.cs" />
-    <Compile Include="Modules\Metrics\MetricsAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Metrics\SimpleMetricsModel.cs" />
-    <Compile Include="Modules\Planning\PlanningAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Planning\SimplePlanningModel.cs" />
-    <Compile Include="Modules\Quality\QualityAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Quality\SimpleQualityModel.cs" />
-    <Compile Include="Modules\Downtime\IdentifierDowntimeModel.cs" />
-    <Compile Include="Modules\Downtime\ResolveIdentifiersAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Downtime\DowntimeAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Attributes\AmplaDefaultFiltersAttributeUnitTests.cs" />
-    <Compile Include="Binding\Mapping\ValidatedModelFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\ModelData\ModelPropertyDefaultFilterUnitTests.cs" />
-    <Compile Include="Binding\ModelData\LocationFilterUnitTests.cs" />
-    <Compile Include="Binding\ModelData\Validation\RequiredLocationValidatorUnitTests.cs" />
-    <Compile Include="Binding\ModelData\Validation\LocationValidatorUnitTests.cs" />
-    <Compile Include="Modules\Downtime\SimpleDowntimeModel.cs" />
-    <Compile Include="FilterValueUnitTests.cs" />
-    <Compile Include="Modules\Knowledge\KnowledgeAmplaRepositoryUnitTests.cs" />
-    <Compile Include="Modules\Knowledge\SimpleKnowledgeModel.cs" />
-    <Compile Include="Records\AmplaRecordUnitTests.cs" />
-    <Compile Include="Records\FieldValueUnitTests.cs" />
-    <Compile Include="AmplaRepository\AmplaReadOnlyRepositoryUnitTests.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryDateTimeUnitTests.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryLocationUnitTests.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryTestFixture.cs" />
-    <Compile Include="AmplaRepository\AmplaRepositoryUnitTests.cs" />
-    <Compile Include="Attributes\AmplaLocationAttributeUnitTests.cs" />
-    <Compile Include="Attributes\AmplaModuleAttributeUnitTests.cs" />
-    <Compile Include="Attributes\AmplaFieldAttributeUnitTests.cs" />
-    <Compile Include="Binding\Mapping\ConstantFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\DefaultValueFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\IdFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\ModelFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\Mapping\ReadOnlyFieldMappingUnitTests.cs" />
-    <Compile Include="Binding\ModelData\ModelPropertyLocationUnitTests.cs" />
-    <Compile Include="Binding\ModelData\ModelPropertiesUnitTests.cs" />
-    <Compile Include="Binding\ModelData\ModelPropertyNonDefaultUnitTests.cs" />
-    <Compile Include="Binding\ViewData\ViewFiltersCollectionUnitTests.cs" />
-    <Compile Include="Binding\ViewData\ViewPermissionsUnitTests.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\ListLogger.cs" />
-    <Compile Include="Modules\Production\ProductionRecordsUnitTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AmplaSecurity2007\SimpleSecurityWebServiceClientUnitTests.cs" />
-    <Compile Include="TestFixture.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

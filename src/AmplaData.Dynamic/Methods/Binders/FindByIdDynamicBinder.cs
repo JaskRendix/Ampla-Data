@@ -22,24 +22,24 @@ namespace AmplaData.Dynamic.Methods.Binders
             string idValue = args.Length == 1 ? Convert.ToString(args[0]) : "";
 
             GetDataRequest request = new GetDataRequest
+            {
+                Credentials = GetCredentials(),
+                Filter = new DataFilter
                 {
-                    Credentials = GetCredentials(),
-                    Filter = new DataFilter
-                        {
-                            Location = location, 
-                            Criteria = new [] {new FilterEntry {Name = "Id", Value = idValue}},
-                        },
-                    View = new GetDataView
-                        {
-                            Module = point.AmplaModule
-                        },
-                    OutputOptions = new GetDataOutputOptions
-                        {
-                            ResolveIdentifiers = true
-                        },
-                };
+                    Location = location,
+                    Criteria = new[] { new FilterEntry { Name = "Id", Value = idValue } },
+                },
+                View = new GetDataView
+                {
+                    Module = point.AmplaModule
+                },
+                OutputOptions = new GetDataOutputOptions
+                {
+                    ResolveIdentifiers = true
+                },
+            };
             GetDataResponse response = WebServiceClient.GetData(request);
-        
+
             List<dynamic> records = new List<dynamic>();
             DynamicModelProperties modelProperties = new DynamicModelProperties(point);
             IAmplaBinding binding = new AmplaGetDataDynamicBinding(response, records, modelProperties);

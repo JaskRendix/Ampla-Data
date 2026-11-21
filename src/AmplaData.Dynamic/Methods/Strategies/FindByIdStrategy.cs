@@ -10,7 +10,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
     public class FindByIdStrategy : MemberStrategy
     {
         private static readonly ArgumentMatchingStrategy NamedIdArgument = new ArgumentMatchingStrategy(Argument.Named<int>("Id").IgnoreCase);
-        private static readonly  ArgumentMatchingStrategy Position0Argument = new ArgumentMatchingStrategy(Argument.Position<int>(0));
+        private static readonly ArgumentMatchingStrategy Position0Argument = new ArgumentMatchingStrategy(Argument.Position<int>(0));
 
         /// <summary>
         /// Gets the Dynamic binder for the Find and FindById dynamic methods

@@ -28,17 +28,17 @@ namespace AmplaData.Binding.History
         {
             base.OnFixtureSetUp();
             modelProperties = new ModelProperties<ProductionModel>();
-            amplaViewProperties = new AmplaViewProperties<ProductionModel>(modelProperties); 
+            amplaViewProperties = new AmplaViewProperties<ProductionModel>(modelProperties);
         }
 
         protected AmplaRecord CreateRecord(int id)
         {
             AmplaRecord record = new AmplaRecord(id)
-                {
-                    Location = location,
-                    Module = module,
-                    ModelName = "Production Model"
-                };
+            {
+                Location = location,
+                Module = module,
+                ModelName = "Production Model"
+            };
 
             return record;
         }
@@ -46,12 +46,12 @@ namespace AmplaData.Binding.History
         protected AmplaAuditRecord CreateAuditRecord(AmplaRecord record)
         {
             AmplaAuditRecord auditRecord = new AmplaAuditRecord
-                {
-                    Id = record.Id,
-                    Location = record.Location,
-                    Module = record.Module,
-                    Changes = new List<AmplaAuditSession>()
-                };
+            {
+                Id = record.Id,
+                Location = record.Location,
+                Module = record.Module,
+                Changes = new List<AmplaAuditSession>()
+            };
             return auditRecord;
         }
 

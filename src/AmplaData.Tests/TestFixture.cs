@@ -19,7 +19,7 @@ namespace AmplaData
     {
         protected Exception FixtureException { get; private set; }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void FixtureSetUp()
         {
             string typeName = GetType().FullName;
@@ -43,7 +43,7 @@ namespace AmplaData
             }
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void FixtureTearDown()
         {
             try
@@ -59,7 +59,7 @@ namespace AmplaData
         [SetUp]
         public void SetUp()
         {
-            Assert.AreEqual(null, FixtureException, "[TestFixtureSetUp]");
+            Assert.AreEqual(null, FixtureException, "[OneTimeSetUp]");
 
             OnSetUp();
         }

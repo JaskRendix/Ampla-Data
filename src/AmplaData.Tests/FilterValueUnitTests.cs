@@ -30,24 +30,24 @@ namespace AmplaData
         public void ParseNull()
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() => FilterValue.Parse(null));
-            Assert.That(exception.Message, Is.StringContaining("Filter=Value"));
+            Assert.That(exception.Message, Does.Contain("Filter=Value"));
         }
 
         [Test]
         public void ParseEmpty()
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() => FilterValue.Parse(""));
-            Assert.That(exception.Message, Is.StringContaining("Filter=Value"));
+            Assert.That(exception.Message, Does.Contain("Filter=Value"));
         }
 
         [Test]
         public void ParseInvalid()
         {
-            string[] invalidFilters = new[] {"=Value", " = Value", "=", " = "};
+            string[] invalidFilters = new[] { "=Value", " = Value", "=", " = " };
             foreach (string filter in invalidFilters)
             {
                 ArgumentException exception = Assert.Throws<ArgumentException>(() => FilterValue.Parse(filter), filter);
-                Assert.That(exception.Message, Is.StringContaining("Filter=Value"), filter);
+                Assert.That(exception.Message, Does.Contain("Filter=Value"), filter);
             }
         }
 

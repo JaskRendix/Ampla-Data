@@ -33,7 +33,7 @@ namespace AmplaData.AmplaSecurity2007
 
         public Session GetSession()
         {
-            return new Session {User = UserName, SessionID = SessionId};
+            return new Session { User = UserName, SessionID = SessionId };
         }
     }
 }

@@ -64,7 +64,7 @@ namespace AmplaData.AmplaData2008
                     List<Row> rows = new List<Row>();
                     foreach (InMemoryRecord record in recordsToReturn)
                     {
-                        Row row = new Row {id = Convert.ToString(record.RecordId)};
+                        Row row = new Row { id = Convert.ToString(record.RecordId) };
                         List<XmlElement> values = new List<XmlElement>();
                         foreach (FieldValue value in record.Fields)
                         {
@@ -80,19 +80,19 @@ namespace AmplaData.AmplaData2008
                     string module = request.View.Module.ToString();
                     string location = request.Filter.Location;
                     GetDataResponse response = new GetDataResponse
+                    {
+                        Context = new GetDataResponseContext
                         {
-                            Context = new GetDataResponseContext
-                                {
-                                    Context = request.View.Context,
-                                    Metadata = request.Metadata,
-                                    Mode = request.View.Mode,
-                                    Module = request.View.Module,
-                                    ResolveIdentifiers = resolveIdentifiers,
-                                    ViewName = request.View.Name,
-                                    Fields = request.View.Fields,
-                                    ModelFields = request.View.ModelFields,
-                                },
-                            RowSets = new[]
+                            Context = request.View.Context,
+                            Metadata = request.Metadata,
+                            Mode = request.View.Mode,
+                            Module = request.View.Module,
+                            ResolveIdentifiers = resolveIdentifiers,
+                            ViewName = request.View.Name,
+                            Fields = request.View.Fields,
+                            ModelFields = request.View.ModelFields,
+                        },
+                        RowSets = new[]
                                 {
                                     new RowSet
                                         {
@@ -100,7 +100,7 @@ namespace AmplaData.AmplaData2008
                                             Columns = request.Metadata ? GetColumns(module, location) : null
                                         }
                                 }
-                        };
+                    };
 
                     return response;
                 });
@@ -109,53 +109,53 @@ namespace AmplaData.AmplaData2008
         public GetAuditDataResponse GetAuditData(GetAuditDataRequest request)
         {
             CheckCredentials(request.Credentials);
-            
+
             InMemoryFilterMatcher filterMatcher = new InMemoryFilterMatcher(request.Filter);
 
             string module = request.Filter.Module.ToString();
             List<InMemoryAuditRecord> auditRecords = amplaDatabase.GetAuditRecords(module).Where(filterMatcher.Matches).ToList();
 
             List<GetAuditDataRow> rows = new List<GetAuditDataRow>();
-            
+
             foreach (InMemoryAuditRecord record in auditRecords)
             {
                 GetAuditDataRow row = new GetAuditDataRow
-                    {
-                        EditedBy = record.EditedBy,
-                        EditedDateTime = record.EditedDateTime,
-                        EditedValue = record.EditedValue,
-                        Field = record.Field,
-                        Location = record.Location,
-                        OriginalValue = record.OriginalValue,
-                        RecordType = record.RecordType,
-                        SetId = record.SetId
-                    };
+                {
+                    EditedBy = record.EditedBy,
+                    EditedDateTime = record.EditedDateTime,
+                    EditedValue = record.EditedValue,
+                    Field = record.Field,
+                    Location = record.Location,
+                    OriginalValue = record.OriginalValue,
+                    RecordType = record.RecordType,
+                    SetId = record.SetId
+                };
 
                 rows.Add(row);
             }
 
             GetAuditDataResponse response = new GetAuditDataResponse
+            {
+                Context = new GetAuditDataResponseContext
                 {
-                    Context = new GetAuditDataResponseContext
-                        {
-                            Filter = new GetAuditDataResponseFilter
-                                {
-                                    Module = request.Filter.Module,
-                                    Location = request.Filter.Location,
-                                    RecordType = request.Filter.RecordType,
-                                    SetId = request.Filter.SetId,
-                                    EditedBy = request.Filter.EditedBy,
-                                    EditedSamplePeriod = null
-                                }
-                        },
-                    RowSets = new[]
+                    Filter = new GetAuditDataResponseFilter
+                    {
+                        Module = request.Filter.Module,
+                        Location = request.Filter.Location,
+                        RecordType = request.Filter.RecordType,
+                        SetId = request.Filter.SetId,
+                        EditedBy = request.Filter.EditedBy,
+                        EditedSamplePeriod = null
+                    }
+                },
+                RowSets = new[]
                         {
                             new GetAuditDataRowSet
                                 {
                                     Rows = rows.ToArray(),
                                 }
                         }
-                };
+            };
             return response;
         }
 
@@ -167,11 +167,11 @@ namespace AmplaData.AmplaData2008
             foreach (GetViewsField field in view.Fields)
             {
                 columns.Add(new FieldDefinition
-                    {
-                        name = field.name,
-                        displayName = field.displayName,
-                        type = field.type
-                    });
+                {
+                    name = field.name,
+                    displayName = field.displayName,
+                    type = field.type
+                });
             }
             return columns.ToArray();
         }
@@ -194,15 +194,15 @@ namespace AmplaData.AmplaData2008
                     SimpleNavigationHierarchy navigationHierarchy = new SimpleNavigationHierarchy(request.Module, reportingPoints);
 
                     return new GetNavigationHierarchyResponse
+                    {
+                        Hierarchy = navigationHierarchy.GetHierarchy(),
+                        Context = new GetNavigationHierarchyResponseContext
                         {
-                            Hierarchy = navigationHierarchy.GetHierarchy(),
-                            Context = new GetNavigationHierarchyResponseContext
-                                {
-                                    Module = (AmplaModules) Enum.Parse(typeof (AmplaModules), module),
-                                    Context = NavigationContext.Plant,
-                                    Mode = NavigationMode.Location,
-                                }
-                        };
+                            Module = (AmplaModules)Enum.Parse(typeof(AmplaModules), module),
+                            Context = NavigationContext.Plant,
+                            Mode = NavigationMode.Location,
+                        }
+                    };
                 });
         }
 
@@ -225,7 +225,7 @@ namespace AmplaData.AmplaData2008
                                         : UpdateDataRecord(submitDataRecord, user));
                     }
 
-                    return new SubmitDataResponse {DataSubmissionResults = results.ToArray()};
+                    return new SubmitDataResponse { DataSubmissionResults = results.ToArray() };
                 });
         }
 
@@ -246,7 +246,7 @@ namespace AmplaData.AmplaData2008
                         Dictionary<int, InMemoryRecord> database = amplaDatabase.GetModuleRecords(deleteRecord.Module.ToString());
 
                         CheckReportingPoint(deleteRecord.Module.ToString(), deleteRecord.Location);
-                        int recordId = (int) deleteRecord.MergeCriteria.SetId;
+                        int recordId = (int)deleteRecord.MergeCriteria.SetId;
                         InMemoryRecord record = FindRecord(database, deleteRecord.Location, deleteRecord.Module, recordId);
                         FieldValue deleted = record.Find("Deleted");
                         if (deleted != null)
@@ -257,14 +257,14 @@ namespace AmplaData.AmplaData2008
                         AddAuditRecord(record, editTime, "IsDeleted", false.ToString(), true.ToString(), user);
 
                         results.Add(new DeleteRecordsResult
-                            {
-                                Location = deleteRecord.Location,
-                                Module = deleteRecord.Module,
-                                RecordAction = DeleteRecordsAction.Delete,
-                                SetId = recordId
-                            });
+                        {
+                            Location = deleteRecord.Location,
+                            Module = deleteRecord.Module,
+                            RecordAction = DeleteRecordsAction.Delete,
+                            SetId = recordId
+                        });
                     }
-                    return new DeleteRecordsResponse {DeleteRecordsResults = results.ToArray()};
+                    return new DeleteRecordsResponse { DeleteRecordsResults = results.ToArray() };
                 });
         }
 
@@ -284,7 +284,7 @@ namespace AmplaData.AmplaData2008
                         string module = recordStatus.Module.ToString();
                         Dictionary<int, InMemoryRecord> database = amplaDatabase.GetModuleRecords(module);
                         CheckReportingPoint(module, recordStatus.Location);
-                        int recordId = (int) recordStatus.MergeCriteria.SetId;
+                        int recordId = (int)recordStatus.MergeCriteria.SetId;
                         InMemoryRecord record = FindRecord(database, recordStatus.Location, recordStatus.Module, recordId);
                         FieldValue confirmed = record.Find("Confirmed");
                         if (confirmed != null)
@@ -294,14 +294,14 @@ namespace AmplaData.AmplaData2008
                         string value = recordStatus.RecordAction == UpdateRecordStatusAction.Confirm ? "True" : "False";
                         record.Fields.Add(new FieldValue("Confirmed", value));
                         results.Add(new UpdateRecordStatusResult
-                            {
-                                Location = recordStatus.Location,
-                                Module = recordStatus.Module,
-                                RecordAction = recordStatus.RecordAction,
-                                SetId = recordId
-                            });
+                        {
+                            Location = recordStatus.Location,
+                            Module = recordStatus.Module,
+                            RecordAction = recordStatus.RecordAction,
+                            SetId = recordId
+                        });
                     }
-                    return new UpdateRecordStatusResponse {UpdateRecordStatusResults = results.ToArray()};
+                    return new UpdateRecordStatusResponse { UpdateRecordStatusResults = results.ToArray() };
                 });
         }
 
@@ -318,16 +318,16 @@ namespace AmplaData.AmplaData2008
                     string module = request.Module.ToString();
                     CheckLocation(module, request.ViewPoint);
                     GetViewsResponse response = new GetViewsResponse
-                        {
-                            Views = new[]
+                    {
+                        Views = new[]
                                 {
                                     amplaConfiguration.GetViewForLocation(module, request.ViewPoint)
                                 }
-                        };
+                    };
                     return response;
                 });
         }
-        
+
         /// <summary>
         /// Splits the records.
         /// </summary>
@@ -341,11 +341,11 @@ namespace AmplaData.AmplaData2008
                     string module = request.OriginalRecord.Module.ToString();
 
                     CheckReportingPoint(module, request.OriginalRecord.Location);
-                    
+
                     Dictionary<int, InMemoryRecord> database = amplaDatabase.GetModuleRecords(module);
 
                     InMemoryRecord record = FindRecord(database, request.OriginalRecord.Location, request.OriginalRecord.Module,
-                                                       (int) request.OriginalRecord.SetId);
+                                                       (int)request.OriginalRecord.SetId);
                     InMemoryRecord[] splitRecords = record.SplitRecord(request.SplitRecords[0].SplitDateTimeUtc);
 
                     int newSetId = amplaDatabase.GetNewSetId(module);
@@ -356,9 +356,9 @@ namespace AmplaData.AmplaData2008
                     database[splitRecords[1].RecordId] = splitRecords[1];
 
                     return new SplitRecordsResponse
-                        {
-                            Context = new SplitRecordsResponseContext {OriginalRecord = request.OriginalRecord},
-                            SplitRecordResults =
+                    {
+                        Context = new SplitRecordsResponseContext { OriginalRecord = request.OriginalRecord },
+                        SplitRecordResults =
                                 new[]
                                     {
                                         new SplitRecordResult
@@ -370,7 +370,7 @@ namespace AmplaData.AmplaData2008
                                                 SetId = splitRecords[0].RecordId
                                             }
                                     }
-                        };
+                    };
                 });
         }
 
@@ -383,11 +383,11 @@ namespace AmplaData.AmplaData2008
             setId++;
             GetView view = amplaConfiguration.GetViewForLocation(module, submitDataRecord.Location);
             InMemoryRecord amplaRecord = new InMemoryRecord(view)
-                {
-                    Location = submitDataRecord.Location,
-                    Module = module,
-                    RecordId = setId
-                };
+            {
+                Location = submitDataRecord.Location,
+                Module = module,
+                RecordId = setId
+            };
 
             foreach (Field field in submitDataRecord.Fields)
             {
@@ -458,16 +458,16 @@ namespace AmplaData.AmplaData2008
             GetView view = amplaConfiguration.GetViewForLocation(record.Module, record.Location);
 
             InMemoryAuditRecord auditRecord = new InMemoryAuditRecord
-                {
-                    SetId = Convert.ToString(record.RecordId),
-                    Location = record.Location,
-                    RecordType = record.Module,
-                    EditedBy = "System Configuration.Users." + user,
-                    EditedDateTime = PersistenceHelper.ConvertToString(editedTime),
-                    Field = GetFieldNameFromDisplayName(view, displayName),
-                    OriginalValue = oldValue,
-                    EditedValue = newValue
-                };
+            {
+                SetId = Convert.ToString(record.RecordId),
+                Location = record.Location,
+                RecordType = record.Module,
+                EditedBy = "System Configuration.Users." + user,
+                EditedDateTime = PersistenceHelper.ConvertToString(editedTime),
+                Field = GetFieldNameFromDisplayName(view, displayName),
+                OriginalValue = oldValue,
+                EditedValue = newValue
+            };
 
             auditDatabase.Add(auditRecord);
         }
@@ -532,7 +532,7 @@ namespace AmplaData.AmplaData2008
         {
             string[] locations = amplaConfiguration.GetLocations(module);
             bool isValid = locations.Any(point => point == location)
-                || locations.Any(point => point.StartsWith(location)); 
+                || locations.Any(point => point.StartsWith(location));
 
             if (!isValid)
             {

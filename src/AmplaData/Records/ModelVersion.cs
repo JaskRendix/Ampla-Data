@@ -31,7 +31,7 @@ namespace AmplaData.Records
 
         public TModel Model
         {
-            get { return (TModel) Object; }
+            get { return (TModel)Object; }
             set { Object = value; }
         }
 

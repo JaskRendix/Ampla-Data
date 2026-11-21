@@ -1,24 +1,28 @@
-﻿using System.Web;
+﻿using System;
 
 namespace AmplaData.Web.Wrappers
 {
     /// <summary>
-    ///     Interface that wraps the HttpResponse object to simplify testing
+    /// Interface that wraps the HttpResponse object to simplify testing.
     /// </summary>
     public interface IHttpResponseWrapper
     {
         /// <summary>
-        /// Gets the cookies.
+        /// Redirects the specified URL.
         /// </summary>
-        /// <value>
-        /// The cookies.
-        /// </value>
-        HttpCookieCollection Cookies { get; }
+        void Redirect(string url);
 
         /// <summary>
-        /// Redirects the specified automatic string.
+        /// Appends a cookie.
         /// </summary>
-        /// <param name="url">Url to redirect to.</param>
-        void Redirect(string url);
+        void AppendCookie(
+            string name,
+            string value,
+            TimeSpan? expiration = null);
+
+        /// <summary>
+        /// Deletes a cookie.
+        /// </summary>
+        void DeleteCookie(string name);
     }
 }

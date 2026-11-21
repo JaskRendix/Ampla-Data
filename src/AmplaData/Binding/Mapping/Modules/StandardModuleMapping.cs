@@ -43,10 +43,10 @@ namespace AmplaData.Binding.Mapping.Modules
             int i;
             return !string.IsNullOrEmpty(value) && int.TryParse(value, out i) && i > 0;
         }
-        
+
         private readonly Dictionary<string, Func<FieldMapping>> specialMappingFuncs = new Dictionary<string, Func<FieldMapping>>();
-        private readonly Dictionary<string, Func<FieldMapping>> requiredMappingFuncs = new Dictionary<string, Func<FieldMapping>> ();
-        private readonly List<ViewAllowedOperations> allowedOperations = new List<ViewAllowedOperations>(); 
+        private readonly Dictionary<string, Func<FieldMapping>> requiredMappingFuncs = new Dictionary<string, Func<FieldMapping>>();
+        private readonly List<ViewAllowedOperations> allowedOperations = new List<ViewAllowedOperations>();
 
         protected static string Iso8601UtcNow()
         {
@@ -74,7 +74,7 @@ namespace AmplaData.Binding.Mapping.Modules
             }
             else
             {
-                Func< FieldMapping> fieldMappingFunc;
+                Func<FieldMapping> fieldMappingFunc;
                 if (requiredMappingFuncs.TryGetValue(field.Name, out fieldMappingFunc))
                 {
                     return fieldMappingFunc();

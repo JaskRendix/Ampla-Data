@@ -54,7 +54,7 @@ namespace AmplaData.Attributes
         public static bool TryGetFilter<TModel>(out FilterValue[] filterValues)
         {
             AmplaDefaultFiltersAttribute attribute;
-            if (typeof (TModel).TryGetAttribute(out attribute))
+            if (typeof(TModel).TryGetAttribute(out attribute))
             {
                 filterValues = attribute.Filters;
                 return filterValues.Length > 0;

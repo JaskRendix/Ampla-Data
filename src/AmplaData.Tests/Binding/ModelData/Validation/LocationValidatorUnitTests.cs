@@ -12,12 +12,12 @@ namespace AmplaData.Binding.ModelData.Validation
         {
             public string Location { get; set; }
         }
-        
+
         [Test]
         public void ValidModel()
         {
             ModelProperties<LocationModel> modelProperties = new ModelProperties<LocationModel>();
-            LocationModel model = new LocationModel {Location = "Enterprise.Site.Area"};
+            LocationModel model = new LocationModel { Location = "Enterprise.Site.Area" };
 
             LocationValidator<LocationModel> validator = new LocationValidator<LocationModel>();
             ValidationMessages messages = new ValidationMessages();
@@ -31,7 +31,7 @@ namespace AmplaData.Binding.ModelData.Validation
         public void NullLocation()
         {
             ModelProperties<LocationModel> modelProperties = new ModelProperties<LocationModel>();
-            LocationModel model = new LocationModel {Location = null};
+            LocationModel model = new LocationModel { Location = null };
 
             LocationValidator<LocationModel> validator = new LocationValidator<LocationModel>();
             ValidationMessages messages = new ValidationMessages();

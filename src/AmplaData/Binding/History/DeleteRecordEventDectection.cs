@@ -38,7 +38,7 @@ namespace AmplaData.Binding.History
                                 VersionDateTime = session.EditedTime,
                                 User = session.User,
                                 Operation = Operation,
-                                Changes = new [] {new AmplaAuditField()
+                                Changes = new[] {new AmplaAuditField()
                                     {
                                         Name = deletedName,
                                         OriginalValue = "False",
@@ -49,7 +49,7 @@ namespace AmplaData.Binding.History
                             recordChanges.Add(changes);
                         }
                     }
-                }                
+                }
             }
             return recordChanges;
         }

@@ -1,90 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7BD8A9A4-8FB4-45E8-82B4-5450CC846132}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>AmplaData.Dynamic</RootNamespace>
     <AssemblyName>AmplaData.Dynamic</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Compile Include="..\Assembly.Common.cs" Link="Properties\Assembly.Common.cs" />
+    <Compile Include="..\Assembly.Version.cs" Link="Properties\Assembly.Version.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\Assembly.Common.cs">
-      <Link>Properties\Assembly.Common.cs</Link>
-    </Compile>
-    <Compile Include="..\Assembly.Version.cs">
-      <Link>Properties\Assembly.Version.cs</Link>
-    </Compile>
-    <Compile Include="Binding\AmplaAddDataDynamicBinding.cs" />
-    <Compile Include="Binding\AmplaDataSubmissionResultBinding.cs" />
-    <Compile Include="Binding\AmplaGetDataDynamicBinding.cs" />
-    <Compile Include="Binding\ModelData\DynamicModelProperties.cs" />
-    <Compile Include="Binding\ModelData\IDynamicModelProperties.cs" />
-    <Compile Include="Binding\ViewData\DynamicAmplaViewProperties.cs" />
-    <Compile Include="Binding\ViewData\IDynamicAmplaViewProperties.cs" />
-    <Compile Include="DynamicRecord.cs" />
-    <Compile Include="DynamicViewPoint.cs" />
-    <Compile Include="DynamicViewPointOperations.cs" />
-    <Compile Include="IDynamicViewPoint.cs" />
-    <Compile Include="IDynamicViewPointOperations.cs" />
-    <Compile Include="IRecordLoad.cs" />
-    <Compile Include="Methods\Binders\DynamicBinder.cs" />
-    <Compile Include="Methods\Binders\FindByIdDynamicBinder.cs" />
-    <Compile Include="Methods\Binders\IDynamicBinder.cs" />
-    <Compile Include="Methods\Strategies\Argument.cs" />
-    <Compile Include="Methods\Strategies\ArgumentMatchingStrategy.cs" />
-    <Compile Include="Methods\Strategies\IIndexStrategy.cs" />
-    <Compile Include="Methods\Strategies\FindByIdStrategy.cs" />
-    <Compile Include="Methods\Strategies\IndexStrategy.cs" />
-    <Compile Include="Methods\Strategies\IMemberStrategy.cs" />
-    <Compile Include="Methods\Strategies\MemberStrategy.cs" />
-    <Compile Include="ObjectExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ProjectReference Include="..\AmplaData\AmplaData.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AmplaData\AmplaData.csproj">
-      <Project>{EA920285-DB3C-46AB-97D9-17EA716B70AF}</Project>
-      <Name>AmplaData</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

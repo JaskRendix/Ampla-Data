@@ -48,7 +48,7 @@ namespace AmplaData.Records
         [Test]
         public void LocationGetValueRetrievesLocationField()
         {
-            AmplaRecord record = new AmplaRecord(100) {Location = "Plant.Area.Point"};
+            AmplaRecord record = new AmplaRecord(100) { Location = "Plant.Area.Point" };
 
             Assert.That(record.GetValue("Location"), Is.EqualTo("Plant.Area.Point"));
             Assert.That(record.Location, Is.EqualTo("Plant.Area.Point"));
@@ -104,7 +104,7 @@ namespace AmplaData.Records
             AmplaRecord record = new AmplaRecord(100);
             record.AddColumn("Field", typeof(string));
 
-            Assert.Throws<ArgumentException>(() => record.AddColumn("Field", typeof (int)));
+            Assert.Throws<ArgumentException>(() => record.AddColumn("Field", typeof(int)));
         }
     }
 }

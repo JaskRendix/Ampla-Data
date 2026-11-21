@@ -15,7 +15,7 @@ namespace AmplaData.Binding
         private readonly IAmplaViewProperties<TModel> amplaViewProperties;
         private readonly IModelProperties<TModel> modelProperties;
 
-        public AmplaAddDataBinding(List<TModel> models, List<SubmitDataRecord> records, IAmplaViewProperties<TModel> amplaViewProperties, IModelProperties<TModel> modelProperties )
+        public AmplaAddDataBinding(List<TModel> models, List<SubmitDataRecord> records, IAmplaViewProperties<TModel> amplaViewProperties, IModelProperties<TModel> modelProperties)
         {
             this.models = models;
             this.records = records;
@@ -30,11 +30,11 @@ namespace AmplaData.Binding
             foreach (TModel model in models)
             {
                 SubmitDataRecord record = new SubmitDataRecord
-                    {
-                        Location = modelProperties.GetLocation(model),
-                        Module = modelProperties.Module,
-                        MergeCriteria = null
-                    };
+                {
+                    Location = modelProperties.GetLocation(model),
+                    Module = modelProperties.Module,
+                    MergeCriteria = null
+                };
 
                 List<Field> fields = new List<Field>();
                 foreach (FieldMapping fieldMapping in amplaViewProperties.GetFieldMappings())
@@ -44,7 +44,7 @@ namespace AmplaData.Binding
                         string value;
                         if (fieldMapping.TryResolveValue(modelProperties, model, out value))
                         {
-                            Field field = new Field {Name = fieldMapping.Name, Value = value};
+                            Field field = new Field { Name = fieldMapping.Name, Value = value };
                             fields.Add(field);
                         }
                     }

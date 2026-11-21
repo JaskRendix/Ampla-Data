@@ -20,11 +20,11 @@ namespace AmplaData.Modules.Knowledge
         public void SubmitWithBasicFields()
         {
             SimpleKnowledgeModel model = new SimpleKnowledgeModel
-                {
-                    Location = location,
-                    SamplePeriod = DateTime.Today,
-                    Duration = 600
-                };
+            {
+                Location = location,
+                SamplePeriod = DateTime.Today,
+                Duration = 600
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

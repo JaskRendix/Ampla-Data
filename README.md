@@ -143,7 +143,7 @@ The ```IRepositoryController<TModel>``` provides the following actions for model
 * ```POST``` ```/{Model}/Delete/{Id}```
 
 ``` C#
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AmplaWeb.Data.Controllers
 {

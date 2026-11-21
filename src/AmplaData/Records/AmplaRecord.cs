@@ -20,7 +20,7 @@ namespace AmplaData.Records
         {
             Id = recordId;
             dataStore = new DataTable("Record");
-            AddColumn("Location", typeof (string));
+            AddColumn("Location", typeof(string));
             dataStore.Rows.Add();
         }
 
@@ -39,7 +39,7 @@ namespace AmplaData.Records
         /// </summary>
         public string Location
         {
-            get { return (string) GetValue("Location"); }
+            get { return (string)GetValue("Location"); }
             set { SetValue("Location", value); }
         }
 
@@ -147,7 +147,7 @@ namespace AmplaData.Records
             {
                 value = defaultValue;
             }
-            return (T) Convert.ChangeType(value, typeof (T));
+            return (T)Convert.ChangeType(value, typeof(T));
         }
     }
 }

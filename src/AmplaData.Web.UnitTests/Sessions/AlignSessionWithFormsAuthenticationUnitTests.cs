@@ -34,7 +34,7 @@ namespace AmplaData.Web.Sessions
         {
             base.OnSetUp();
             context = SimpleHttpContext.Create("http://localhost");
-            
+
             securityWebService = new SimpleSecurityWebServiceClient("User");
             amplaUserService = new AmplaUserService(securityWebService, new AmplaUserStore());
         }

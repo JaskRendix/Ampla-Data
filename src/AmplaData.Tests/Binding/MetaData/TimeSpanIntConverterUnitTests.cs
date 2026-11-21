@@ -53,7 +53,7 @@ namespace AmplaData.Binding.MetaData
         [Test]
         public void ConvertIntToTimeSpan()
         {
-            const int value = 45*60;
+            const int value = 45 * 60;
             Assert.That(typeConverter.ConvertTo(value, typeof(TimeSpan)), Is.EqualTo(TimeSpan.FromMinutes(45)));
         }
 
@@ -63,7 +63,7 @@ namespace AmplaData.Binding.MetaData
             const double value = 45 * 60;
             Assert.That(typeConverter.ConvertTo(value, typeof(TimeSpan)), Is.EqualTo(TimeSpan.FromMinutes(45)));
         }
-        
+
         [Test]
         public void ConvertToFromString()
         {
@@ -91,6 +91,6 @@ namespace AmplaData.Binding.MetaData
         {
             Assert.That(typeConverter.CanConvertFrom(typeof(int)), Is.True);
             Assert.That(typeConverter.CanConvertTo(typeof(int)), Is.True);
-        } 
+        }
     }
 }

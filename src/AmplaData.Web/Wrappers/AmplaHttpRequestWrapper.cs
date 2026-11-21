@@ -1,67 +1,73 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace AmplaData.Web.Wrappers
 {
     /// <summary>
-    /// Wrapper class for the HttpRequest
+    /// Wrapper class for HttpRequest.
     /// </summary>
     public class AmplaHttpRequestWrapper : IHttpRequestWrapper
     {
         private readonly HttpRequest request;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AmplaHttpRequestWrapper"/> class.
-        /// </summary>
-        /// <param name="request">The request.</param>
         public AmplaHttpRequestWrapper(HttpRequest request)
         {
             this.request = request;
         }
 
-        /// <summary>
-        /// Gets the query string for the request
-        /// </summary>
-        /// <value>
-        /// The query string.
-        /// </value>
         public NameValueCollection QueryString
         {
-            get { return request.QueryString; }
+            get
+            {
+                NameValueCollection collection = new NameValueCollection();
+
+                foreach (var key in request.Query.Keys)
+                {
+                    collection[key] = request.Query[key];
+                }
+
+                return collection;
+            }
         }
 
-        /// <summary>
-        /// Gets the URL for the request
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
         public Uri Url
         {
-            get { return request.Url; }
+            get
+            {
+                return new Uri(
+                    $"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}");
+            }
         }
 
-        /// <summary>
-        /// Gets the cookies.
-        /// </summary>
-        /// <value>
-        /// The cookies.
-        /// </value>
-        public HttpCookieCollection Cookies
+        public IReadOnlyDictionary<string, string> Cookies
         {
-            get { return request.Cookies; }
+            get
+            {
+                var cookies = new Dictionary<string, string>();
+
+                foreach (var cookie in request.Cookies)
+                {
+                    cookies[cookie.Key] = cookie.Value;
+                }
+
+                return cookies;
+            }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the request has been [authenticated].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [is authenticated]; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsAuthenticated 
-        { 
-            get { return request.IsAuthenticated; }
+        public string GetCookie(string name)
+        {
+            request.Cookies.TryGetValue(name, out string value);
+            return value;
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return request.HttpContext.User?.Identity?.IsAuthenticated ?? false;
+            }
         }
     }
 }

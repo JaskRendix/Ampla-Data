@@ -1,75 +1,112 @@
 ﻿using System;
-using System.Web;
-using System.Web.Security;
+using System.Text;
+using System.Text.Json;
 using AmplaData.Web.Wrappers;
 
 namespace AmplaData.Web.Authentication.Forms
 {
     /// <summary>
-    /// Service that wraps the FormsAuthenicationService
+    /// Service that wraps authentication logic using modern .NET primitives.
     /// </summary>
     public class FormsAuthenticationService : IFormsAuthenticationService
     {
         private readonly IHttpRequestWrapper request;
         private readonly IHttpResponseWrapper response;
 
+        private const string CookieName = ".AmplaAuth";
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="FormsAuthenticationService"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="FormsAuthenticationService"/> class.
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <param name="response">The response.</param>
-        public FormsAuthenticationService(IHttpRequestWrapper request, IHttpResponseWrapper response)
+        public FormsAuthenticationService(
+            IHttpRequestWrapper request,
+            IHttpResponseWrapper response)
         {
             this.request = request;
             this.response = response;
         }
 
         /// <summary>
-        /// Sign out of FormsAuthentication
+        /// Sign out the current user.
         /// </summary>
         public void SignOut()
         {
-            FormsAuthentication.SignOut();
+            response.DeleteCookie(CookieName);
         }
 
         /// <summary>
-        /// Expire the Session (and Ticket the ticket)
+        /// Expire the current session.
         /// </summary>
         public void SessionExpired()
         {
-            FormsAuthentication.SignOut();
-            string url = request.Url.ToString();
+            SignOut();
+
+            string url = request.Url?.ToString() ?? "/";
+
             response.Redirect(url);
         }
 
         /// <summary>
         /// Stores the user ticket.
         /// </summary>
-        /// <param name="amplaUser">The ampla user.</param>
-        /// <param name="createPersistentCookie">if set to <c>true</c> [create persistent cookie].</param>
-        public void StoreUserTicket(AmplaUser amplaUser, bool createPersistentCookie)
+        public void StoreUserTicket(
+            AmplaUser amplaUser,
+            bool createPersistentCookie)
         {
-            string session = amplaUser.Session;
+            var ticket = new AuthenticationTicket
+            {
+                UserName = amplaUser.UserName,
+                Session = amplaUser.Session,
+                UserData = amplaUser.Session,
+                IsPersistent = createPersistentCookie,
+                IssueDate = DateTime.UtcNow,
+                Expiration = DateTime.UtcNow.AddMinutes(30)
+            };
 
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, amplaUser.UserName, DateTime.Now, DateTime.Now.AddMinutes(30), createPersistentCookie, session);
-            response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket)));
+            string jsonTicket =
+                JsonSerializer.Serialize(ticket);
+
+            string encodedTicket =
+                Convert.ToBase64String(
+                    Encoding.UTF8.GetBytes(jsonTicket));
+
+            response.AppendCookie(
+                CookieName,
+                encodedTicket,
+                createPersistentCookie
+                    ? TimeSpan.FromDays(7)
+                    : (TimeSpan?)null);
         }
 
         /// <summary>
         /// Gets the user ticket.
         /// </summary>
-        /// <returns></returns>
-        public FormsAuthenticationTicket GetUserTicket()
+        public AuthenticationTicket GetUserTicket()
         {
-            var authCookie = request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie != null)
+            var authCookieValue =
+                request.GetCookie(CookieName);
+
+            if (!string.IsNullOrEmpty(authCookieValue))
             {
-                string encTicket = authCookie.Value;
-                if (!String.IsNullOrEmpty(encTicket))
+                try
                 {
-                    return FormsAuthentication.Decrypt(encTicket);
+                    byte[] data =
+                        Convert.FromBase64String(
+                            authCookieValue);
+
+                    string jsonTicket =
+                        Encoding.UTF8.GetString(data);
+
+                    return JsonSerializer.Deserialize<AuthenticationTicket>(
+                        jsonTicket);
+                }
+                catch
+                {
+                    // Ignore malformed cookies.
                 }
             }
+
             return null;
         }
     }

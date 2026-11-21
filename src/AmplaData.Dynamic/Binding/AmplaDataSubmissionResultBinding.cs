@@ -5,7 +5,7 @@ using AmplaData.Binding;
 
 namespace AmplaData.Dynamic.Binding
 {
-    public class AmplaDataSubmissionResultDynamicBinding : IAmplaBinding 
+    public class AmplaDataSubmissionResultDynamicBinding : IAmplaBinding
     {
         private readonly DataSubmissionResult[] dataSubmissionResults;
         private readonly List<object> models;

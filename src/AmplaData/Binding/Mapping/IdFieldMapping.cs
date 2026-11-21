@@ -38,9 +38,9 @@ namespace AmplaData.Binding.Mapping
         public override bool CanMapField<TModel>(IModelProperties<TModel> modelProperties, out string message)
         {
             Type propertyType = modelProperties.GetPropertyType(Name);
-            if (!typeof (int).IsAssignableFrom(propertyType))
-            {            
-                message = string.Format("{0}.{1} is not a compatible data type ({2}) Ampla field type is {3}.", typeof (TModel), Name, FieldType, typeof(int));
+            if (!typeof(int).IsAssignableFrom(propertyType))
+            {
+                message = string.Format("{0}.{1} is not a compatible data type ({2}) Ampla field type is {3}.", typeof(TModel), Name, FieldType, typeof(int));
                 return false;
             }
             message = null;

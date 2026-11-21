@@ -19,10 +19,10 @@ namespace AmplaData.Modules.Energy
         public void SubmitWithNullFields()
         {
             IdentifierEnergyModel model = new IdentifierEnergyModel
-                {
-                    Location = location,
-                    StartTime = DateTime.Now,
-                };
+            {
+                Location = location,
+                StartTime = DateTime.Now,
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -58,7 +58,7 @@ namespace AmplaData.Modules.Energy
         [Test]
         public void SubmitWithCause()
         {
-            IdentifierEnergyModel model = new IdentifierEnergyModel { Location = location, StartTime = DateTime.Now, Cause = 100};
+            IdentifierEnergyModel model = new IdentifierEnergyModel { Location = location, StartTime = DateTime.Now, Cause = 100 };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

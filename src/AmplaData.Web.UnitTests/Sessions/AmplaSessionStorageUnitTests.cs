@@ -15,7 +15,7 @@ namespace AmplaData.Sessions
             SimpleHttpContext context = SimpleHttpContext.Create("http://localhost");
             sessionStorage = new AmplaSessionStorage(context.Session);
         }
-        
+
         [Test]
         public void DefaultSession()
         {

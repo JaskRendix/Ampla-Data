@@ -103,7 +103,7 @@ namespace AmplaData.AmplaRepository
         {
             Assert.That(Records, Is.Empty);
 
-            AreaValueModel model = new AreaValueModel {Area = "ROM", Value = 100};
+            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100 };
 
             Repository.Add(model);
             Assert.That(Records, Is.Not.Empty);
@@ -111,7 +111,7 @@ namespace AmplaData.AmplaRepository
             InMemoryRecord record = Records[0];
             Assert.That(record.Location, Is.EqualTo(location));
             Assert.That(record.RecordId, Is.GreaterThan(0));
-            Assert.That(record.GetFieldValue("Area",""), Is.EqualTo("ROM"));
+            Assert.That(record.GetFieldValue("Area", ""), Is.EqualTo("ROM"));
             Assert.That(record.GetFieldValue<double>("Value", 0), Is.EqualTo(100.0d));
             Assert.That(record.GetFieldValue("Sample Period", DateTime.MinValue), Is.Not.EqualTo(DateTime.MinValue));
             Assert.That(record.Find("Location"), Is.Not.Null);
@@ -127,7 +127,7 @@ namespace AmplaData.AmplaRepository
         {
             Assert.That(Records, Is.Empty);
 
-            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100, Id = 99};
+            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100, Id = 99 };
 
             Repository.Add(model);
             Assert.That(Records, Is.Not.Empty);
@@ -293,7 +293,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(updateModel, Is.Not.Null);
 
             int currentMessages = Messages.Count;
-            
+
             Assert.That(currentMessages, Is.GreaterThan(0));
 
             updateModel.Value = 100;
@@ -383,7 +383,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(record.Location, Is.EqualTo(location));
             Assert.That(record.Id, Is.EqualTo(model.Id));
 
-            AreaValueModel updated = new AreaValueModel {Id = model.Id, Area = "ROM", Value = 200};
+            AreaValueModel updated = new AreaValueModel { Id = model.Id, Area = "ROM", Value = 200 };
 
             DateTime before = DateTime.Now.AddMinutes(-1);
             DateTime after = DateTime.Now.AddMinutes(+1);
@@ -412,9 +412,9 @@ namespace AmplaData.AmplaRepository
             Assert.That(session.Fields, Is.Not.Empty);
 
             AssertAuditField(session, "Value", "100", "200");
-           
+
         }
-        
+
         [Test]
         public void GetVersions_NoChanges()
         {
@@ -441,7 +441,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(versions.Module, Is.EqualTo(record.Module));
             Assert.That(versions.ModelName, Is.EqualTo("Area Value Model"));
 
-            ModelVersion<AreaValueModel> version = (ModelVersion<AreaValueModel>) versions.Versions[0];
+            ModelVersion<AreaValueModel> version = (ModelVersion<AreaValueModel>)versions.Versions[0];
 
             Assert.That(version.Model, Is.Not.Null);
             Assert.That(version.Model.Id, Is.EqualTo(model.Id));
@@ -457,7 +457,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(Records, Is.Empty);
 
             DateTime beforeAdd = DateTime.Now.AddSeconds(-1);
-            AreaValueModel model = new AreaValueModel {Area = "ROM", Value = 100};
+            AreaValueModel model = new AreaValueModel { Area = "ROM", Value = 100 };
 
             Repository.Add(model);
 
@@ -470,7 +470,7 @@ namespace AmplaData.AmplaRepository
 
             DateTime beforeUpdate = DateTime.Now.AddSeconds(-1);
 
-            AreaValueModel updated = new AreaValueModel {Id = model.Id, Area = "ROM", Value = 200};
+            AreaValueModel updated = new AreaValueModel { Id = model.Id, Area = "ROM", Value = 200 };
 
             DateTime afterUpdate = DateTime.Now.AddSeconds(1);
 
@@ -488,8 +488,8 @@ namespace AmplaData.AmplaRepository
             Assert.That(versions.Versions, Is.Not.Empty);
             Assert.That(versions.Versions.Count, Is.EqualTo(2));
 
-            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>) versions.Versions[0];
-            ModelVersion<AreaValueModel> current = (ModelVersion<AreaValueModel>) versions.Versions[1];
+            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>)versions.Versions[0];
+            ModelVersion<AreaValueModel> current = (ModelVersion<AreaValueModel>)versions.Versions[1];
 
             Assert.That(last.Model, Is.Not.Null);
             Assert.That(last.IsCurrentVersion, Is.False);
@@ -523,11 +523,11 @@ namespace AmplaData.AmplaRepository
             int recordId = Records[0].RecordId;
 
             InMemoryRecord record = new InMemoryRecord(ProductionViews.AreaValueModelView())
-                {
-                    Module = module,
-                    Location = location,
-                    RecordId = recordId
-                };
+            {
+                Module = module,
+                Location = location,
+                RecordId = recordId
+            };
             record.SetFieldValue("Sample Period", DateTime.Today);
 
             UpdateRecord(record);
@@ -540,7 +540,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(versions.Versions, Is.Not.Empty);
             Assert.That(versions.Versions.Count, Is.EqualTo(2));  // one version change ('Sample Period') is not relevant
 
-            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>) versions.Versions[0];
+            ModelVersion<AreaValueModel> last = (ModelVersion<AreaValueModel>)versions.Versions[0];
             ModelVersion<AreaValueModel> current = (ModelVersion<AreaValueModel>)versions.Versions[1];
 
             Assert.That(last.Model, Is.Not.Null);

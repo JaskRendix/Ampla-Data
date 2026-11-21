@@ -33,16 +33,16 @@ namespace AmplaData.Binding
             foreach (Row row in rowSet.Rows)
             {
                 AmplaRecord model = new AmplaRecord(Convert.ToInt32(row.id))
-                    {
-                        Module = modelProperties.Module.ToString(),
-                        ModelName = modelProperties.GetModelName()
-                    };
+                {
+                    Module = modelProperties.Module.ToString(),
+                    ModelName = modelProperties.GetModelName()
+                };
 
                 foreach (var column in rowSet.Columns)
                 {
                     model.AddColumn(column.displayName, DataTypeHelper.GetDataType(column.type));
                 }
-                
+
                 foreach (XmlElement cell in row.Any)
                 {
                     string field = XmlConvert.DecodeName(cell.Name);

@@ -35,7 +35,7 @@ namespace AmplaData.Binding.Mapping
         {
             ValidatedModelFieldMapping fieldMapping = new ValidatedModelFieldMapping("Location", s => !string.IsNullOrEmpty(s));
 
-            Model model = new Model {Location = ""};
+            Model model = new Model { Location = "" };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 
@@ -50,7 +50,7 @@ namespace AmplaData.Binding.Mapping
         {
             ValidatedModelFieldMapping fieldMapping = new ValidatedModelFieldMapping("Location", s => !string.IsNullOrEmpty(s));
 
-            Model model = new Model { Location = "Plant.Area.Point"};
+            Model model = new Model { Location = "Plant.Area.Point" };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 

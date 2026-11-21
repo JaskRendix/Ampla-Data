@@ -6,7 +6,7 @@ namespace AmplaData
     {
         public FilterValue()
         {
-            
+
         }
 
         public FilterValue(string name, string value)
@@ -71,7 +71,7 @@ namespace AmplaData
 
         private static FilterValue ParseFullFormat(string filterString)
         {
-            string[] parts = filterString.Split(new []{"={"}, StringSplitOptions.None);
+            string[] parts = filterString.Split(new[] { "={" }, StringSplitOptions.None);
             if (parts.Length == 2)
             {
                 if (parts[1].EndsWith("}"))
@@ -87,7 +87,7 @@ namespace AmplaData
             }
             return null;
         }
-        
+
         public override string ToString()
         {
             return string.Format("FilterValue ({0} = {1})", Name, Value);

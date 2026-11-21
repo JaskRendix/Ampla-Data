@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using AmplaData.Records;
 
@@ -33,7 +34,7 @@ namespace AmplaData.Web.Controllers
             TModel model = Repository.FindById(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Details", model);
         }
@@ -48,7 +49,7 @@ namespace AmplaData.Web.Controllers
             AmplaRecord model = Repository.FindRecord(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Record", model);
         }

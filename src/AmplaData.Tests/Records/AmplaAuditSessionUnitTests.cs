@@ -14,7 +14,7 @@ namespace AmplaData.Records
             AmplaAuditSession tomorrow = new AmplaAuditSession("User", DateTime.Today.AddDays(1));
             AmplaAuditSession nightBeforeLast = new AmplaAuditSession("User", DateTime.Today.AddDays(-1).AddHours(-1));
 
-            List<AmplaAuditSession> list = new List<AmplaAuditSession> {tomorrow, nightBeforeLast, now};
+            List<AmplaAuditSession> list = new List<AmplaAuditSession> { tomorrow, nightBeforeLast, now };
 
             list.Sort();
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using AmplaData.Binding.MetaData;

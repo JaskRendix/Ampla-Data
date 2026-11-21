@@ -33,7 +33,7 @@ namespace AmplaData.Attributes.Calendar
 
         public class ModelWithNoAttribute
         {
-            
+
         }
 
 
@@ -42,7 +42,7 @@ namespace AmplaData.Attributes.Calendar
         {
             string baseName;
             bool result = TryGetBaseName<ModelWithField>(out baseName);
-        
+
             Assert.That(baseName, Is.EqualTo("Model.Area."));
             Assert.That(result, Is.True);
         }

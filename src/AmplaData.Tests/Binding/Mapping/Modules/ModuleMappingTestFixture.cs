@@ -12,7 +12,7 @@ namespace AmplaData.Binding.Mapping.Modules
         private readonly Func<GetView> getViewsFunc;
         private readonly Func<IModuleMapping> moduleMappingFunc;
 
-        protected ModuleMappingTestFixture(Func<GetView> getViewsFunc, Func<IModuleMapping> moduleMappingFunc )
+        protected ModuleMappingTestFixture(Func<GetView> getViewsFunc, Func<IModuleMapping> moduleMappingFunc)
         {
             this.getViewsFunc = getViewsFunc;
             this.moduleMappingFunc = moduleMappingFunc;

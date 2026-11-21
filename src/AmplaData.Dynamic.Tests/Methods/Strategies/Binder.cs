@@ -68,7 +68,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
         {
             get
             {
-                Binder binder = new Binder {BinderType = typeof (InvokeMemberBinder), Name = "Method"};
+                Binder binder = new Binder { BinderType = typeof(InvokeMemberBinder), Name = "Method" };
                 return binder;
             }
         }

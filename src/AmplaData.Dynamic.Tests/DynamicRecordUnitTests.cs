@@ -16,7 +16,7 @@ namespace AmplaData.Dynamic
             Assert.That(location, Is.Null);
 
             IRecordLoad recordLoad = record;
-            recordLoad.AddColumn("Location", typeof (string));
+            recordLoad.AddColumn("Location", typeof(string));
 
             recordLoad.SetValue("Location", "Enterprise.Site.Area.Production");
 
@@ -39,7 +39,7 @@ namespace AmplaData.Dynamic
 
             Assert.That(record["Location"], Is.EqualTo("Enterprise.Site.Area.Production"));
         }
-        
+
         [Test]
         public void EmptyValueProperty()
         {
@@ -54,7 +54,7 @@ namespace AmplaData.Dynamic
 
             object value = record.Value;
             Assert.That(value, Is.EqualTo(0));
-            
+
             int intValue = record.Value;
             Assert.That(intValue, Is.EqualTo(0));
 

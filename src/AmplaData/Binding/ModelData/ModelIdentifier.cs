@@ -10,13 +10,13 @@ namespace AmplaData.Binding.ModelData
     {
         private static readonly Dictionary<Type, string> CachedPropertyName = new Dictionary<Type, string>();
 
-         public static string GetPropertyName<TModel>()
-         {
-             return GetPropertyName(typeof(TModel));
-         }
+        public static string GetPropertyName<TModel>()
+        {
+            return GetPropertyName(typeof(TModel));
+        }
 
         public static PropertyInfo GetProperty<TModel>()
-        {            
+        {
             string property = GetPropertyName<TModel>();
             if (!string.IsNullOrEmpty(property))
             {
@@ -30,30 +30,30 @@ namespace AmplaData.Binding.ModelData
 
             return null;
         }
-            
-         public static string GetPropertyName(Type type)
-         {
-             string propertyName;
-             if (!CachedPropertyName.TryGetValue(type, out propertyName))
-             {
-                 PropertyInfo propertyInfo;
-                 if (ReflectionHelper.TryGetPropertyByAttribute<KeyAttribute>(type, out propertyInfo))
-                 {
-                     propertyName = propertyInfo.Name;
-                 }
-                 else if (ReflectionHelper.TryGetPropertyByName(type, "id", StringComparison.CurrentCultureIgnoreCase,
-                                                                out propertyInfo))
-                 {
-                     propertyName = propertyInfo.Name;
-                 }
-                 else
-                 {
-                     propertyName = "";
-                 }
-                 CachedPropertyName[type] = propertyName;
-             }
-             return propertyName;
-         }
+
+        public static string GetPropertyName(Type type)
+        {
+            string propertyName;
+            if (!CachedPropertyName.TryGetValue(type, out propertyName))
+            {
+                PropertyInfo propertyInfo;
+                if (ReflectionHelper.TryGetPropertyByAttribute<KeyAttribute>(type, out propertyInfo))
+                {
+                    propertyName = propertyInfo.Name;
+                }
+                else if (ReflectionHelper.TryGetPropertyByName(type, "id", StringComparison.CurrentCultureIgnoreCase,
+                                                               out propertyInfo))
+                {
+                    propertyName = propertyInfo.Name;
+                }
+                else
+                {
+                    propertyName = "";
+                }
+                CachedPropertyName[type] = propertyName;
+            }
+            return propertyName;
+        }
 
         public static string GetPropertyName(object model)
         {

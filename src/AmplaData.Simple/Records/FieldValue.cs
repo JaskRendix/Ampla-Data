@@ -63,7 +63,7 @@ namespace AmplaData.Records
 
         public FieldValue Clone()
         {
-            return new FieldValue(Name, Value, Id) ;
+            return new FieldValue(Name, Value, Id);
         }
 
         public void SetValue<T>(T value)

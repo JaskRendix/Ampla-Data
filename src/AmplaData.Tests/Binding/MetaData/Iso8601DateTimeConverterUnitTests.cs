@@ -39,7 +39,7 @@ namespace AmplaData.Binding.MetaData
         public void ConvertDateTimeToDateTime()
         {
             DateTime today221 = DateTime.Today.AddHours(2).AddMinutes(21).ToLocalTime();
-            Assert.That(typeConverter.ConvertTo(today221, typeof (DateTime)), Is.EqualTo(today221));
+            Assert.That(typeConverter.ConvertTo(today221, typeof(DateTime)), Is.EqualTo(today221));
         }
 
         [Test]

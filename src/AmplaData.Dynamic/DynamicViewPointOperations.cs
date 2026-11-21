@@ -32,12 +32,12 @@ namespace AmplaData.Dynamic
         private void Initialise()
         {
             GetViewsRequest request = new GetViewsRequest
-                {
-                    Credentials = CreateCredentials(),
-                    Module = modelProperties.Module,
-                    Context = NavigationContext.Plant,
-                    ViewPoint = viewPoint.Location
-                };
+            {
+                Credentials = CreateCredentials(),
+                Module = modelProperties.Module,
+                Context = NavigationContext.Plant,
+                ViewPoint = viewPoint.Location
+            };
 
             GetViewsResponse response = webServiceClient.GetViews(request);
             viewProperties.Initialise(response);
@@ -52,9 +52,9 @@ namespace AmplaData.Dynamic
             IDynamicAmplaViewProperties amplaViewProperties = viewProperties;
             amplaViewProperties.Enforce.CanAdd();
 
-            SubmitDataRequest request = new SubmitDataRequest {Credentials = CreateCredentials()};
+            SubmitDataRequest request = new SubmitDataRequest { Credentials = CreateCredentials() };
             List<SubmitDataRecord> records = new List<SubmitDataRecord>();
-            List<object> models = new List<object> {model.ToExpando()};
+            List<object> models = new List<object> { model.ToExpando() };
 
             IAmplaBinding binding = new AmplaAddDataDynamicBinding(models, records, amplaViewProperties, modelProperties);
             if (binding.Validate() && binding.Bind())

@@ -21,18 +21,18 @@ namespace AmplaData.AmplaRepository
         }
 
         private const string module = "Production";
-        private static readonly string[] Locations = new[] {"Enterprise.Site.Area.Point"};
+        private static readonly string[] Locations = new[] { "Enterprise.Site.Area.Point" };
 
         public AmplaRepositoryDeletedFilterUnitTests()
             : base(module, Locations, ProductionViews.AreaValueModelView)
         {
         }
-        
+
         [Test]
         public void GetAllReturnsDeletedRecords()
         {
             DeletedModel match = new DeletedModel();
-            DeletedModel deleted = new DeletedModel ();
+            DeletedModel deleted = new DeletedModel();
 
             Repository.Add(match);
             Repository.Add(deleted);
@@ -53,7 +53,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(models[0].Deleted, Is.False);
             Assert.That(models[1].Deleted, Is.True);
         }
-        
+
         [Test]
         public void FindByIdWithDeletedRecords()
         {
@@ -84,7 +84,7 @@ namespace AmplaData.AmplaRepository
 
             int id = model.Id;
 
-            DeletedModel model1 = Repository.FindById(id) ;
+            DeletedModel model1 = Repository.FindById(id);
             Assert.That(model1, Is.Not.Null);
 
             ModelVersions versions1 = Repository.GetVersions(id);

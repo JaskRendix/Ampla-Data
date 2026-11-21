@@ -9,8 +9,8 @@ namespace AmplaData.Dynamic
     public class DynamicRecord : DynamicObject, IRecordLoad
     {
         private readonly Dictionary<string, Type> columns = new Dictionary<string, Type>();
-        
-        private readonly Dictionary<string, object> values = new Dictionary<string, object>(); 
+
+        private readonly Dictionary<string, object> values = new Dictionary<string, object>();
 
         public DynamicRecord(string module)
         {
@@ -39,7 +39,7 @@ namespace AmplaData.Dynamic
         {
             string field = binder.Name;
 
-            return values.TryGetValue(field, out result) 
+            return values.TryGetValue(field, out result)
                 || base.TryGetMember(binder, out result);
         }
 
@@ -47,7 +47,7 @@ namespace AmplaData.Dynamic
         {
             return base.TrySetMember(binder, value);
         }
-        
+
         void IRecordLoad.AddColumn(string field, Type dataType)
         {
             columns.Add(field, dataType);

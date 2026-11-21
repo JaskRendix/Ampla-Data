@@ -10,8 +10,8 @@ namespace AmplaData.Web.Authentication
         private readonly IAmplaUserService userService;
         private readonly IFormsAuthenticationService formsAuthenticationService;
         private readonly IAmplaSessionStorage sessionStorage;
-        
-        public RenewSessionAdapter(IRepository<TModel> repository, 
+
+        public RenewSessionAdapter(IRepository<TModel> repository,
                                    IAmplaUserService userService,
                                    IFormsAuthenticationService formsAuthenticationService,
                                    IAmplaSessionStorage sessionStorage) : base(repository)
@@ -24,7 +24,7 @@ namespace AmplaData.Web.Authentication
         protected override void Adapt()
         {
             string session = sessionStorage.GetAmplaSession();
-        
+
             if (!string.IsNullOrEmpty(session))
             {
                 if (userService.RenewSession(session) == null)

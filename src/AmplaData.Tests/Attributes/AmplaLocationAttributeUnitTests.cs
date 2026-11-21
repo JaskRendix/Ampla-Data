@@ -65,7 +65,7 @@ namespace AmplaData.Attributes
         {
             LocationFilter location;
             bool result = AmplaLocationAttribute.TryGetLocation<ModelWithLocation>(out location);
-        
+
             Assert.That(location.Filter, Is.EqualTo("Enterprise.Site.Area.Point"));
 
             Assert.That(location.Location, Is.EqualTo("Enterprise.Site.Area.Point"));

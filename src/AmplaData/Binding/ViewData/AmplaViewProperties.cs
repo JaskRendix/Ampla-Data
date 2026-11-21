@@ -16,7 +16,7 @@ namespace AmplaData.Binding.ViewData
         private readonly ViewPeriodsCollection viewPeriodsCollection = new ViewPeriodsCollection();
         private List<FieldMapping> fieldResolvers = new List<FieldMapping>();
         private readonly IViewPermissions enforcePermissions;
-        
+
 
         public AmplaViewProperties(IModelProperties<TModel> modelProperties)
         {

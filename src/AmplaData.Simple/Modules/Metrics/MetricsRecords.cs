@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Metrics
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(MetricsViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Metrics",
-                    Module = "Metrics"
-                };
+            {
+                Location = "Enterprise.Site.Area.Metrics",
+                Module = "Metrics"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Start Time", DateTime.Today);

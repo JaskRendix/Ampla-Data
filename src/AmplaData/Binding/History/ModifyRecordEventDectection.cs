@@ -11,7 +11,7 @@ namespace AmplaData.Binding.History
         private readonly AmplaAuditRecord amplaAuditRecord;
         private readonly IAmplaViewProperties<TModel> viewProperties;
 
-        private readonly List<string> ignoreFields = new List<string> {"IsDeleted"};
+        private readonly List<string> ignoreFields = new List<string> { "IsDeleted" };
 
         public ModifyRecordEventDectection(AmplaRecord amplaRecord, AmplaAuditRecord amplaAuditRecord, IAmplaViewProperties<TModel> viewProperties)
             : base("Modify Record")
@@ -39,13 +39,13 @@ namespace AmplaData.Binding.History
                     {
                         string fieldNames = string.Join(", ", fieldList);
                         AmplaRecordChanges changes = new AmplaRecordChanges
-                            {
-                                VersionDateTime = session.EditedTime,
-                                User = session.User,
-                                Operation = Operation,
-                                Changes = fields.ToArray(),
-                                Display = string.Format("{0} modified record ({1})", session.User, fieldNames)
-                            };
+                        {
+                            VersionDateTime = session.EditedTime,
+                            User = session.User,
+                            Operation = Operation,
+                            Changes = fields.ToArray(),
+                            Display = string.Format("{0} modified record ({1})", session.User, fieldNames)
+                        };
                         recordChanges.Add(changes);
                     }
                 }

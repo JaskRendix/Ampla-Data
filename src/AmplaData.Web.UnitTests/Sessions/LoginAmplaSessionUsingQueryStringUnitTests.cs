@@ -40,83 +40,83 @@ namespace AmplaData.Web.Sessions
             }
         }
 
-         [Test]
-         public void AutomaticLoginFromSession()
-         {
-             SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User"); 
-             webServiceClient.AddExistingSession("User");
+        [Test]
+        public void AutomaticLoginFromSession()
+        {
+            SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
+            webServiceClient.AddExistingSession("User");
 
-             string session = webServiceClient.Sessions[0].SessionId;
-             string url = "http://localhost/?amplaSession=" + session;
+            string session = webServiceClient.Sessions[0].SessionId;
+            string url = "http://localhost/?amplaSession=" + session;
 
-             context = SimpleHttpContext.Create(url);
+            context = SimpleHttpContext.Create(url);
 
-             IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
-             Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
+            IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
+            Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
 
-             LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
-             loginAmplaSession.Execute();
+            LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
+            loginAmplaSession.Execute();
 
-             Assert.That(context.Request.Cookies, Is.Not.Empty);
-             Assert.That(context.Request.Url, Is.EqualTo(new Uri("http://localhost/")));
+            Assert.That(context.Request.Cookies, Is.Not.Empty);
+            Assert.That(context.Request.Url, Is.EqualTo(new Uri("http://localhost/")));
 
-             Assert.That(SessionStorage.GetAmplaSession(), Is.EqualTo(session));
+            Assert.That(SessionStorage.GetAmplaSession(), Is.EqualTo(session));
 
-             var ticket = FormsAuthenticationService.GetUserTicket();
+            var ticket = FormsAuthenticationService.GetUserTicket();
 
-             Assert.That(ticket, Is.Not.Null);
-             Assert.That(ticket.UserData, Is.EqualTo(session));
-         }
+            Assert.That(ticket, Is.Not.Null);
+            Assert.That(ticket.UserData, Is.EqualTo(session));
+        }
 
-         [Test]
-         public void NoSession()
-         {
-             SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
+        [Test]
+        public void NoSession()
+        {
+            SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
 
-             const string session = "invalid";
+            const string session = "invalid";
 
-             const string url = "http://localhost/?amplaSession=" + session;
+            const string url = "http://localhost/?amplaSession=" + session;
 
-             context = SimpleHttpContext.Create(url);
+            context = SimpleHttpContext.Create(url);
 
-             IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
+            IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
 
-             LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
+            LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
 
-             loginAmplaSession.Execute();
+            loginAmplaSession.Execute();
 
-             Assert.That(context.Request.Cookies, Is.Empty);
-             Assert.That(context.Request.Url, Is.EqualTo(new Uri(url)));
+            Assert.That(context.Request.Cookies, Is.Empty);
+            Assert.That(context.Request.Url, Is.EqualTo(new Uri(url)));
 
-             var ticket = FormsAuthenticationService.GetUserTicket();
+            var ticket = FormsAuthenticationService.GetUserTicket();
 
-             Assert.That(ticket, Is.Null);
-             Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
-         }
+            Assert.That(ticket, Is.Null);
+            Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
+        }
 
-         [Test]
-         public void WrongSessionKey()
-         {
-             SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
-             webServiceClient.AddExistingSession("User");
+        [Test]
+        public void WrongSessionKey()
+        {
+            SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
+            webServiceClient.AddExistingSession("User");
 
-             string session = webServiceClient.Sessions[0].SessionId;
-             string url = "http://localhost/?session=" + session;
-             context = SimpleHttpContext.Create(url);
-             
-             IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
+            string session = webServiceClient.Sessions[0].SessionId;
+            string url = "http://localhost/?session=" + session;
+            context = SimpleHttpContext.Create(url);
 
-             LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
+            IAmplaUserService amplaUserService = new AmplaUserService(webServiceClient, new AmplaUserStore());
 
-             loginAmplaSession.Execute();
+            LoginAmplaSessionUsingQueryString loginAmplaSession = new LoginAmplaSessionUsingQueryString(context.Request, context.Response, amplaUserService, FormsAuthenticationService, SessionStorage);
 
-             Assert.That(context.Request.Cookies, Is.Empty);
-             Assert.That(context.Request.Url, Is.EqualTo(new Uri(url)));
+            loginAmplaSession.Execute();
 
-             var ticket = FormsAuthenticationService.GetUserTicket();
+            Assert.That(context.Request.Cookies, Is.Empty);
+            Assert.That(context.Request.Url, Is.EqualTo(new Uri(url)));
 
-             Assert.That(ticket, Is.Null);
-             Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
-         }
+            var ticket = FormsAuthenticationService.GetUserTicket();
+
+            Assert.That(ticket, Is.Null);
+            Assert.That(SessionStorage.GetAmplaSession(), Is.Empty);
+        }
     }
 }

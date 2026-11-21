@@ -19,13 +19,13 @@ namespace AmplaData.Modules.Downtime
         public void SubmitWithNullFields()
         {
             SimpleDowntimeModel model = new SimpleDowntimeModel
-                {
-                    Location = location,
-                    StartTime = DateTime.Now,
-                    CauseLocation = null,
-                    Cause = null,
-                    Classification = null
-                };
+            {
+                Location = location,
+                StartTime = DateTime.Now,
+                CauseLocation = null,
+                Cause = null,
+                Classification = null
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -64,7 +64,7 @@ namespace AmplaData.Modules.Downtime
         [Test]
         public void SubmitWithCauseAsString()
         {
-            SimpleDowntimeModel model = new SimpleDowntimeModel { Location = location, StartTime = DateTime.Now, Cause = "Broken"};
+            SimpleDowntimeModel model = new SimpleDowntimeModel { Location = location, StartTime = DateTime.Now, Cause = "Broken" };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -97,7 +97,7 @@ namespace AmplaData.Modules.Downtime
             DateTime before = DateTime.Now.AddMinutes(-1);
             DateTime after = DateTime.Now.AddMinutes(+1);
 
-            SimpleDowntimeModel model = new SimpleDowntimeModel { Location = location};
+            SimpleDowntimeModel model = new SimpleDowntimeModel { Location = location };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

@@ -52,8 +52,8 @@ namespace AmplaData.Binding.Mapping
             {
                 return true;
             }
-            
-            string verb = !canRead && !canWrite ?"is not" : "may not be";
+
+            string verb = !canRead && !canWrite ? "is not" : "may not be";
             message = string.Format("Model property '{0}' ({1}) {2} compatible with the Ampla field ({3})", Name, propertyType, verb, FieldType);
             return false;
         }
@@ -75,7 +75,7 @@ namespace AmplaData.Binding.Mapping
                 return false;
             }
 
-            if (propertyType == typeof (TimeSpan) && (amplaFieldType == typeof(int) || amplaFieldType == typeof(double)))
+            if (propertyType == typeof(TimeSpan) && (amplaFieldType == typeof(int) || amplaFieldType == typeof(double)))
             {
                 return true;
             }

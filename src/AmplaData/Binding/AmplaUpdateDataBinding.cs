@@ -53,7 +53,7 @@ namespace AmplaData.Binding
                     {
                         if (updateField != existingField)
                         {
-                            Field field = new Field {Name = fieldMapping.Name, Value = updateField};
+                            Field field = new Field { Name = fieldMapping.Name, Value = updateField };
                             fields.Add(field);
                         }
                     }
@@ -64,7 +64,7 @@ namespace AmplaData.Binding
                 record.Fields = fields.ToArray();
                 records.Add(record);
             }
-            
+
             return records.Count > 0;
         }
 
@@ -75,10 +75,10 @@ namespace AmplaData.Binding
             string existingLocation = modelProperties.GetLocation(existing);
 
             RequiredLocationValidator<TModel> requiredLocation = new RequiredLocationValidator<TModel>(existingLocation);
-            
+
             bool isValid = requiredLocation.Validate(modelProperties, update, validationMessages);
             isValid &= modelProperties.ValidateModel(update, validationMessages);
-            
+
             if (!isValid)
             {
                 validationMessages.Throw();

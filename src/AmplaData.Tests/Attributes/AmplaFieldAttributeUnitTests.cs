@@ -12,7 +12,7 @@ namespace AmplaData.Attributes
             public virtual string FullName { get; set; }
 
             public string FirstName { get; set; }
-            
+
             [AmplaField]
             public string LastName { get; set; }
         }
@@ -41,7 +41,7 @@ namespace AmplaData.Attributes
         {
             string field;
             bool result = TryGetField<ModelWithField>("FullName", out field);
-        
+
             Assert.That(field, Is.EqualTo("Full Name"));
             Assert.That(result, Is.True);
         }
@@ -88,7 +88,7 @@ namespace AmplaData.Attributes
 
         private bool TryGetField<TModel>(string propertyName, out string field)
         {
-            foreach (PropertyInfo property in typeof (TModel).GetProperties())
+            foreach (PropertyInfo property in typeof(TModel).GetProperties())
             {
                 if (property.Name == propertyName)
                 {

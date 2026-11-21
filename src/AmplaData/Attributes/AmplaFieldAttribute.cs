@@ -52,7 +52,7 @@ namespace AmplaData.Attributes
             {
                 field = propertyInfo.Name;
             }
-            
+
             return !string.IsNullOrEmpty(field);
         }
     }

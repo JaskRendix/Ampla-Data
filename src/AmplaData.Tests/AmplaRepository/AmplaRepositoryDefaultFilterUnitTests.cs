@@ -26,7 +26,7 @@ namespace AmplaData.AmplaRepository
         }
 
         private const string module = "Production";
-        private static readonly string[] Locations =  new [] {"Enterprise.Site.Area.Point"} ;
+        private static readonly string[] Locations = new[] { "Enterprise.Site.Area.Point" };
 
         public AmplaRepositoryDefaultFilterUnitTests() : base(module, Locations, ProductionViews.AreaValueModelView)
         {
@@ -35,8 +35,8 @@ namespace AmplaData.AmplaRepository
         [Test]
         public void GetAll()
         {
-            AreaModel match = new AreaModel {Area = "ROM", Value = 100};
-            AreaModel noMatch = new AreaModel {Area = "Mining", Value = 200};
+            AreaModel match = new AreaModel { Area = "ROM", Value = 100 };
+            AreaModel noMatch = new AreaModel { Area = "Mining", Value = 200 };
 
             Repository.Add(match);
             Repository.Add(noMatch);
@@ -84,7 +84,7 @@ namespace AmplaData.AmplaRepository
             Repository.Add(extra);
 
             Assert.That(Records.Count, Is.EqualTo(3));
-          
+
             IList<AreaModel> models = Repository.FindByFilter();
 
             Assert.That(models, Is.Not.Empty);
@@ -129,7 +129,7 @@ namespace AmplaData.AmplaRepository
         {
             AreaModel match = new AreaModel { Area = "ROM", Value = 100 };
             AreaModel noMatch = new AreaModel { Area = "Mining", Value = 200 };
-            AreaModel deleted = new AreaModel {Area = "ROM", Value = 300};
+            AreaModel deleted = new AreaModel { Area = "ROM", Value = 300 };
 
             Repository.Add(match);
             Repository.Add(noMatch);
@@ -150,7 +150,7 @@ namespace AmplaData.AmplaRepository
         [Test]
         public void GetVersions()
         {
-            AreaModel model = new AreaModel {Area = "ROM", Value = 100};
+            AreaModel model = new AreaModel { Area = "ROM", Value = 100 };
             Repository.Add(model);
 
             int id = model.Id;

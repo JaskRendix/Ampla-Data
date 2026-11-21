@@ -31,7 +31,7 @@ namespace AmplaData.AmplaData2008
                     Node child = context.Find(part);
                     if (child == null)
                     {
-                        child = new Node(part) {Id = context.Id == null ? part : context.Id + "." + part};
+                        child = new Node(part) { Id = context.Id == null ? part : context.Id + "." + part };
                         context.Children.Add(child);
                     }
                     if (parts.Length == i + 1)
@@ -65,23 +65,23 @@ namespace AmplaData.AmplaData2008
                     }
                 }
                 return new ViewPoint
-                    {
-                        id = Id,
-                        DisplayName = Name,
-                        LocalizedDisplayName = Name,
-                        ReportingPoints = points.ToArray(),
-                        ViewPoints = folders.ToArray()
-                    };
+                {
+                    id = Id,
+                    DisplayName = Name,
+                    LocalizedDisplayName = Name,
+                    ReportingPoints = points.ToArray(),
+                    ViewPoints = folders.ToArray()
+                };
             }
 
             private GetNavigationReportingPoint GetReportingPoint()
             {
                 return new GetNavigationReportingPoint
-                    {
-                        id = Id,
-                        DisplayName = Name,
-                        LocalizedDisplayName = Name
-                    };
+                {
+                    id = Id,
+                    DisplayName = Name,
+                    LocalizedDisplayName = Name
+                };
             }
 
             private Node Find(string name)
@@ -114,7 +114,7 @@ namespace AmplaData.AmplaData2008
                 mode = NavigationMode.Location,
                 ViewPoints = rootNode.GetViewPoints()
             };
-            
+
             return hierarchy;
         }
     }

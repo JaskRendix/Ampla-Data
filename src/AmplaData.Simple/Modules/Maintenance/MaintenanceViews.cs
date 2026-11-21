@@ -10,12 +10,12 @@ namespace AmplaData.Modules.Maintenance
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Maintenance.StandardView",
-                    DisplayName = "Maintenance",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll(),
-                };
+            {
+                name = "Maintenance.StandardView",
+                DisplayName = "Maintenance",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll(),
+            };
             return view;
         }
 

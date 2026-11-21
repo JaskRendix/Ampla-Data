@@ -47,7 +47,7 @@ namespace AmplaData.AmplaData2008
                 return new List<InMemoryRecord>(database.GetModuleRecords(module).Values);
             }
         }
-        
+
         [Test]
         public void Insert()
         {
@@ -136,9 +136,9 @@ namespace AmplaData.AmplaData2008
 
             GetDataRequest invalidRequest = new GetDataRequest
             {
-                Credentials = new Credentials {Username = "Invalid.User", Password = "password"},
-                Filter = new DataFilter {Location = location},
-                View = new GetDataView { Module = AmplaModules.Production, Context = NavigationContext.Plant}
+                Credentials = new Credentials { Username = "Invalid.User", Password = "password" },
+                Filter = new DataFilter { Location = location },
+                View = new GetDataView { Module = AmplaModules.Production, Context = NavigationContext.Plant }
             };
 
             Assert.Throws<FaultException>(() => webServiceClient.GetData(invalidRequest));
@@ -154,7 +154,7 @@ namespace AmplaData.AmplaData2008
                 Credentials = CreateCredentials(),
                 Filter = new DataFilter { Location = location },
                 Metadata = true,
-               // OutputOptions = new GetDataOutputOptions(),
+                // OutputOptions = new GetDataOutputOptions(),
                 View = new GetDataView { Module = AmplaModules.Production, Context = NavigationContext.Plant }
             };
 
@@ -194,13 +194,13 @@ namespace AmplaData.AmplaData2008
             update.Fields.Add(new FieldValue("New Field", "100"));
 
             SubmitDataRequest request = new SubmitDataRequest
-                {
-                    Credentials = CreateCredentials(),
-                    SubmitDataRecords = new[]
+            {
+                Credentials = CreateCredentials(),
+                SubmitDataRecords = new[]
                         {
                             record.ConvertToSubmitDataRecord()
                         }
-                };
+            };
 
             SubmitDataResponse response = webServiceClient.SubmitData(request);
 
@@ -212,16 +212,16 @@ namespace AmplaData.AmplaData2008
             Assert.That(DatabaseRecords.Count, Is.EqualTo(1));
             Assert.That(DatabaseRecords[0].Find("New Field"), Is.Null);
 
-            update.RecordId = (int) response.DataSubmissionResults[0].SetId;
+            update.RecordId = (int)response.DataSubmissionResults[0].SetId;
 
             request = new SubmitDataRequest
-                {
-                    Credentials = CreateCredentials(),
-                    SubmitDataRecords = new[]
+            {
+                Credentials = CreateCredentials(),
+                SubmitDataRecords = new[]
                         {
                             update.ConvertToSubmitDataRecord()
                         }
-                };
+            };
 
             response = webServiceClient.SubmitData(request);
 
@@ -242,10 +242,10 @@ namespace AmplaData.AmplaData2008
 
             GetNavigationHierarchyResponse response = webServiceClient.GetNavigationHierarchy(
                 new GetNavigationHierarchyRequest
-                    {
-                        Module = AmplaModules.Production,
-                        Credentials = CreateCredentials()
-                    });
+                {
+                    Module = AmplaModules.Production,
+                    Credentials = CreateCredentials()
+                });
             Assert.That(response, Is.Not.Null);
             Assert.That(response.Hierarchy, Is.Not.Null);
             CheckViewPoints(response.Hierarchy.ViewPoints, "", "Enterprise");
@@ -263,16 +263,16 @@ namespace AmplaData.AmplaData2008
             configuration.AddLocation(module, "Plant.Area.Equipment.Production");
 
             SimpleDataWebServiceClient webServiceClient = new SimpleDataWebServiceClient(
-                database, 
-                configuration, 
+                database,
+                configuration,
                 new SimpleSecurityWebServiceClient("User"));
 
             GetNavigationHierarchyResponse response = webServiceClient.GetNavigationHierarchy(
                 new GetNavigationHierarchyRequest
-                    {
-                       Module = AmplaModules.Production,
-                       Credentials = CreateCredentials()
-                    });
+                {
+                    Module = AmplaModules.Production,
+                    Credentials = CreateCredentials()
+                });
             Assert.That(response, Is.Not.Null);
             Assert.That(response.Hierarchy, Is.Not.Null);
             CheckViewPoints(response.Hierarchy.ViewPoints, "", "Plant");
@@ -304,13 +304,13 @@ namespace AmplaData.AmplaData2008
             string recordId = Convert.ToString(records[0].RecordId);
 
             GetDataRequest request = new GetDataRequest
-                {
-                    Credentials = CreateCredentials(),
-                    Filter = new DataFilter {Location = record.Location, Criteria = new [] { new FilterEntry {Name = "Id", Value = recordId}}},
-                    View = new GetDataView { Context = NavigationContext.Plant, Mode = NavigationMode.Location, Module = AmplaModules.Downtime},
-                    Metadata = true,
-                    OutputOptions = new GetDataOutputOptions {ResolveIdentifiers = true}
-                };
+            {
+                Credentials = CreateCredentials(),
+                Filter = new DataFilter { Location = record.Location, Criteria = new[] { new FilterEntry { Name = "Id", Value = recordId } } },
+                View = new GetDataView { Context = NavigationContext.Plant, Mode = NavigationMode.Location, Module = AmplaModules.Downtime },
+                Metadata = true,
+                OutputOptions = new GetDataOutputOptions { ResolveIdentifiers = true }
+            };
             GetDataResponse response = webServiceClient.GetData(request);
 
             AssertResponseContainsValue(response, "Cause", "Shutdown");
@@ -328,12 +328,12 @@ namespace AmplaData.AmplaData2008
             configuration.EnableModule("Downtime");
             configuration.AddLocation("Downtime", "Enterprise.Site.Area.Downtime");
             SimpleDataWebServiceClient webServiceClient = new SimpleDataWebServiceClient(database, configuration, new SimpleSecurityWebServiceClient("User"));
-   
+
             record.SaveTo(webServiceClient);
 
             List<InMemoryRecord> records = new List<InMemoryRecord>(database.GetModuleRecords("Downtime").Values);
             Assert.That(records, Is.Not.Empty);
-            
+
             string recordId = Convert.ToString(records[0].RecordId);
 
             GetDataRequest request = new GetDataRequest
@@ -353,17 +353,17 @@ namespace AmplaData.AmplaData2008
         public void GetDataWithMetaDataReturnsColumns()
         {
             SimpleDataWebServiceClient webServiceClient = Create();
-        
+
             GetDataRequest request = new GetDataRequest
             {
                 Credentials = CreateCredentials(),
-                Filter = new DataFilter { Location = location, Criteria = new FilterEntry[0]},
+                Filter = new DataFilter { Location = location, Criteria = new FilterEntry[0] },
                 View = new GetDataView { Context = NavigationContext.Plant, Mode = NavigationMode.Location, Module = AmplaModules.Production },
                 Metadata = true,
                 OutputOptions = new GetDataOutputOptions { ResolveIdentifiers = false },
             };
 
-          
+
             GetDataResponse response = webServiceClient.GetData(request);
             Assert.That(response.RowSets, Is.Not.Empty);
             Assert.That(response.RowSets[0].Columns, Is.Not.Empty);
@@ -374,13 +374,13 @@ namespace AmplaData.AmplaData2008
         {
             SimpleSecurityWebServiceClient securityWebService = new SimpleSecurityWebServiceClient("User");
 
-            SimpleDataWebServiceClient webServiceClient = new SimpleDataWebServiceClient(database, configuration, securityWebService );
+            SimpleDataWebServiceClient webServiceClient = new SimpleDataWebServiceClient(database, configuration, securityWebService);
             Assert.Throws<FaultException>(() =>
                                           webServiceClient.GetNavigationHierarchy(new GetNavigationHierarchyRequest()
-                                              {
-                                                  Module = AmplaModules.Production,
-                                                  Credentials = new Credentials {Session = Guid.NewGuid().ToString()}
-                                              }));
+                                          {
+                                              Module = AmplaModules.Production,
+                                              Credentials = new Credentials { Session = Guid.NewGuid().ToString() }
+                                          }));
 
             securityWebService.AddExistingSession("User");
 
@@ -388,10 +388,10 @@ namespace AmplaData.AmplaData2008
             SimpleSession session = securityWebService.Sessions[0];
 
             webServiceClient.GetNavigationHierarchy(new GetNavigationHierarchyRequest()
-                {
-                    Module = AmplaModules.Production,
-                    Credentials = new Credentials {Session = session.SessionId}
-                });
+            {
+                Module = AmplaModules.Production,
+                Credentials = new Credentials { Session = session.SessionId }
+            });
         }
 
         [Test]
@@ -432,7 +432,7 @@ namespace AmplaData.AmplaData2008
             Assert.That(response.RowSets[0].Columns, Is.Null);
             Assert.That(response.Context.ResolveIdentifiers, Is.False);
         }
-        
+
         [Test]
         public void GetDataReturnsLocation()
         {
@@ -480,10 +480,10 @@ namespace AmplaData.AmplaData2008
             SimpleDataWebServiceClient webServiceClient = Create();
 
             GetAuditDataRequest request = new GetAuditDataRequest
-                {
-                    Credentials = CreateCredentials(),
-                    Filter = new GetAuditDataFilter {Location = location, Module = AmplaModules.Production}
-                };
+            {
+                Credentials = CreateCredentials(),
+                Filter = new GetAuditDataFilter { Location = location, Module = AmplaModules.Production }
+            };
 
             GetAuditDataResponse response = webServiceClient.GetAuditData(request);
             Assert.That(response.RowSets, Is.Not.Empty);
@@ -513,7 +513,7 @@ namespace AmplaData.AmplaData2008
             GetAuditDataRequest request = new GetAuditDataRequest
             {
                 Credentials = CreateCredentials(),
-                Filter = new GetAuditDataFilter { Location = location, Module = AmplaModules.Production, SetId = Convert.ToString(recordId)}
+                Filter = new GetAuditDataFilter { Location = location, Module = AmplaModules.Production, SetId = Convert.ToString(recordId) }
             };
 
             GetAuditDataResponse response = webServiceClient.GetAuditData(request);
@@ -544,21 +544,21 @@ namespace AmplaData.AmplaData2008
             int recordId = DatabaseRecords[0].RecordId;
 
             InMemoryRecord updateRecord = new InMemoryRecord(ProductionViews.StandardView())
-                {
-                    Location = record.Location,
-                    Module = record.Module,
-                    RecordId = recordId
-                };
+            {
+                Location = record.Location,
+                Module = record.Module,
+                RecordId = recordId
+            };
             updateRecord.SetFieldValue("Field 1", 200);
 
             SubmitDataRequest update = new SubmitDataRequest
-                {
-                    Credentials = CreateCredentials(),
-                    SubmitDataRecords = new[]
+            {
+                Credentials = CreateCredentials(),
+                SubmitDataRecords = new[]
                         {
                             updateRecord.ConvertToSubmitDataRecord()
                         }
-                };
+            };
 
             webServiceClient.SubmitData(update);
 
@@ -572,7 +572,7 @@ namespace AmplaData.AmplaData2008
 
             AssertAuditTableContains(response, location, recordId, "Field 1", "150", "200");
         }
-        
+
         private static void AssertAuditTableContains(GetAuditDataResponse response, string objectId, int id,
                                               string field, string oldValue, string newValue)
         {
@@ -598,7 +598,7 @@ namespace AmplaData.AmplaData2008
             Assert.That(response.RowSets, Is.Not.Empty);
             Assert.That(response.RowSets[0].Rows, Is.Not.Empty);
             Assert.That(response.RowSets[0].Rows[0].Any, Is.Not.Empty);
-            int found = 0; 
+            int found = 0;
             foreach (var rowValue in response.RowSets[0].Rows[0].Any)
             {
                 if (rowValue.Name == field)
@@ -609,7 +609,7 @@ namespace AmplaData.AmplaData2008
             }
             Assert.That(found, Is.EqualTo(1), "Field: {0} not found", field);
         }
-        
+
         private static void CheckViewPoints(ViewPoint[] points, string parent, params string[] names)
         {
             Assert.That(points, Is.Not.Empty, parent);

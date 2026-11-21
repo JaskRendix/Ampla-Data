@@ -20,7 +20,7 @@ namespace AmplaData.Binding.ModelData
     {
         private readonly Dictionary<string, PropertyInfo> propertyInfoDictionary = new Dictionary<string, PropertyInfo>();
         private readonly Dictionary<string, TypeConverter> typeConverterDictionary = new Dictionary<string, TypeConverter>();
-        private readonly List<IModelValidator<TModel>> modelValidators = new List<IModelValidator<TModel>>();  
+        private readonly List<IModelValidator<TModel>> modelValidators = new List<IModelValidator<TModel>>();
         private readonly string[] propertyNames;
         private readonly LocationFilter locationFilter;
         private readonly AmplaModules module;
@@ -44,7 +44,7 @@ namespace AmplaData.Binding.ModelData
             {
                 string propertyName;
                 AmplaFieldAttribute.TryGetField(property, out propertyName);
-                
+
                 properties.Add(propertyName);
                 propertyInfoDictionary[propertyName] = property;
                 TypeConverterAttribute typeConverterAttribute;
@@ -71,7 +71,7 @@ namespace AmplaData.Binding.ModelData
             }
         }
 
-        private static void AddModelValidators(PropertyInfo property, IList<IModelValidator<TModel>> validators )
+        private static void AddModelValidators(PropertyInfo property, IList<IModelValidator<TModel>> validators)
         {
             if (property.Name == "Location")
             {
@@ -81,22 +81,22 @@ namespace AmplaData.Binding.ModelData
 
         private static TypeConverter GetTypeConverter(PropertyInfo property)
         {
-            if (property.PropertyType == typeof (DateTime))
+            if (property.PropertyType == typeof(DateTime))
             {
                 return new Iso8601DateTimeConverter();
             }
 
-            if (property.PropertyType == typeof (TimeSpan))
+            if (property.PropertyType == typeof(TimeSpan))
             {
                 return new TimeSpanIntConverter();
             }
 
-            if (property.PropertyType == typeof (int))
+            if (property.PropertyType == typeof(int))
             {
                 return new AllowEmptyStringConverter<int>(0);
             }
 
-            if (property.PropertyType == typeof (double))
+            if (property.PropertyType == typeof(double))
             {
                 return new AllowEmptyStringConverter<double>(0d);
             }
@@ -170,13 +170,13 @@ namespace AmplaData.Binding.ModelData
 
                 if (cause != null)
                 {
-                    requiresId |= cause.PropertyType == typeof (int);
-                    requiresString |= cause.PropertyType == typeof (string);
+                    requiresId |= cause.PropertyType == typeof(int);
+                    requiresString |= cause.PropertyType == typeof(string);
                 }
 
                 if (classification != null)
                 {
-                    requiresId |= classification.PropertyType == typeof (int);
+                    requiresId |= classification.PropertyType == typeof(int);
                     requiresString |= classification.PropertyType == typeof(string);
                 }
                 return !requiresId || requiresString;
@@ -193,7 +193,7 @@ namespace AmplaData.Binding.ModelData
         public bool TrySetValueFromString(TModel model, string propertyName, string value)
         {
             PropertyInfo property;
-            
+
             if (propertyInfoDictionary.TryGetValue(propertyName, out property))
             {
                 if (property.CanWrite)
@@ -389,12 +389,12 @@ namespace AmplaData.Binding.ModelData
         public string GetModelName()
         {
             DisplayNameAttribute displayName;
-            string name = typeof (TModel).TryGetAttribute(out displayName) 
-                ? displayName.DisplayName 
-                : typeof (TModel).Name.ToSeparatedWords();
+            string name = typeof(TModel).TryGetAttribute(out displayName)
+                ? displayName.DisplayName
+                : typeof(TModel).Name.ToSeparatedWords();
             return name;
         }
 
-        
+
     }
 }

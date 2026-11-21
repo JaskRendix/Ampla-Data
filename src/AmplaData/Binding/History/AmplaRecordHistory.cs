@@ -10,7 +10,7 @@ namespace AmplaData.Binding.History
         private readonly AmplaAuditRecord auditRecord;
         private readonly IAmplaViewProperties<TModel> viewProperties;
 
-        public AmplaRecordHistory(AmplaRecord amplaRecord, AmplaAuditRecord auditRecord, IAmplaViewProperties<TModel> viewProperties )
+        public AmplaRecordHistory(AmplaRecord amplaRecord, AmplaAuditRecord auditRecord, IAmplaViewProperties<TModel> viewProperties)
         {
             this.amplaRecord = amplaRecord;
             this.auditRecord = auditRecord;

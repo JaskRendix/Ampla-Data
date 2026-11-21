@@ -10,12 +10,12 @@ namespace AmplaData.Modules.Energy
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Energy.StandardView",
-                    DisplayName = "Energy",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll(),
-                };
+            {
+                name = "Energy.StandardView",
+                DisplayName = "Energy",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll(),
+            };
             return view;
         }
 

@@ -39,7 +39,7 @@ namespace AmplaData.Binding.Mapping
             string defaultValue = new Iso8601DateTimeConverter().ConvertToInvariantString(DateTime.UtcNow);
             RequiredFieldMapping<DateTime> fieldMapping = new RequiredFieldMapping<DateTime>("Sample", () => defaultValue);
 
-            Model model = new Model {Id = 0};
+            Model model = new Model { Id = 0 };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 
@@ -59,7 +59,7 @@ namespace AmplaData.Binding.Mapping
         public void CanMapField()
         {
             RequiredFieldMapping<string> fieldMapping = new RequiredFieldMapping<string>("Field", () => "Default");
-            
+
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
             Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.True);

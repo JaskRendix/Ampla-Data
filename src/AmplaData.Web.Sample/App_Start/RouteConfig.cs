@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Web.Routing;
 
 namespace AmplaData.Web.Sample.App_Start

@@ -7,7 +7,7 @@ namespace AmplaData.Attributes.Calendar
     [Ignore("Calendar still to be implemented")]
     public class AmplaCalendarValueAttributeUnitTests : TestFixture
     {
-        public class ModelNoAttributes {}
+        public class ModelNoAttributes { }
 
         public class ModelWithField
         {
@@ -52,7 +52,7 @@ namespace AmplaData.Attributes.Calendar
         {
             string calendar;
             bool result = TryGetCalendar<ModelWithField>("TargetTonnes", out calendar);
-        
+
             Assert.That(calendar, Is.EqualTo("Area.Tonnes.Target"));
             Assert.That(result, Is.True);
         }
@@ -139,7 +139,7 @@ namespace AmplaData.Attributes.Calendar
 
         private bool TryGetCalendar<TModel>(string propertyName, out string calendar)
         {
-            foreach (PropertyInfo property in typeof (TModel).GetProperties())
+            foreach (PropertyInfo property in typeof(TModel).GetProperties())
             {
                 if (property.Name == propertyName)
                 {

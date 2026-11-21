@@ -41,12 +41,12 @@ namespace AmplaData.Binding
                 AmplaRecordChanges recordChange = recordChanges[i];
                 bool isCurrent = i == (modelVersions.Length - 1);
                 modelVersions[i] = new ModelVersion<TModel>(isCurrent, clonedModel)
-                    {
-                        Version = i + 1,
-                        User = recordChange.User,
-                        VersionDate = recordChange.VersionDateTime,
-                        Display = recordChange.Display
-                    };
+                {
+                    Version = i + 1,
+                    User = recordChange.User,
+                    VersionDate = recordChange.VersionDateTime,
+                    Display = recordChange.Display
+                };
             }
 
             TModel current = currentModel;

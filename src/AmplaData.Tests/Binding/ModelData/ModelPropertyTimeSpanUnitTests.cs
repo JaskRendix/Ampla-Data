@@ -10,7 +10,7 @@ namespace AmplaData.Binding.ModelData
         [AmplaLocation(Location = "Enterprise.Site.Area.Point")]
         [AmplaModule(Module = "Production")]
         public class ModelWithTimeSpanField
-        {   
+        {
             [AmplaField("Duration")]
             public TimeSpan Display
             {
@@ -22,7 +22,7 @@ namespace AmplaData.Binding.ModelData
         public void GetPropertiesReturnsAmplaField()
         {
             ModelProperties<ModelWithTimeSpanField> modelProperties = new ModelProperties<ModelWithTimeSpanField>();
-            
+
             var properties = modelProperties.GetProperties();
             Assert.That(properties.Count, Is.EqualTo(1));
             Assert.That(properties[0], Is.EqualTo("Duration"));

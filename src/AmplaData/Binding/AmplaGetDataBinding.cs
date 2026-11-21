@@ -23,7 +23,7 @@ namespace AmplaData.Binding
             if (response.RowSets.Length == 0) return false;
 
             RowSet rowSet = response.RowSets[0];
-            
+
             string idPropertyName = ModelIdentifier.GetPropertyName<TModel>();
 
             foreach (Row row in rowSet.Rows)

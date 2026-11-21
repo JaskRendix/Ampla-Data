@@ -8,7 +8,7 @@ namespace AmplaData.AmplaSecurity2007
         public SimpleSecurityWebServiceClient(params string[] users)
         {
             possibleUsers = new List<string>(users ?? new string[0]).AsReadOnly();
-            ValidatePasswordFunc = ((u,p) => p == "password");
+            ValidatePasswordFunc = ((u, p) => p == "password");
 
             sessions = new List<SimpleSession>();
         }
@@ -16,7 +16,7 @@ namespace AmplaData.AmplaSecurity2007
         private readonly List<SimpleSession> sessions;
 
         private readonly IList<string> possibleUsers;
-        
+
         protected Func<string, string, bool> ValidatePasswordFunc { get; set; }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace AmplaData.AmplaSecurity2007
         /// <returns></returns>
         public SimpleSession FindBySession(string sessionId)
         {
-            SimpleSession session = sessions.Find(s => s.SessionId == sessionId) ;
+            SimpleSession session = sessions.Find(s => s.SessionId == sessionId);
 
             return session;
         }
@@ -77,7 +77,7 @@ namespace AmplaData.AmplaSecurity2007
                     }
                 }
                 session.Login();
-                return new CreateSessionResponse {Session = session.GetSession()};
+                return new CreateSessionResponse { Session = session.GetSession() };
             }
             throw new InvalidOperationException("Unable to login with username and password");
         }

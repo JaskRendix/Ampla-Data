@@ -10,8 +10,8 @@ namespace AmplaData.AmplaSecurity2007
         public void CreateSession()
         {
             SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
-            
-            CreateSessionRequest request = new CreateSessionRequest {Username = "User", Password = "password"};
+
+            CreateSessionRequest request = new CreateSessionRequest { Username = "User", Password = "password" };
 
             CreateSessionResponse response = webServiceClient.CreateSession(request);
             Assert.That(response, Is.Not.Null);
@@ -52,7 +52,7 @@ namespace AmplaData.AmplaSecurity2007
             SimpleSecurityWebServiceClient webServiceClient = new SimpleSecurityWebServiceClient("User");
 
             CreateSessionRequest request = new CreateSessionRequest { Username = "Invalid", Password = "password" };
-            Assert.Throws<InvalidOperationException>(()=>webServiceClient.CreateSession(request));
+            Assert.Throws<InvalidOperationException>(() => webServiceClient.CreateSession(request));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace AmplaData.AmplaSecurity2007
             Assert.That(webServiceClient.FindBySession(sessionId), Is.Null);
 
             webServiceClient.AddExistingSession("User");
-            
+
             Assert.That(webServiceClient.Sessions, Is.Not.Empty);
             Assert.That(webServiceClient.Sessions.Count, Is.EqualTo(1));
 

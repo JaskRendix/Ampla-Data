@@ -1,6 +1,6 @@
 ﻿namespace AmplaData.Records
 {
-    public class AmplaAuditField 
+    public class AmplaAuditField
     {
         public string Name { get; set; }
         public string OriginalValue { get; set; }

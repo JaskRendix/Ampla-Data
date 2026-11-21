@@ -1,6 +1,6 @@
 ﻿namespace AmplaData.Binding.Mapping.Modules
 {
-    public class MetricsModuleMapping: StandardModuleMapping
+    public class MetricsModuleMapping : StandardModuleMapping
     {
         public MetricsModuleMapping()
         {

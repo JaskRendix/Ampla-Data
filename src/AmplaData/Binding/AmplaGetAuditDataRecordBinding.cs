@@ -30,7 +30,7 @@ namespace AmplaData.Binding
 
             GetAuditDataRowSet rowSet = response.RowSets[0];
 
-            AmplaAuditRecord model = new AmplaAuditRecord {Id = record.Id, Location = record.Location, Module = record.Module };
+            AmplaAuditRecord model = new AmplaAuditRecord { Id = record.Id, Location = record.Location, Module = record.Module };
 
             List<AmplaAuditSession> changes = new List<AmplaAuditSession>();
 
@@ -50,11 +50,11 @@ namespace AmplaData.Binding
                     }
 
                     session.Fields.Add(new AmplaAuditField
-                        {
-                            Name = row.Field,
-                            OriginalValue = row.OriginalValue,
-                            EditedValue = row.EditedValue
-                        });
+                    {
+                        Name = row.Field,
+                        OriginalValue = row.OriginalValue,
+                        EditedValue = row.EditedValue
+                    });
                 }
             }
 

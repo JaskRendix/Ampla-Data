@@ -11,7 +11,7 @@ namespace AmplaData.Web.Authentication
     {
         private readonly ISecurityWebServiceClient securityWebService;
         private readonly IAmplaUserStore amplaUserStore;
-       
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AmplaUserService" /> class.
@@ -43,7 +43,7 @@ namespace AmplaData.Web.Authentication
 
             if (user == null)
             {
-                CreateSessionRequest request = new CreateSessionRequest {Username = userName, Password = password};
+                CreateSessionRequest request = new CreateSessionRequest { Username = userName, Password = password };
 
                 Exception exception;
                 CreateSessionResponse response = CatchExceptions(() => securityWebService.CreateSession(request), out exception);
@@ -58,7 +58,7 @@ namespace AmplaData.Web.Authentication
                     message = exception.Message;
                 }
             }
-        
+
             return user;
         }
 
@@ -80,7 +80,7 @@ namespace AmplaData.Web.Authentication
 
             if (user == null)
             {
-                RenewSessionRequest request = new RenewSessionRequest { Session = new Session { SessionID = session, User = ""} };
+                RenewSessionRequest request = new RenewSessionRequest { Session = new Session { SessionID = session, User = "" } };
 
                 Exception exception;
                 RenewSessionResponse response = CatchExceptions(() => securityWebService.RenewSession(request), out exception);
@@ -131,9 +131,16 @@ namespace AmplaData.Web.Authentication
 
         private AmplaUser FindCurrentUser()
         {
+            if (!OperatingSystem.IsWindows())
+            {
+                return null;
+            }
+
             IIdentity identity = WindowsIdentity.GetCurrent();
 
-            return identity != null ? amplaUserStore.GetUserByName(identity.Name) : null;
+            return identity != null
+                ? amplaUserStore.GetUserByName(identity.Name)
+                : null;
         }
 
         /// <summary>
@@ -167,9 +174,9 @@ namespace AmplaData.Web.Authentication
                 if (user.RememberToLogout)
                 {
                     ReleaseSessionRequest request = new ReleaseSessionRequest
-                        {
-                            Session = new Session {User = user.UserName, SessionID = user.Session}
-                        };
+                    {
+                        Session = new Session { User = user.UserName, SessionID = user.Session }
+                    };
                     Exception exception;
                     CatchExceptions(() => securityWebService.ReleaseSession(request), out exception);
                 }
@@ -181,7 +188,7 @@ namespace AmplaData.Web.Authentication
             AmplaUser renewedUser = null;
             if (user != null)
             {
-                RenewSessionRequest request = new RenewSessionRequest { Session = new Session { User = user.UserName, SessionID = user.Session}};
+                RenewSessionRequest request = new RenewSessionRequest { Session = new Session { User = user.UserName, SessionID = user.Session } };
 
                 Exception exception;
                 RenewSessionResponse response = CatchExceptions(() => securityWebService.RenewSession(request), out exception);

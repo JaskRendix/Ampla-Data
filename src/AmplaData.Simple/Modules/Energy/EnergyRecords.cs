@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Energy
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(EnergyViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Energy",
-                    Module = "Energy"
-                };
+            {
+                Location = "Enterprise.Site.Area.Energy",
+                Module = "Energy"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);

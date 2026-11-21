@@ -1,4 +1,5 @@
-﻿using System.Web.SessionState;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace AmplaData.Web.Wrappers
 {
@@ -7,51 +8,57 @@ namespace AmplaData.Web.Wrappers
     /// </summary>
     public class AmplaHttpSessionWrapper : IHttpSessionWrapper
     {
-        private readonly HttpSessionState httpSessionState;
+        private readonly ISession session;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AmplaHttpSessionWrapper"/> class.
         /// </summary>
-        /// <param name="httpSessionState">State of the HTTP session.</param>
-        public AmplaHttpSessionWrapper(HttpSessionState httpSessionState)
+        /// <param name="session">The HTTP session.</param>
+        public AmplaHttpSessionWrapper(ISession session)
         {
-            this.httpSessionState = httpSessionState;
+            this.session = session;
         }
 
         /// <summary>
         /// Gets a value indicating whether the session is [enabled].
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if [enabled]; otherwise, <c>false</c>.
-        /// </value>
         public bool Enabled
         {
-            get { return httpSessionState != null; }
+            get { return session != null; }
         }
 
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
         public void SetValue(string key, object value)
         {
-            if (httpSessionState != null)
+            if (session != null)
             {
-                httpSessionState[key] = value;
+                if (value == null)
+                {
+                    session.Remove(key);
+                }
+                else
+                {
+                    // Serialize object to JSON for storage in ASP.NET Core's byte[] session store
+                    string json = JsonSerializer.Serialize(value);
+                    session.SetString(key, json);
+                }
             }
         }
 
         /// <summary>
         /// Gets the value.
         /// </summary>
-        /// <param name="key">The key.</param>
-        /// <returns></returns>
         public object GetValue(string key)
         {
-            if (httpSessionState != null)
+            if (session != null)
             {
-                return httpSessionState[key];
+                string json = session.GetString(key);
+                if (!string.IsNullOrEmpty(json))
+                {
+                    return JsonSerializer.Deserialize<object>(json);
+                }
             }
             return null;
         }

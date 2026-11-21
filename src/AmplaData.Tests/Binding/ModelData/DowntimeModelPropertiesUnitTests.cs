@@ -8,7 +8,7 @@ namespace AmplaData.Binding.ModelData
     {
         [AmplaLocation(Location = "Plant.Area.Downtime")]
         [AmplaModule(Module = "Downtime")]
-        public class StringDowntimeModel 
+        public class StringDowntimeModel
         {
             public int Id { get; set; }
             public string Cause { get; set; }

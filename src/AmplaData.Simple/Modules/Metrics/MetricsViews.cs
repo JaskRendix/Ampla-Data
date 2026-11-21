@@ -11,12 +11,12 @@ namespace AmplaData.Modules.Metrics
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Metrics.StandardView",
-                    DisplayName = "Metrics",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll().Disallow(ViewAllowedOperations.SplitRecord),
-                };
+            {
+                name = "Metrics.StandardView",
+                DisplayName = "Metrics",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll().Disallow(ViewAllowedOperations.SplitRecord),
+            };
             return view;
         }
 

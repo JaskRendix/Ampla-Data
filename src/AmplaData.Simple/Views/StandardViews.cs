@@ -8,12 +8,12 @@ namespace AmplaData.Views
         public static GetView EmptyView()
         {
             return new GetView
-                {
-                    Fields = new GetViewsField[0],
-                    AllowedOperations = new GetViewsAllowedOperation[0],
-                    Filters = new GetViewsFilter[0],
-                    Periods = new GetViewsPeriod[0]
-                };
+            {
+                Fields = new GetViewsField[0],
+                AllowedOperations = new GetViewsAllowedOperation[0],
+                Filters = new GetViewsFilter[0],
+                Periods = new GetViewsPeriod[0]
+            };
         }
 
         protected static GetViewsAllowedOperation[] AllowAll()

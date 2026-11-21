@@ -34,7 +34,7 @@ namespace AmplaData.Binding.History
 
             List<AmplaRecordChanges> recordChanges = new List<AmplaRecordChanges>();
 
-            DateTime recordTime =       createdDate != DateTime.MinValue ? createdDate 
+            DateTime recordTime = createdDate != DateTime.MinValue ? createdDate
                                       : samplePeriod != DateTime.MinValue ? samplePeriod
                                       : startTime != DateTime.MinValue ? startTime
                                       : DateTime.Now;
@@ -45,7 +45,7 @@ namespace AmplaData.Binding.History
                 User = user,
                 VersionDateTime = recordTime,
                 Changes = new AmplaAuditField[0],
-                Display = string.Format("{0} created record", user)                
+                Display = string.Format("{0} created record", user)
             });
 
             return recordChanges;

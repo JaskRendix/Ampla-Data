@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AmplaData
 {
-    public interface ICalendarRepository<TModel> 
+    public interface ICalendarRepository<TModel>
     {
         /// <summary>
         /// Get all the models 

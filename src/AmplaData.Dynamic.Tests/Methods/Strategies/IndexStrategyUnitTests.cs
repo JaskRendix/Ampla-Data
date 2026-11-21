@@ -10,7 +10,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
         public void MatchesStringIndex()
         {
             IndexStrategy strategy = IndexStrategy.ForStringIndex();
-            Assert.That(strategy.Matches(Binder.GetIndexBinder(1), new object[] {"Value"}), Is.True);
+            Assert.That(strategy.Matches(Binder.GetIndexBinder(1), new object[] { "Value" }), Is.True);
         }
 
         [Test]

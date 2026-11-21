@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web;
+using System.Collections.Generic;
 
 namespace AmplaData.Web.Wrappers
 {
@@ -11,17 +11,17 @@ namespace AmplaData.Web.Wrappers
         }
 
         private readonly Action<string> redirectFunc;
-        private readonly HttpCookieCollection cookies;
+        private readonly Dictionary<string, string> cookies;
         private bool disposed;
 
         private SimpleHttpResponse(Action<string> redirectFunc)
         {
             this.redirectFunc = redirectFunc;
-            cookies = new HttpCookieCollection();
+            cookies = new Dictionary<string, string>();
             disposed = false;
         }
 
-        public HttpCookieCollection Cookies
+        public IReadOnlyDictionary<string, string> Cookies
         {
             get
             {
@@ -30,20 +30,33 @@ namespace AmplaData.Web.Wrappers
             }
         }
 
+        public void AppendCookie(string name, string value, TimeSpan? expires = null)
+        {
+            CheckDisposed();
+            cookies[name] = value;
+        }
+
+        public void DeleteCookie(string name)
+        {
+            CheckDisposed();
+            cookies.Remove(name);
+        }
+
         public void Redirect(string url)
         {
             CheckDisposed();
             redirectFunc(url);
         }
 
-        private void CheckDisposed()
-        {
-            if (disposed) throw new ObjectDisposedException("HttpRequest");
-        }
-
         public void Dispose()
         {
             disposed = true;
+        }
+
+        private void CheckDisposed()
+        {
+            if (disposed)
+                throw new ObjectDisposedException("HttpResponse");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using AmplaData.Records;
 
@@ -33,7 +34,7 @@ namespace AmplaData.Web.Controllers
             TModel model = Repository.FindById(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Details", model);
         }
@@ -48,7 +49,7 @@ namespace AmplaData.Web.Controllers
             AmplaRecord model = Repository.FindRecord(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Record", model);
         }
@@ -63,7 +64,7 @@ namespace AmplaData.Web.Controllers
             AmplaAuditRecord record = Repository.GetHistory(id);
             if (record == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("History", record);
         }
@@ -76,9 +77,9 @@ namespace AmplaData.Web.Controllers
         public ActionResult Versions(int id = 0)
         {
             ModelVersions versions = Repository.GetVersions(id);
-            if (versions == null )
+            if (versions == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Versions", versions);
         }
@@ -121,7 +122,7 @@ namespace AmplaData.Web.Controllers
             TModel model = Repository.FindById(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Edit", model);
         }
@@ -153,7 +154,7 @@ namespace AmplaData.Web.Controllers
             TModel model = Repository.FindById(id);
             if (model == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View("Delete", model);
         }
@@ -168,7 +169,7 @@ namespace AmplaData.Web.Controllers
         {
             TModel model = Repository.FindById(id);
             Repository.Delete(model);
-            
+
             return RedirectToAction("Index");
         }
     }

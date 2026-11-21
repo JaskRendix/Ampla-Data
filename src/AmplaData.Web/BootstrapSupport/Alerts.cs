@@ -9,7 +9,8 @@
 
         public static string[] All
         {
-            get { 
+            get
+            {
                 return new[] { Success, Attention, Information, Error };
             }
         }

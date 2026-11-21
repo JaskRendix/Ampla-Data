@@ -60,8 +60,14 @@ namespace AmplaData.Binding.Mapping
             ModelFieldMapping fieldMapping = new ModelFieldMapping("Value", typeof(string));
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
+
             Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.False);
-            Assert.That(message, Is.StringContaining("'Value'").And.StringContaining("Int32").And.StringContaining("String"));
+
+            Assert.That(
+                message,
+                Does.Contain("'Value'")
+                    .And.Contain("Int32")
+                    .And.Contain("String"));
         }
 
         [Test]
@@ -70,8 +76,14 @@ namespace AmplaData.Binding.Mapping
             ModelFieldMapping fieldMapping = new ModelFieldMapping("Value", typeof(double));
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
+
             Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.False);
-            Assert.That(message, Is.StringContaining("'Value'").And.StringContaining("Int32").And.StringContaining("Double"));
+
+            Assert.That(
+                message,
+                Does.Contain("'Value'")
+                    .And.Contain("Int32")
+                    .And.Contain("Double"));
         }
 
         [Test]
@@ -80,6 +92,7 @@ namespace AmplaData.Binding.Mapping
             ModelFieldMapping fieldMapping = new ModelFieldMapping("DoubleValue", typeof(double));
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
+
             Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.True);
             Assert.That(message, Is.Null.Or.Empty);
         }
@@ -90,9 +103,14 @@ namespace AmplaData.Binding.Mapping
             ModelFieldMapping fieldMapping = new ModelFieldMapping("DoubleValue", typeof(int));
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
-            Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.False);
-            Assert.That(message, Is.StringContaining("'DoubleValue'").And.StringContaining("Int32").And.StringContaining("Double"));
 
+            Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.False);
+
+            Assert.That(
+                message,
+                Does.Contain("'DoubleValue'")
+                    .And.Contain("Int32")
+                    .And.Contain("Double"));
         }
 
         [Test]
@@ -101,8 +119,14 @@ namespace AmplaData.Binding.Mapping
             ModelFieldMapping fieldMapping = new ModelFieldMapping("Value", typeof(DateTime));
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
             string message;
+
             Assert.That(fieldMapping.CanMapField(modelProperties, out message), Is.False);
-            Assert.That(message, Is.StringContaining("'Value'").And.StringContaining("DateTime").And.StringContaining("Int32"));
+
+            Assert.That(
+                message,
+                Does.Contain("'Value'")
+                    .And.Contain("DateTime")
+                    .And.Contain("Int32"));
         }
     }
 }

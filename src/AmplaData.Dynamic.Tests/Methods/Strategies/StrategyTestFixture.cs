@@ -25,7 +25,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
             SimpleAmplaDatabase amplaDatabase = new SimpleAmplaDatabase();
             SimpleAmplaConfiguration configuration = new SimpleAmplaConfiguration();
             SimpleDataWebServiceClient client = new SimpleDataWebServiceClient(amplaDatabase, configuration, securityWebService);
-            
+
             DataWebServiceFactory.Factory = () => client;
             Strategy = new T();
         }
@@ -40,7 +40,7 @@ namespace AmplaData.Dynamic.Methods.Strategies
         protected void AssertMemberBinder(string method, int argCount, string[] argNames, object[] args)
         {
             InvokeMemberBinder memberBinder = Binder.GetMemberBinder("Find", 1, "Id");
-            IDynamicBinder dynamicBinder = Strategy.GetBinder(memberBinder, new object[] {100});
+            IDynamicBinder dynamicBinder = Strategy.GetBinder(memberBinder, new object[] { 100 });
             Assert.That(dynamicBinder, Is.Not.Null);
 
         }

@@ -2,6 +2,6 @@
 {
     public partial class DataWebServiceClient : IDataWebServiceClient, IDataWebServiceCalendarClient
     {
-         
+
     }
 }

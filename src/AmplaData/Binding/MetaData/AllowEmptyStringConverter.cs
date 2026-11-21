@@ -14,12 +14,12 @@ namespace AmplaData.Binding.MetaData
         public AllowEmptyStringConverter(T defaultValue)
         {
             this.defaultValue = defaultValue;
-            typeConverter = TypeDescriptor.GetConverter(typeof (T));
+            typeConverter = TypeDescriptor.GetConverter(typeof(T));
         }
 
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {
-            string strValue = (string) value;
+            string strValue = (string)value;
             if (string.IsNullOrEmpty(strValue))
             {
                 return defaultValue;
@@ -76,7 +76,7 @@ namespace AmplaData.Binding.MetaData
         {
             return typeConverter.GetStandardValuesSupported(context);
         }
-        
+
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
         {
             return typeConverter.ConvertTo(context, culture, value, destinationType);

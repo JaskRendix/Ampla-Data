@@ -19,7 +19,7 @@ namespace AmplaData.Attributes
         public class OverriddenModelWithModule : ModelWithModule
         {
         }
-        
+
         [AmplaModule]
         public class ModelWithNoModule
         {

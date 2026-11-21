@@ -16,10 +16,10 @@
         public bool Validate(IModelProperties<TModel> modelProperties, TModel model, ValidationMessages validationMessages)
         {
             bool isValid = !Equals(model, null);
-            
+
             if (!isValid)
             {
-                string message = string.Format("Null model specified. Type='{0}'", typeof (TModel));
+                string message = string.Format("Null model specified. Type='{0}'", typeof(TModel));
                 validationMessages.Add(message);
             }
             return isValid;

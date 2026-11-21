@@ -19,13 +19,13 @@ namespace AmplaData.Modules.Energy
         public void SubmitWithNullFields()
         {
             SimpleEnergyModel model = new SimpleEnergyModel
-                {
-                    Location = location,
-                    StartTime = DateTime.Now,
-                    CauseLocation = null,
-                    Cause = null,
-                    Classification = null
-                };
+            {
+                Location = location,
+                StartTime = DateTime.Now,
+                CauseLocation = null,
+                Cause = null,
+                Classification = null
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -64,7 +64,7 @@ namespace AmplaData.Modules.Energy
         [Test]
         public void SubmitWithCauseAsString()
         {
-            SimpleEnergyModel model = new SimpleEnergyModel { Location = location, StartTime = DateTime.Now, Cause = "Broken"};
+            SimpleEnergyModel model = new SimpleEnergyModel { Location = location, StartTime = DateTime.Now, Cause = "Broken" };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -97,7 +97,7 @@ namespace AmplaData.Modules.Energy
             DateTime before = DateTime.Now.AddMinutes(-1);
             DateTime after = DateTime.Now.AddMinutes(+1);
 
-            SimpleEnergyModel model = new SimpleEnergyModel { Location = location};
+            SimpleEnergyModel model = new SimpleEnergyModel { Location = location };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

@@ -32,8 +32,8 @@ namespace AmplaData.AmplaRepository
             this.getViewFunc = getViewFunc;
         }
 
-        protected AmplaRepositoryTestFixture(string module, string location, Func<GetView> getViewFunc) 
-            : this(module, new [] {location}, getViewFunc)
+        protected AmplaRepositoryTestFixture(string module, string location, Func<GetView> getViewFunc)
+            : this(module, new[] { location }, getViewFunc)
         {
         }
 
@@ -53,7 +53,7 @@ namespace AmplaData.AmplaRepository
 
             webServiceClient = new SimpleDataWebServiceClient(database, configuration, new SimpleSecurityWebServiceClient("User"));
             listLogger = new ListLogger();
-            repository = new AmplaRepository<TModel>(new LoggingDataWebServiceClient(webServiceClient, listLogger), 
+            repository = new AmplaRepository<TModel>(new LoggingDataWebServiceClient(webServiceClient, listLogger),
                 CredentialsProvider.ForUsernameAndPassword(userName, password));
         }
 
@@ -87,15 +87,15 @@ namespace AmplaData.AmplaRepository
         protected int UpdateRecord(InMemoryRecord record)
         {
             SubmitDataRequest request = new SubmitDataRequest
-                {
-                    Credentials = new Credentials { Username = "User", Password = "password"},
-                    SubmitDataRecords = new[] {record.ConvertToSubmitDataRecord()}
-                };
+            {
+                Credentials = new Credentials { Username = "User", Password = "password" },
+                SubmitDataRecords = new[] { record.ConvertToSubmitDataRecord() }
+            };
 
             SubmitDataResponse response = webServiceClient.SubmitData(request);
             Assert.That(response.DataSubmissionResults, Is.Not.Empty);
             Assert.That(response.DataSubmissionResults[0].RecordAction, Is.EqualTo(RecordAction.Update), "Expected an Update to occur");
-            return (int) response.DataSubmissionResults[0].SetId;
+            return (int)response.DataSubmissionResults[0].SetId;
         }
 
         protected IList<string> Messages

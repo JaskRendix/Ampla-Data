@@ -39,7 +39,7 @@ namespace AmplaData.Binding.Mapping
             string defaultValue = new Iso8601DateTimeConverter().ConvertToInvariantString(DateTime.UtcNow);
             DefaultValueFieldMapping<DateTime> fieldMapping = new DefaultValueFieldMapping<DateTime>("Sample", () => defaultValue);
 
-            Model model = new Model {Id = 0};
+            Model model = new Model { Id = 0 };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 
@@ -56,8 +56,8 @@ namespace AmplaData.Binding.Mapping
             string utcTime = new Iso8601DateTimeConverter().ConvertToInvariantString(localTime);
 
             DefaultValueFieldMapping<DateTime> fieldMapping = new DefaultValueFieldMapping<DateTime>("Sample", () => "blah");
-           
-            Model model = new Model {Id = 0, Sample = localTime};
+
+            Model model = new Model { Id = 0, Sample = localTime };
 
             ModelProperties<Model> modelProperties = new ModelProperties<Model>();
 

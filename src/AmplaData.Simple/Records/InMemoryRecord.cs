@@ -32,16 +32,16 @@ namespace AmplaData.Records
             get;
             set;
         }
-        
+
         public IList<FieldValue> Fields { get; private set; }
 
         public InMemoryRecord Clone()
         {
             InMemoryRecord record = new InMemoryRecord(view)
-                {
-                    Module = Module,
-                    RecordId = RecordId
-                };
+            {
+                Module = Module,
+                RecordId = RecordId
+            };
 
             foreach (FieldValue value in Fields)
             {
@@ -112,5 +112,5 @@ namespace AmplaData.Records
         }
     }
 
-  
+
 }

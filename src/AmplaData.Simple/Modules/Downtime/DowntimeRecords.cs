@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Downtime
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(DowntimeViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Downtime",
-                    Module = "Downtime"
-                };
+            {
+                Location = "Enterprise.Site.Area.Downtime",
+                Module = "Downtime"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);

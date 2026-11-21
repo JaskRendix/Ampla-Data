@@ -68,6 +68,6 @@ namespace AmplaData.Dynamic
         {
             get { return new List<InMemoryRecord>(database.GetModuleRecords(module).Values); }
         }
-        
+
     }
 }

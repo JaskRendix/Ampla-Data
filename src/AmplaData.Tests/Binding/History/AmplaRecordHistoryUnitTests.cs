@@ -35,7 +35,7 @@ namespace AmplaData.Binding.History
             AmplaAuditRecord auditRecord = CreateAuditRecord(record);
             IAmplaViewProperties<ProductionModel> viewProperties = GetViewProperties();
             record.AddColumn("CreatedDateTime", typeof(DateTime));
-            record.AddColumn("CreatedBy", typeof (string));
+            record.AddColumn("CreatedBy", typeof(string));
 
             record.SetValue("CreatedBy", "Admin");
             DateTime created = DateTime.Today.AddHours(1);
@@ -67,7 +67,7 @@ namespace AmplaData.Binding.History
                 (
                     AddSession("User", DateTime.Today, "IsDeleted", "False", "True")
                 );
-       
+
             AmplaRecordHistory<ProductionModel> amplaRecordHistory = new AmplaRecordHistory<ProductionModel>(record, auditRecord, viewProperties);
             List<AmplaRecordChanges> changes = amplaRecordHistory.Reconstruct();
             Assert.That(changes, Is.Not.Empty);

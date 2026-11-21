@@ -79,7 +79,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(recordId, Is.GreaterThan(0));
 
             Assert.That(DatabaseRecords, Is.Not.Empty);
-            
+
             IList<AreaValueModel> models = repository.GetAll();
 
             Assert.That(models, Is.Not.Empty);

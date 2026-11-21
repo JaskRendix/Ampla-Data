@@ -10,11 +10,11 @@ namespace AmplaData.Modules.Quality
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(QualityViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Quality",
-                    Module = "Quality"
-                };
-            
+            {
+                Location = "Enterprise.Site.Area.Quality",
+                Module = "Quality"
+            };
+
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);

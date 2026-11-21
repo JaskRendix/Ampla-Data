@@ -13,7 +13,7 @@ namespace AmplaData.Binding.Mapping
         /// Initializes a new instance of the <see cref="ReadOnlyFieldMapping"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
-        public ReadOnlyFieldMapping(string name) : base(name) 
+        public ReadOnlyFieldMapping(string name) : base(name)
         {
             CanWrite = false;
         }
@@ -46,7 +46,7 @@ namespace AmplaData.Binding.Mapping
             {
                 Type propertyType = modelProperties.GetPropertyType(Name);
                 message = string.Format("{0}.{1} is not able to be read ({2}) Ampla field type is {3}.", typeof(TModel), Name, FieldType, propertyType);
-           
+
                 return false;
             }
             message = null;

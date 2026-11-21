@@ -50,7 +50,7 @@ namespace AmplaData.Web.Authentication
 
             Assert.That(webServiceClient.Sessions, Is.Empty);
             Assert.That(message, Is.Not.Empty);
-            Assert.That(message, Is.StringContaining("password"));
+            Assert.That(message, Does.Contain("password"));
         }
 
         [Test]
@@ -137,7 +137,7 @@ namespace AmplaData.Web.Authentication
             Assert.That(user.Session, Is.Not.Empty);
             Assert.That(user.Session, Is.EqualTo(webServiceClient.Sessions[0].SessionId));
             Assert.That(message, Is.Null.Or.Empty);
-            
+
         }
 
         [Test]

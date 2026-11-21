@@ -10,7 +10,7 @@ namespace AmplaData.Binding.ModelData
         {
             LocationFilter filter = new LocationFilter("Enterprise.Site", true);
             Assert.That(filter.Location, Is.EqualTo("Enterprise.Site"));
-           
+
             Assert.That(filter.WithRecurse, Is.True);
         }
 
@@ -31,7 +31,7 @@ namespace AmplaData.Binding.ModelData
             Assert.That(filter.Filter, Is.EqualTo("Enterprise.Site with recurse"));
 
             filter = new LocationFilter("Enterprise.Site", false);
-            Assert.That(filter.Filter, Is.EqualTo("Enterprise.Site"));            
+            Assert.That(filter.Filter, Is.EqualTo("Enterprise.Site"));
         }
 
         [Test]

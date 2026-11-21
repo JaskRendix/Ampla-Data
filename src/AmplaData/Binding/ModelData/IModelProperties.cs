@@ -90,7 +90,7 @@ namespace AmplaData.Binding.ModelData
         /// <param name="message"></param>
         /// <returns></returns>
         bool CanMapField(FieldMapping fieldMapping, out string message);
-        
+
         /// <summary>
         /// Determines whether the specified field can round trip to and from the specified type
         /// </summary>

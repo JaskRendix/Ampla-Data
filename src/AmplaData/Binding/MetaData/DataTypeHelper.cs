@@ -20,7 +20,7 @@ namespace AmplaData.Binding.MetaData
 
             AmplaToTypeDictionary = new Dictionary<string, Type>();
             TypeToAmplaDictionary = new Dictionary<Type, string>();
-            DefaultValueDictionary =new Dictionary<Type, object>();
+            DefaultValueDictionary = new Dictionary<Type, object>();
 
             foreach (DataTypeMap map in maps)
             {
@@ -44,10 +44,10 @@ namespace AmplaData.Binding.MetaData
             public object DefaultValue { get; private set; }
         }
 
-        private static readonly Dictionary<string, Type> AmplaToTypeDictionary ;
-        private static readonly Dictionary<Type, string> TypeToAmplaDictionary ;
+        private static readonly Dictionary<string, Type> AmplaToTypeDictionary;
+        private static readonly Dictionary<Type, string> TypeToAmplaDictionary;
 
-        private static readonly Dictionary<Type, object> DefaultValueDictionary; 
+        private static readonly Dictionary<Type, object> DefaultValueDictionary;
 
         public static Type GetDataType(string amplaDataType)
         {
@@ -71,7 +71,7 @@ namespace AmplaData.Binding.MetaData
 
         public static string GetAmplaDataType<T>()
         {
-            return GetAmplaDataType(typeof (T));
+            return GetAmplaDataType(typeof(T));
         }
 
         public static object GetDefaultValue(Type dataType)

@@ -22,7 +22,7 @@ namespace AmplaData.Web.Sessions
         /// <value>
         ///   <c>true</c> if [enabled]; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled { get { return httpSessionWrapper.Enabled; }}
+        public bool Enabled { get { return httpSessionWrapper.Enabled; } }
 
         /// <summary>
         /// Sets the ampla session.

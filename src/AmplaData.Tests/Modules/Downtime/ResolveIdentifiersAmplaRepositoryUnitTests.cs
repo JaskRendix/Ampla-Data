@@ -19,10 +19,10 @@ namespace AmplaData.Modules.Downtime
         public void SubmitWithNullFields()
         {
             IdentifierDowntimeModel model = new IdentifierDowntimeModel
-                {
-                    Location = location,
-                    StartTime = DateTime.Now,
-                };
+            {
+                Location = location,
+                StartTime = DateTime.Now,
+            };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -58,7 +58,7 @@ namespace AmplaData.Modules.Downtime
         [Test]
         public void SubmitWithCause()
         {
-            IdentifierDowntimeModel model = new IdentifierDowntimeModel { Location = location, StartTime = DateTime.Now, Cause = 100};
+            IdentifierDowntimeModel model = new IdentifierDowntimeModel { Location = location, StartTime = DateTime.Now, Cause = 100 };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));

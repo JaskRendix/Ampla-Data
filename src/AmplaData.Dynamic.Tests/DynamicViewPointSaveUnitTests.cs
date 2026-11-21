@@ -17,7 +17,7 @@ namespace AmplaData.Dynamic
         [Test]
         public void SaveUsingAnonymousType()
         {
-            var model = new {Location = location};
+            var model = new { Location = location };
             DateTime before = DateTime.UtcNow.AddSeconds(-1);
 
             dynamic record = ViewPoint.Save(model);
@@ -50,7 +50,7 @@ namespace AmplaData.Dynamic
         [Test]
         public void SaveUsingModelClass()
         {
-            ProductionModel model = new ProductionModel {Location = location};
+            ProductionModel model = new ProductionModel { Location = location };
 
             DateTime before = DateTime.UtcNow.AddSeconds(-1);
 
@@ -99,7 +99,7 @@ namespace AmplaData.Dynamic
         //    Assert.That(amplaRecord.Module, Is.EqualTo(module));
 
         //    Assert.That(amplaRecord.GetFieldValue("Sample Period", DateTime.MinValue), Is.EqualTo(utc));
-            
+
         //}
     }
 }

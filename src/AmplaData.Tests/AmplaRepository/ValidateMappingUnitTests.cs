@@ -44,7 +44,7 @@ namespace AmplaData.AmplaRepository
 
             string invalidMessage = messages.FirstOrDefault(message => message.Contains("IncorrectSpelling"));
 
-            Assert.That(invalidMessage, Is.StringContaining("'IncorrectSpelling'"), string.Join("\r\n", messages));
+            Assert.That(invalidMessage, Does.Contain("'IncorrectSpelling'"), string.Join("\r\n", messages));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace AmplaData.AmplaRepository
 
             string invalidMessage = messages.FirstOrDefault(message => message.Contains("Area"));
 
-            Assert.That(invalidMessage, Is.StringContaining("'Area'"), string.Join("\r\n", messages));
+            Assert.That(invalidMessage, Does.Contain("'Area'"), string.Join("\r\n", messages));
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace AmplaData.AmplaRepository
 
             string invalidMessage = messages.FirstOrDefault(message => message.Contains("Value"));
 
-            Assert.That(invalidMessage, Is.StringContaining("'Value'"), string.Join("\r\n", messages));
+            Assert.That(invalidMessage, Does.Contain("'Value'"), string.Join("\r\n", messages));
         }
     }
 }

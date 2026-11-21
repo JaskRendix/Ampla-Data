@@ -11,7 +11,7 @@ namespace AmplaData.AmplaRepository
     public class AmplaRepositoryLocationUnitTests : AmplaRepositoryTestFixture<AmplaRepositoryLocationUnitTests.LocationModel>
     {
 
-        [AmplaLocation(Location="Enterprise", WithRecurse = true)]
+        [AmplaLocation(Location = "Enterprise", WithRecurse = true)]
         [AmplaModule(Module = "Production")]
         public class LocationModel
         {
@@ -24,7 +24,7 @@ namespace AmplaData.AmplaRepository
         }
 
         private const string module = "Production";
-        private static readonly string[] Locations =  new [] {"Enterprise.Site.Area.Point1", "Enterprise.Site.Area.Point2"} ;
+        private static readonly string[] Locations = new[] { "Enterprise.Site.Area.Point1", "Enterprise.Site.Area.Point2" };
 
         public AmplaRepositoryLocationUnitTests() : base(module, Locations, ProductionViews.StandardView)
         {
@@ -33,7 +33,7 @@ namespace AmplaData.AmplaRepository
         [Test]
         public void AddAValidLocation()
         {
-            LocationModel model = new LocationModel {Location = Locations[1]};
+            LocationModel model = new LocationModel { Location = Locations[1] };
             Repository.Add(model);
 
             Assert.That(model.Id, Is.GreaterThan(0));
@@ -51,21 +51,21 @@ namespace AmplaData.AmplaRepository
         {
             LocationModel model = new LocationModel();
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Add(model));
-            Assert.That(exception.ToString(), Is.StringContaining("Location '' is not valid."));
+            Assert.That(exception.ToString(), Does.Contain("Location '' is not valid."));
         }
 
         [Test]
         public void AddWithAnInvalidLocation()
         {
-            LocationModel model = new LocationModel {Location = "Invalid.Location"};
+            LocationModel model = new LocationModel { Location = "Invalid.Location" };
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Add(model));
-            Assert.That(exception.ToString(), Is.StringContaining("Location 'Invalid.Location' is not valid."));
+            Assert.That(exception.ToString(), Does.Contain("Location 'Invalid.Location' is not valid."));
         }
 
         [Test]
         public void UpdateToChangeLocation()
         {
-            LocationModel model = new LocationModel {Location = Locations[0]};
+            LocationModel model = new LocationModel { Location = Locations[0] };
             Repository.Add(model);
 
             LocationModel existing = Repository.FindById(model.Id);
@@ -74,7 +74,7 @@ namespace AmplaData.AmplaRepository
             existing.Location = Locations[1];
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Update(existing));
-            Assert.That(exception.ToString(), Is.StringContaining("The Location property is not the required value: "));
+            Assert.That(exception.ToString(), Does.Contain("The Location property is not the required value: "));
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace AmplaData.AmplaRepository
         {
             Assert.DoesNotThrow(() => Repository.GetAll());
         }
-        
+
         [Test]
         public void FindByFilter()
         {
@@ -118,7 +118,7 @@ namespace AmplaData.AmplaRepository
             DateTime before = DateTime.Now.AddMinutes(-1);
             DateTime after = DateTime.Now.AddMinutes(+1);
 
-            InMemoryRecord record =ProductionRecords.NewRecord();
+            InMemoryRecord record = ProductionRecords.NewRecord();
             record.Location = Locations[0];
 
             int recordId = SaveRecord(record);

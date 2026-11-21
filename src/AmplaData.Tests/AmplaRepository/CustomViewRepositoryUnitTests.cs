@@ -81,7 +81,7 @@ namespace AmplaData.AmplaRepository
             Assert.That(recordId, Is.GreaterThan(0));
 
             Assert.That(DatabaseRecords, Is.Not.Empty);
-            
+
             IList<CustomViewModel> models = repository.GetAll();
 
             Assert.That(models, Is.Not.Empty);

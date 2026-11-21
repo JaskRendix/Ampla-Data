@@ -1,44 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Web;
 
 namespace AmplaData.Web.Wrappers
 {
     /// <summary>
-    /// Interface that wraps the HttpRequest object to simplify testing
+    /// Interface that wraps the HttpRequest object to simplify testing.
     /// </summary>
     public interface IHttpRequestWrapper
     {
         /// <summary>
-        /// Gets the query string for the request
+        /// Gets the query string for the request.
         /// </summary>
-        /// <value>
-        /// The query string.
-        /// </value>
         NameValueCollection QueryString { get; }
 
         /// <summary>
-        /// Gets the URL for the request
+        /// Gets the URL for the request.
         /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
         Uri Url { get; }
 
         /// <summary>
-        /// Gets the cookies.
+        /// Gets whether the request is authenticated.
         /// </summary>
-        /// <value>
-        /// The cookies.
-        /// </value>
-        HttpCookieCollection Cookies { get; }
+        bool IsAuthenticated { get; }
 
         /// <summary>
-        /// Gets a value indicating whether the request has been [authenticated].
+        /// Gets a cookie value.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if [is authenticated]; otherwise, <c>false</c>.
-        /// </value>
-        bool IsAuthenticated { get; }
+        string GetCookie(string name);
+
+        /// <summary>
+        /// Gets all cookies.
+        /// </summary>
+        IReadOnlyDictionary<string, string> Cookies { get; }
     }
 }

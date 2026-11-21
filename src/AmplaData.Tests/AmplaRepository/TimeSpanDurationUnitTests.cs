@@ -60,7 +60,7 @@ namespace AmplaData.AmplaRepository
             DateTime before = DateTime.Now.AddMinutes(-1);
             DateTime after = DateTime.Now.AddMinutes(1);
 
-            TimeSpanModel model = new TimeSpanModel {Duration = TimeSpan.FromMinutes(60)};
+            TimeSpanModel model = new TimeSpanModel { Duration = TimeSpan.FromMinutes(60) };
             Repository.Add(model);
 
             Assert.That(Records, Is.Not.Empty);
@@ -91,7 +91,7 @@ namespace AmplaData.AmplaRepository
             int recordId = SaveRecord(record);
 
             Assert.That(Records, Is.Not.Empty);
-            
+
             TimeSpanModel retrieved = Repository.FindById(recordId);
 
             Assert.That(retrieved, Is.Not.Null);

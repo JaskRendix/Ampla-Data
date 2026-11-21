@@ -39,11 +39,11 @@ namespace AmplaData.Views
 
         public static readonly ViewAllowedOperations[] AllOperations = new[]
             {
-                ViewAllowedOperations.AddRecord, 
+                ViewAllowedOperations.AddRecord,
                 ViewAllowedOperations.ConfirmRecord,
-                ViewAllowedOperations.DeleteRecord, 
+                ViewAllowedOperations.DeleteRecord,
                 ViewAllowedOperations.ModifyRecord,
-                ViewAllowedOperations.SplitRecord, 
+                ViewAllowedOperations.SplitRecord,
                 ViewAllowedOperations.UnconfirmRecord,
                 ViewAllowedOperations.ViewRecord
             };

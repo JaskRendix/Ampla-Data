@@ -56,7 +56,7 @@ namespace AmplaData.Attributes.Calendar
             {
                 calendar = propertyInfo.Name;
             }
-            
+
             return !string.IsNullOrEmpty(calendar);
         }
     }

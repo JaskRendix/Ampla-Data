@@ -17,7 +17,7 @@ namespace AmplaData.Binding.Mapping.Modules
         {
             CheckField<IdFieldMapping>("Id", "Id", true, false);
         }
-        
+
         [Test]
         public void LocationField()
         {

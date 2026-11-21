@@ -10,29 +10,29 @@ namespace AmplaData.Modules.Production
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Production.StandardView",
-                    DisplayName = "Production",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll(),
-                };
+            {
+                name = "Production.StandardView",
+                DisplayName = "Production",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll(),
+            };
             return view;
         }
 
         public static GetView AreaValueModelView()
         {
             GetView view = new GetView
-                {
-                    name = "Production.StandardView",
-                    DisplayName = "Production",
-                    Fields = StandardFieldsPlus(new[]
+            {
+                name = "Production.StandardView",
+                DisplayName = "Production",
+                Fields = StandardFieldsPlus(new[]
                         {
                             Field<string>("Area"),
                             Field<double>("Value")
                         }),
-                    AllowedOperations = AllowAll()
+                AllowedOperations = AllowAll()
 
-                };
+            };
 
             return view;
         }

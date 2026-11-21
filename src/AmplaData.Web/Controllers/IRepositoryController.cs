@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AmplaData.Web.Controllers
 {
@@ -50,7 +50,7 @@ namespace AmplaData.Web.Controllers
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         ActionResult DeleteConfirmed(int id);
-        
+
         /// <summary>
         ///     GET /{Model}/History/id
         /// </summary>

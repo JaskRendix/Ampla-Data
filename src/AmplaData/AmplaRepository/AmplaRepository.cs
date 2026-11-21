@@ -80,7 +80,7 @@ namespace AmplaData.AmplaRepository
 
             return null;
         }
-        
+
         /// <summary>
         /// Finds the model using the id.
         /// </summary>
@@ -219,7 +219,7 @@ namespace AmplaData.AmplaRepository
         {
             IAmplaViewProperties<TModel> amplaViewProperties = GetViewProperties(null);
             amplaViewProperties.Enforce.CanView();
-            
+
             var request = GetDataRequest(true, filters);
             GetDataResponse response = webServiceClient.GetData(request);
 
@@ -246,12 +246,12 @@ namespace AmplaData.AmplaRepository
 
             IEnumerable<FieldMapping> fieldMappings = viewProperties.GetFieldMappings();
             List<string> missingFields = new List<string>(modelProperties.GetProperties());
-            
+
             foreach (FieldMapping fieldMapping in fieldMappings)
             {
                 string field = fieldMapping.Name;
                 string message;
-                
+
                 if (!ModelProperties.CanMapField(fieldMapping, out message))
                 {
                     messages.Add(message ?? "Error message");
@@ -280,7 +280,7 @@ namespace AmplaData.AmplaRepository
             IAmplaViewProperties<TModel> amplaViewProperties = GetViewProperties(model);
             amplaViewProperties.Enforce.CanAdd();
 
-            SubmitDataRequest request = new SubmitDataRequest {Credentials = CreateCredentials()};
+            SubmitDataRequest request = new SubmitDataRequest { Credentials = CreateCredentials() };
             List<SubmitDataRecord> records = new List<SubmitDataRecord>();
             List<TModel> models = new List<TModel> { model };
 
@@ -289,7 +289,7 @@ namespace AmplaData.AmplaRepository
             {
                 request.SubmitDataRecords = records.ToArray();
                 SubmitDataResponse response = WebServiceClient.SubmitData(request);
-                
+
                 IAmplaBinding resultBinding = new AmplaDataSubmissionResultBinding<TModel>(response.DataSubmissionResults, models, ModelProperties);
                 if (resultBinding.Validate())
                 {
@@ -307,10 +307,10 @@ namespace AmplaData.AmplaRepository
             IAmplaViewProperties<TModel> amplaViewProperties = GetViewProperties(model);
             amplaViewProperties.Enforce.CanDelete();
 
-            DeleteRecordsRequest request = new DeleteRecordsRequest {Credentials = CreateCredentials()};
+            DeleteRecordsRequest request = new DeleteRecordsRequest { Credentials = CreateCredentials() };
             List<DeleteRecord> records = new List<DeleteRecord>();
-            List<TModel> models = new List<TModel>{model};
-            
+            List<TModel> models = new List<TModel> { model };
+
             IAmplaBinding binding = new AmplaDeleteDataBinding<TModel>(models, records, ModelProperties);
             if (binding.Validate() && binding.Bind())
             {
@@ -328,7 +328,7 @@ namespace AmplaData.AmplaRepository
             IAmplaViewProperties<TModel> amplaViewProperties = GetViewProperties(model);
             amplaViewProperties.Enforce.CanConfirm();
 
-            UpdateRecordStatusRequest request = new UpdateRecordStatusRequest {Credentials = CreateCredentials()};
+            UpdateRecordStatusRequest request = new UpdateRecordStatusRequest { Credentials = CreateCredentials() };
             List<UpdateRecordStatus> records = new List<UpdateRecordStatus>();
             List<TModel> models = new List<TModel> { model };
 
@@ -349,7 +349,7 @@ namespace AmplaData.AmplaRepository
             IAmplaViewProperties<TModel> amplaViewProperties = GetViewProperties(model);
             amplaViewProperties.Enforce.CanUnconfirm();
 
-            UpdateRecordStatusRequest request = new UpdateRecordStatusRequest {Credentials = CreateCredentials()};
+            UpdateRecordStatusRequest request = new UpdateRecordStatusRequest { Credentials = CreateCredentials() };
             List<UpdateRecordStatus> records = new List<UpdateRecordStatus>();
             List<TModel> models = new List<TModel> { model };
 
@@ -371,12 +371,12 @@ namespace AmplaData.AmplaRepository
             if (property == "Location")
             {
                 GetNavigationHierarchyRequest request = new GetNavigationHierarchyRequest
-                    {
-                        Credentials = CreateCredentials(),
-                        Module = ModelProperties.Module,
-                        Context = NavigationContext.Plant,
-                        Mode = NavigationMode.Location
-                    };
+                {
+                    Credentials = CreateCredentials(),
+                    Module = ModelProperties.Module,
+                    Context = NavigationContext.Plant,
+                    Mode = NavigationMode.Location
+                };
 
                 GetNavigationHierarchyResponse response = WebServiceClient.GetNavigationHierarchy(request);
                 List<string> values = new List<string>();
@@ -407,8 +407,8 @@ namespace AmplaData.AmplaRepository
             {
                 existing = FindById(identifiers[0]);
             }
-            
-            SubmitDataRequest request = new SubmitDataRequest {Credentials = CreateCredentials()};
+
+            SubmitDataRequest request = new SubmitDataRequest { Credentials = CreateCredentials() };
             List<SubmitDataRecord> records = new List<SubmitDataRecord>();
 
             IAmplaBinding binding = new AmplaUpdateDataBinding<TModel>(existing, model, records, amplaViewProperties, ModelProperties);
@@ -443,21 +443,21 @@ namespace AmplaData.AmplaRepository
         public GetAuditDataRequest GetAuditDataRequest(AmplaRecord record)
         {
             GetAuditDataRequest request = new GetAuditDataRequest
+            {
+                Credentials = CreateCredentials(),
+                Filter = new GetAuditDataFilter
                 {
-                    Credentials = CreateCredentials(),
-                    Filter = new GetAuditDataFilter
-                        {
-                            Location = record.Location,
-                            Module = ModelProperties.Module,
-                            SetId = Convert.ToString(record.Id)
-                        }
-                };
+                    Location = record.Location,
+                    Module = ModelProperties.Module,
+                    SetId = Convert.ToString(record.Id)
+                }
+            };
             return request;
         }
 
         private DataFilter GetDataFilter(bool includeDefaultFilters, IEnumerable<FilterValue> filters)
         {
-            DataFilter dataFilter = new DataFilter {Location = ModelProperties.LocationFilter.Filter};
+            DataFilter dataFilter = new DataFilter { Location = ModelProperties.LocationFilter.Filter };
 
             Dictionary<string, FilterEntry> filterDictionary = new Dictionary<string, FilterEntry>();
 
@@ -531,7 +531,7 @@ namespace AmplaData.AmplaRepository
                 location = ModelProperties.GetLocation(model) ?? "";
                 checkForValidLocation = true;
             }
-            
+
             if (!amplaViewDictionary.TryGetValue(location, out amplaView))
             {
                 if (checkForValidLocation)
@@ -541,14 +541,14 @@ namespace AmplaData.AmplaRepository
 
                 AmplaViewProperties<TModel> viewProperties = new AmplaViewProperties<TModel>(ModelProperties);
                 GetViewsRequest request = new GetViewsRequest
-                    {
-                        Credentials = CreateCredentials(),
-                        Mode = NavigationMode.Location,
-                        Context = NavigationContext.Plant,
-                        ViewPoint = location,
-                        Module = ModelProperties.Module,
-                        Localization = new Localization()
-                    };
+                {
+                    Credentials = CreateCredentials(),
+                    Mode = NavigationMode.Location,
+                    Context = NavigationContext.Plant,
+                    ViewPoint = location,
+                    Module = ModelProperties.Module,
+                    Localization = new Localization()
+                };
 
                 GetViewsResponse response = WebServiceClient.GetViews(request);
                 viewProperties.Initialise(response);

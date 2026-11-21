@@ -11,12 +11,12 @@ namespace AmplaData.Modules.Planning
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Planning.StandardView",
-                    DisplayName = "Planning",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll(),
-                };
+            {
+                name = "Planning.StandardView",
+                DisplayName = "Planning",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll(),
+            };
             return view;
         }
 

@@ -9,7 +9,7 @@ namespace AmplaData.Binding.ModelData
         [AmplaLocation(Location = "Enterprise.Site.Area.Point")]
         [AmplaModule(Module = "Production")]
         public class ModelWithAmplaField
-        {   
+        {
             [AmplaField("Full Name")]
             public string FullName
             {
@@ -21,7 +21,7 @@ namespace AmplaData.Binding.ModelData
         public void GetPropertiesReturnsAmplaField()
         {
             ModelProperties<ModelWithAmplaField> modelProperties = new ModelProperties<ModelWithAmplaField>();
-            
+
             var properties = modelProperties.GetProperties();
             Assert.That(properties.Count, Is.EqualTo(1));
             Assert.That(properties[0], Is.EqualTo("Full Name"));
@@ -31,7 +31,7 @@ namespace AmplaData.Binding.ModelData
         public void GetAmplaFieldProperty()
         {
             ModelProperties<ModelWithAmplaField> modelProperties = new ModelProperties<ModelWithAmplaField>();
-            ModelWithAmplaField model = new ModelWithAmplaField {FullName = "John Doe"};
+            ModelWithAmplaField model = new ModelWithAmplaField { FullName = "John Doe" };
 
             string value;
             bool result = modelProperties.TryGetPropertyValue(model, "Full Name", out value);

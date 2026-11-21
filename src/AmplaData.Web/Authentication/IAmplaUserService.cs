@@ -29,14 +29,14 @@ namespace AmplaData.Web.Authentication
         /// <param name="message"></param>
         /// <returns></returns>
         AmplaUser IntegratedLogin(out string message);
-        
+
         /// <summary>
         ///     Renew the session
         /// </summary>
         /// <param name="session"></param>
         /// <returns></returns>
         AmplaUser RenewSession(string session);
-        
+
         /// <summary>
         ///     Logout the user
         /// </summary>

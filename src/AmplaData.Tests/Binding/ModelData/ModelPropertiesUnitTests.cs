@@ -9,8 +9,8 @@ namespace AmplaData.Binding.ModelData
     [TestFixture]
     public class ModelPropertiesUnitTests : TestFixture
     {
-        [AmplaLocation(Location="Enterprise.Site.Area.Simple")]
-        [AmplaModule(Module="Production")]
+        [AmplaLocation(Location = "Enterprise.Site.Area.Simple")]
+        [AmplaModule(Module = "Production")]
         public class SimpleModel
         {
             public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace AmplaData.Binding.ModelData
             public double Value { get; set; }
         }
 
-        [AmplaLocation(Location = "Enterprise.Site", WithRecurse = true )]
+        [AmplaLocation(Location = "Enterprise.Site", WithRecurse = true)]
         [AmplaModule(Module = "Production")]
         public class SimpleModelWithRecurse
         {
@@ -47,7 +47,7 @@ namespace AmplaData.Binding.ModelData
         public class InheritedModel : SimpleModel
         {
         }
-        
+
         public class EmptyModel
         {
         }
@@ -80,9 +80,9 @@ namespace AmplaData.Binding.ModelData
         [Test]
         public void ConstructorThrowsWhenNoAttributes()
         {
-            ArgumentException exception = Assert.Throws<ArgumentException>(()=>new ModelProperties<EmptyModel>());
-            Assert.That(exception.Message, Is.StringContaining(typeof(AmplaLocationAttribute).Name));
-            Assert.That(exception.Message, Is.StringContaining(typeof(AmplaModuleAttribute).Name));
+            ArgumentException exception = Assert.Throws<ArgumentException>(() => new ModelProperties<EmptyModel>());
+            Assert.That(exception.Message, Does.Contain(typeof(AmplaLocationAttribute).Name));
+            Assert.That(exception.Message, Does.Contain(typeof(AmplaModuleAttribute).Name));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace AmplaData.Binding.ModelData
         [Test]
         public void TryGetPropertyWithValidValues()
         {
-            SimpleModel model = new SimpleModel {Id = 100, Name = "Ampla", Value = 1.234};
+            SimpleModel model = new SimpleModel { Id = 100, Name = "Ampla", Value = 1.234 };
 
             ModelProperties<SimpleModel> modelProperties = new ModelProperties<SimpleModel>();
 
@@ -152,7 +152,7 @@ namespace AmplaData.Binding.ModelData
         [Test]
         public void TrySetPropertyWithEmptyValues()
         {
-            SimpleModel model = new SimpleModel { Id = 1, Name = "Name", Value = 1.234};
+            SimpleModel model = new SimpleModel { Id = 1, Name = "Name", Value = 1.234 };
 
             ModelProperties<SimpleModel> modelProperties = new ModelProperties<SimpleModel>();
 
@@ -184,7 +184,7 @@ namespace AmplaData.Binding.ModelData
         [Test]
         public void RoundTripProperties()
         {
-            SimpleModel model = new SimpleModel { Id = 100, Name = "Ampla", Value = 1.234 }; 
+            SimpleModel model = new SimpleModel { Id = 100, Name = "Ampla", Value = 1.234 };
             SimpleModel newModel = new SimpleModel();
 
             ModelProperties<SimpleModel> modelProperties = new ModelProperties<SimpleModel>();
@@ -353,7 +353,7 @@ namespace AmplaData.Binding.ModelData
         [Test]
         public void CloneModelWithValues()
         {
-            SimpleModel model = new SimpleModel { Id = 100, Name = "Ampla", Value = 1.234 }; 
+            SimpleModel model = new SimpleModel { Id = 100, Name = "Ampla", Value = 1.234 };
 
             ModelProperties<SimpleModel> modelProperties = new ModelProperties<SimpleModel>();
 

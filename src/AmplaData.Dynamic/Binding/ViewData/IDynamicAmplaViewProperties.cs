@@ -4,6 +4,6 @@ namespace AmplaData.Dynamic.Binding.ViewData
 {
     public interface IDynamicAmplaViewProperties : IAmplaViewProperties<object>
     {
-         
+
     }
 }

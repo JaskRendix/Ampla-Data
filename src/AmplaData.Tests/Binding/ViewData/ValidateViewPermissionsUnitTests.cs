@@ -49,7 +49,7 @@ namespace AmplaData.Binding.ViewData
 
             Assert.That(viewPermissions.Messages.Count, Is.GreaterThan(existingMessages));
             string message = viewPermissions.Messages[viewPermissions.Messages.Count - 1];
-            Assert.That(message, Is.StringContaining(permission));
+            Assert.That(message, Does.Contain(permission));
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace AmplaData.Binding.ViewData
         public void ValidatesViewOnly()
         {
             ViewPermissions permissions = new ViewPermissions();
-            permissions.Initialise(new [] {View()});
+            permissions.Initialise(new[] { View() });
             ValidateViewPermissions view = new ValidateViewPermissions("Production", permissions, productionPermissions);
 
             Assert.That(view.Messages, Is.Empty);

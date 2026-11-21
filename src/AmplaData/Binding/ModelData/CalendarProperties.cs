@@ -22,13 +22,12 @@ namespace AmplaData.Binding.ModelData
         /// </summary>
         public CalendarProperties()
         {
-            AmplaModules? temp;
             List<string> properties = new List<string>();
             foreach (PropertyInfo property in typeof(TModel).GetProperties())
             {
                 string propertyName;
                 AmplaFieldAttribute.TryGetField(property, out propertyName);
-                
+
                 properties.Add(propertyName);
                 //propertyInfoDictionary[propertyName] = property;
                 TypeConverterAttribute typeConverterAttribute;
@@ -50,11 +49,11 @@ namespace AmplaData.Binding.ModelData
 
             //if (!AmplaDefaultFiltersAttribute.TryGetFilter<TModel>(out defaultFilters))
             {
-             //   defaultFilters = new FilterValue[0];
+                //   defaultFilters = new FilterValue[0];
             }
         }
 
-        private static void AddModelValidators(PropertyInfo property, IList<IModelValidator<TModel>> validators )
+        private static void AddModelValidators(PropertyInfo property, IList<IModelValidator<TModel>> validators)
         {
             if (property.Name == "Location")
             {
@@ -64,22 +63,22 @@ namespace AmplaData.Binding.ModelData
 
         private static TypeConverter GetTypeConverter(PropertyInfo property)
         {
-            if (property.PropertyType == typeof (DateTime))
+            if (property.PropertyType == typeof(DateTime))
             {
                 return new Iso8601DateTimeConverter();
             }
 
-            if (property.PropertyType == typeof (TimeSpan))
+            if (property.PropertyType == typeof(TimeSpan))
             {
                 return new TimeSpanIntConverter();
             }
 
-            if (property.PropertyType == typeof (int))
+            if (property.PropertyType == typeof(int))
             {
                 return new AllowEmptyStringConverter<int>(0);
             }
 
-            if (property.PropertyType == typeof (double))
+            if (property.PropertyType == typeof(double))
             {
                 return new AllowEmptyStringConverter<double>(0d);
             }
@@ -120,7 +119,7 @@ namespace AmplaData.Binding.ModelData
         /// <returns></returns>
         public IList<string> GetProperties()
         {
-//            return propertyNames;
+            //            return propertyNames;
             return new List<string>();
         }
 
@@ -168,12 +167,12 @@ namespace AmplaData.Binding.ModelData
         public string GetModelName()
         {
             DisplayNameAttribute displayName;
-            string name = typeof (TModel).TryGetAttribute(out displayName) 
-                ? displayName.DisplayName 
-                : typeof (TModel).Name.ToSeparatedWords();
+            string name = typeof(TModel).TryGetAttribute(out displayName)
+                ? displayName.DisplayName
+                : typeof(TModel).Name.ToSeparatedWords();
             return name;
         }
 
-        
+
     }
 }

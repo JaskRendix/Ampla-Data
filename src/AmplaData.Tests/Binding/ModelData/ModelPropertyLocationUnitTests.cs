@@ -17,7 +17,7 @@ namespace AmplaData.Binding.ModelData
         public void GetPropertiesReturnsLocationField()
         {
             ModelProperties<ModelWithLocationField> modelProperties = new ModelProperties<ModelWithLocationField>();
-            ModelWithLocationField model = new ModelWithLocationField ();
+            ModelWithLocationField model = new ModelWithLocationField();
 
             var properties = modelProperties.GetProperties();
             Assert.That(properties.Count, Is.EqualTo(1));

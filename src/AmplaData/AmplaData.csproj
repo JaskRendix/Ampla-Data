@@ -1,255 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EA920285-DB3C-46AB-97D9-17EA716B70AF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>AmplaData</RootNamespace>
     <AssemblyName>AmplaData</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Compile Include="..\Assembly.Common.cs" Link="Properties\Assembly.Common.cs" />
+    <Compile Include="..\Assembly.Version.cs" Link="Properties\Assembly.Version.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\Assembly.Common.cs">
-      <Link>Properties\Assembly.Common.cs</Link>
-    </Compile>
-    <Compile Include="..\Assembly.Version.cs">
-      <Link>Properties\Assembly.Version.cs</Link>
-    </Compile>
-    <Compile Include="Adapters\RepositoryAdapter.cs" />
-    <Compile Include="AmplaData2008\CredentialsProvider.cs" />
-    <Compile Include="AmplaData2008\DataWebServiceClient.cs" />
-    <Compile Include="AmplaData2008\DataWebServiceFactory.cs" />
-    <Compile Include="AmplaData2008\IDataWebServiceCalendarClient.cs" />
-    <Compile Include="AmplaRepository\AmplaCalendarRepository.cs" />
-    <Compile Include="AmplaSecurity2007\ISecurityWebServiceClient.cs" />
-    <Compile Include="AmplaSecurity2007\SecurityWebServiceClient.cs" />
-    <Compile Include="AmplaSecurity2007\SecurityWebServiceFactory.cs" />
-    <Compile Include="Attributes\Calendar\AmplaCalendarAttribute.cs" />
-    <Compile Include="Attributes\Calendar\AmplaCalendarValueAttribute.cs" />
-    <Compile Include="Binding\AmplaGetAuditDataRecordBinding.cs" />
-    <Compile Include="Binding\AmplaGetDataVersionsBinding.cs" />
-    <Compile Include="Binding\History\ConfirmRecordEventDectection.cs" />
-    <Compile Include="Binding\History\CreateRecordEventDectection.cs" />
-    <Compile Include="Binding\History\DeleteRecordEventDectection.cs" />
-    <Compile Include="Binding\History\ModifyRecordEventDectection.cs" />
-    <Compile Include="Binding\History\RecordEventDectection.cs" />
-    <Compile Include="Binding\History\UnconfirmRecordEventDectection.cs" />
-    <Compile Include="Binding\Mapping\RequiredFieldMapping.cs" />
-    <Compile Include="Binding\MetaData\AllowEmptyStringConverter.cs" />
-    <Compile Include="Binding\ModelData\CalendarProperties.cs" />
-    <Compile Include="Binding\ModelData\ICalendarProperties.cs" />
-    <Compile Include="Binding\ViewData\ValidateViewPermissions.cs" />
-    <Compile Include="Binding\ViewData\ViewPermissionsAdapter.cs" />
-    <Compile Include="Display\DisplayStringExtensions.cs" />
-    <Compile Include="Binding\History\AmplaRecordHistory.cs" />
-    <Compile Include="Display\DateTimeDisplayExtensions.cs" />
-    <Compile Include="ICalendarRepository.cs" />
-    <Compile Include="Records\AmplaAuditRecord.cs" />
-    <Compile Include="Records\AmplaAuditField.cs" />
-    <Compile Include="Records\AmplaAuditSession .cs" />
-    <Compile Include="Records\AmplaRecord.cs" />
-    <Compile Include="AmplaRepository\AmplaRepository.cs" />
-    <Compile Include="AmplaData2008\ICredentialsProvider.cs" />
-    <Compile Include="Attributes\AmplaFieldAttribute.cs" />
-    <Compile Include="Attributes\AmplaDefaultFiltersAttribute.cs" />
-    <Compile Include="Binding\AmplaDataSubmissionResultBinding.cs" />
-    <Compile Include="Binding\AmplaNavigationBinding.cs" />
-    <Compile Include="Binding\AmplaUpdateRecordStatusBinding.cs" />
-    <Compile Include="Binding\AmplaGetDataRecordBinding.cs" />
-    <Compile Include="Binding\Mapping\Modules\EnergyModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\MaintenanceModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\MetricsModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\PlanningModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\QualityModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\KnowledgeModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\DowntimeModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\IModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\ModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\ProductionModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\Modules\StandardModuleMapping.cs" />
-    <Compile Include="Binding\Mapping\ValidatedModelFieldMapping.cs" />
-    <Compile Include="Binding\MetaData\Iso8601DateTimeConverter.cs" />
-    <Compile Include="Binding\MetaData\TimeSpanIntConverter.cs" />
-    <Compile Include="Binding\ModelData\IModelProperties.cs" />
-    <Compile Include="Binding\ModelData\LocationFilter.cs" />
-    <Compile Include="Binding\ModelData\Validation\IModelValidator.cs" />
-    <Compile Include="Binding\ModelData\Validation\LocationValidator.cs" />
-    <Compile Include="Binding\ModelData\Validation\NullModelValidator.cs" />
-    <Compile Include="Binding\ModelData\Validation\RequiredLocationValidator.cs" />
-    <Compile Include="Binding\ModelData\Validation\ValidationMessages.cs" />
-    <Compile Include="Binding\ModelIdentifierBinding.cs" />
-    <Compile Include="Binding\ViewData\IAmplaViewProperties.cs" />
-    <Compile Include="Binding\ViewData\IViewPermissions.cs" />
-    <Compile Include="Binding\ViewData\EnforceViewPermissionsAdapter.cs" />
-    <Compile Include="FilterValue.cs" />
-    <Compile Include="Binding\AmplaUnconfirmDataBinding.cs" />
-    <Compile Include="Binding\AmplaConfirmDataBinding.cs" />
-    <Compile Include="Binding\Mapping\ConstantFieldMapping.cs" />
-    <Compile Include="Binding\Mapping\DefaultValueFieldMapping.cs" />
-    <Compile Include="Binding\Mapping\FieldMapping.cs" />
-    <Compile Include="Binding\Mapping\IdFieldMapping.cs" />
-    <Compile Include="Binding\Mapping\ModelFieldMapping.cs" />
-    <Compile Include="Binding\Mapping\ReadOnlyFieldMapping.cs" />
-    <Compile Include="Binding\MetaData\DataTypeHelper.cs" />
-    <Compile Include="Binding\ViewData\ViewCollection.cs" />
-    <Compile Include="Binding\ViewData\ViewPeriodsCollection.cs" />
-    <Compile Include="Binding\ViewData\ViewField.cs" />
-    <Compile Include="Binding\ViewData\ViewFilter.cs" />
-    <Compile Include="Binding\ViewData\ViewPeriod.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Attributes\AmplaLocationAttribute.cs" />
-    <Compile Include="AmplaRepository\AmplaReadOnlyRepository.cs" />
-    <Compile Include="IReadOnlyRepository.cs" />
-    <Compile Include="Attributes\AmplaModuleAttribute.cs" />
-    <Compile Include="Binding\IAmplaBinding.cs" />
-    <Compile Include="Binding\AmplaDeleteDataBinding.cs" />
-    <Compile Include="Binding\AmplaGetDataBinding.cs" />
-    <Compile Include="Binding\AmplaAddDataBinding.cs" />
-    <Compile Include="Binding\AmplaUpdateDataBinding.cs" />
-    <Compile Include="Binding\ViewData\AmplaViewProperties.cs" />
-    <Compile Include="Binding\ModelData\ModelProperties.cs" />
-    <Compile Include="Binding\ModelData\Property.cs" />
-    <Compile Include="Binding\ViewData\ViewPermissions.cs" />
-    <Compile Include="Binding\MetaData\ReflectionHelper.cs" />
-    <Compile Include="Binding\ModelData\ModelIdentifier.cs" />
-    <Compile Include="AmplaData2008\IDataWebServiceClient.cs" />
-    <Compile Include="Binding\ViewData\ViewFieldsCollection.cs" />
-    <Compile Include="Binding\ViewData\ViewFiltersCollection.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadOnlyRepository.cs" />
-    <Compile Include="Records\AmplaRecordChanges.cs" />
-    <Compile Include="Records\ModelVersion.cs" />
-    <Compile Include="Records\ModelVersions.cs" />
-    <Compile Include="Records\PersistenceHelper.cs" />
-    <Compile Include="Service References\AmplaData2008\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\AmplaSecurity2007\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="WebService\WebServiceFactory.cs" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="6.0.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.14" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.DeleteCalendarValueResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.DeleteRecordsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetAllowedValuesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetAuditDataResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetCalendarValuesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetDataResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetNavigationHierarchyResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetRelationshipMatrixResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetRelationshipMatrixValuesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.GetViewsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.SplitRecordsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.SubmitCalendarValuesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.SubmitDataResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\AmplaData.AmplaData2008.UpdateRecordStatusResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaData2008\DataWebService.wsdl" />
-    <None Include="Service References\AmplaSecurity2007\AmplaData.AmplaSecurity2007.CreateSessionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaSecurity2007\AmplaData.AmplaSecurity2007.ReleaseSessionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaSecurity2007\AmplaData.AmplaSecurity2007.RenewSessionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AmplaSecurity2007\SecurityWebService.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AmplaData2008\" />
-    <WCFMetadataStorage Include="Service References\AmplaSecurity2007\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AmplaData2008\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AmplaSecurity2007\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

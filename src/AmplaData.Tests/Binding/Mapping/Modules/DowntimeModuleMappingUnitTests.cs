@@ -8,7 +8,7 @@ namespace AmplaData.Binding.Mapping.Modules
     [TestFixture]
     public class DowntimeModuleMappingUnitTests : ModuleMappingTestFixture
     {
-        public DowntimeModuleMappingUnitTests() : base(DowntimeViews.StandardView, ()=> new DowntimeModuleMapping())
+        public DowntimeModuleMappingUnitTests() : base(DowntimeViews.StandardView, () => new DowntimeModuleMapping())
         {
         }
 
@@ -17,7 +17,7 @@ namespace AmplaData.Binding.Mapping.Modules
         {
             CheckField<IdFieldMapping>("Id", "Id", true, false);
         }
-        
+
         [Test]
         public void LocationField()
         {
@@ -59,14 +59,14 @@ namespace AmplaData.Binding.Mapping.Modules
         public void SupportedOperations()
         {
             CheckAllowedOperations(
-                ViewAllowedOperations.AddRecord, 
+                ViewAllowedOperations.AddRecord,
                 ViewAllowedOperations.ConfirmRecord,
-                ViewAllowedOperations.DeleteRecord, 
+                ViewAllowedOperations.DeleteRecord,
                 ViewAllowedOperations.ModifyRecord,
-                ViewAllowedOperations.SplitRecord, 
+                ViewAllowedOperations.SplitRecord,
                 ViewAllowedOperations.UnconfirmRecord,
                 ViewAllowedOperations.ViewRecord);
         }
- 
+
     }
 }

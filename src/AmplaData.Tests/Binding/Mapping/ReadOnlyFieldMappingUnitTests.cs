@@ -11,7 +11,7 @@ namespace AmplaData.Binding.Mapping
         [AmplaModule("Production")]
         public class Model
         {
-            public Model() : this("EquipmentId"){ }
+            public Model() : this("EquipmentId") { }
             public Model(string equipmentId)
             {
                 EquipmentId = equipmentId;

@@ -8,7 +8,7 @@ namespace AmplaData.Binding.Mapping.Modules
     [TestFixture]
     public class EnergyModuleMappingUnitTests : ModuleMappingTestFixture
     {
-        public EnergyModuleMappingUnitTests() : base(EnergyViews.StandardView, ()=> new EnergyModuleMapping())
+        public EnergyModuleMappingUnitTests() : base(EnergyViews.StandardView, () => new EnergyModuleMapping())
         {
         }
 
@@ -17,7 +17,7 @@ namespace AmplaData.Binding.Mapping.Modules
         {
             CheckField<IdFieldMapping>("Id", "Id", true, false);
         }
-        
+
         [Test]
         public void LocationField()
         {
@@ -59,14 +59,14 @@ namespace AmplaData.Binding.Mapping.Modules
         public void SupportedOperations()
         {
             CheckAllowedOperations(
-                ViewAllowedOperations.AddRecord, 
+                ViewAllowedOperations.AddRecord,
                 ViewAllowedOperations.ConfirmRecord,
-                ViewAllowedOperations.DeleteRecord, 
+                ViewAllowedOperations.DeleteRecord,
                 ViewAllowedOperations.ModifyRecord,
-                ViewAllowedOperations.SplitRecord, 
+                ViewAllowedOperations.SplitRecord,
                 ViewAllowedOperations.UnconfirmRecord,
                 ViewAllowedOperations.ViewRecord);
         }
- 
+
     }
 }

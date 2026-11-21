@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Moq;
+
 using AmplaData.AmplaSecurity2007;
 using AmplaData.Web.Authentication;
 using AmplaData.Web.Authentication.Forms;
@@ -21,13 +25,21 @@ namespace AmplaData.Web.Controllers
         protected override void OnSetUp()
         {
             base.OnSetUp();
+
             webServiceClient = new SimpleSecurityWebServiceClient("User");
             amplaUserStore = new AmplaUserStore();
             amplaUserService = new AmplaUserService(webServiceClient, amplaUserStore);
 
             context = SimpleHttpContext.Create("http://localhost");
 
-            controller = new AccountController(amplaUserService, FormsAuthenticationService, AmplaSessionStorage);
+            controller = new AccountController(
+                amplaUserService,
+                FormsAuthenticationService,
+                AmplaSessionStorage);
+
+            controller.TempData = new TempDataDictionary(
+                new DefaultHttpContext(),
+                new Mock<ITempDataProvider>().Object);
         }
 
         private IAmplaSessionStorage AmplaSessionStorage
@@ -51,8 +63,8 @@ namespace AmplaData.Web.Controllers
         {
             const string returnUrl = "/Production";
 
-            SimpleLoginModel model = new SimpleLoginModel {UserName = "User", Password = "password"};
-            ActionResult result = controller.Login(model, returnUrl);
+            SimpleLoginModel model = new SimpleLoginModel { UserName = "User", Password = "password" };
+            IActionResult result = controller.Login(model, returnUrl);
 
             Assert.That(result, Is.TypeOf<RedirectResult>());
             RedirectResult redirectResult = (RedirectResult)result;
@@ -68,7 +80,7 @@ namespace AmplaData.Web.Controllers
             const string returnUrl = "/Production";
 
             SimpleLoginModel model = new SimpleLoginModel { UserName = "Invalid", Password = "password" };
-            ActionResult result = controller.Login(model, returnUrl);
+            IActionResult result = controller.Login(model, returnUrl);
 
             Assert.That(result, Is.TypeOf<ViewResult>());
             ViewResult viewResult = (ViewResult)result;

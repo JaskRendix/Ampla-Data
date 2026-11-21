@@ -9,7 +9,7 @@ namespace AmplaData.Database
     {
         private readonly Dictionary<string, List<string>> locationsByModule = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, GetView> defaultViewByModule = new Dictionary<string, GetView>();
-        
+
         public void EnableModule(string module)
         {
             locationsByModule.Add(module, new List<string>());

@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Planning
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(PlanningViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Planning",
-                    Module = "Planning"
-                };
+            {
+                Location = "Enterprise.Site.Area.Planning",
+                Module = "Planning"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             DateTime now = DateTime.Now.TrimToSeconds();

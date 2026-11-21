@@ -36,9 +36,9 @@ namespace AmplaData.Binding.History
                 };
 
             ModifyRecordEventDectection<ProductionModel> recordEventDectection = new ModifyRecordEventDectection<ProductionModel>(record, auditRecord, viewProperties);
-            
+
             List<AmplaRecordChanges> changes = recordEventDectection.DetectChanges();
-            
+
             Assert.That(changes, Is.Not.Empty);
             Assert.That(changes.Count, Is.EqualTo(1));
 
@@ -61,8 +61,8 @@ namespace AmplaData.Binding.History
             auditRecord.Changes = new List<AmplaAuditSession>
                 {
                             AddSession("User", DateTime.Today, "Value", "100", "200"),
-                            AddSession("Admin", DateTime.Today.AddHours(1), 
-                                        new[] {"One", "Two"}, 
+                            AddSession("Admin", DateTime.Today.AddHours(1),
+                                        new[] {"One", "Two"},
                                         new[] {"11", "22"},
                                         new[] {"111", "222"})
                 };
@@ -89,7 +89,7 @@ namespace AmplaData.Binding.History
             Assert.That(changes[1].Changes[0].Name, Is.EqualTo("One"));
             Assert.That(changes[1].Changes[0].OriginalValue, Is.EqualTo("11"));
             Assert.That(changes[1].Changes[0].EditedValue, Is.EqualTo("111"));
-            
+
             Assert.That(changes[1].Changes[1].Name, Is.EqualTo("Two"));
             Assert.That(changes[1].Changes[1].OriginalValue, Is.EqualTo("22"));
             Assert.That(changes[1].Changes[1].EditedValue, Is.EqualTo("222"));
@@ -121,8 +121,8 @@ namespace AmplaData.Binding.History
             auditRecord.Changes = new List<AmplaAuditSession>
                 {
                     AddSession("User", DateTime.Today, "Value", "100", "100"),
-                    AddSession("Admin", DateTime.Today.AddHours(1), 
-                                        new[] {"One", "Two"}, 
+                    AddSession("Admin", DateTime.Today.AddHours(1),
+                                        new[] {"One", "Two"},
                                         new[] {"11", "222"},
                                         new[] {"111", "222"})
                 };
@@ -160,7 +160,7 @@ namespace AmplaData.Binding.History
             Assert.That(changes, Is.Empty);
         }
 
- 
+
     }
 
 

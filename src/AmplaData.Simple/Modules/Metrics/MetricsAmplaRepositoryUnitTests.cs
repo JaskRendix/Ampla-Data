@@ -28,7 +28,7 @@ namespace AmplaData.Modules.Metrics
                 };
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Add(model));
-            Assert.That(exception.Message, Is.StringContaining("'AddRecord'"));
+            Assert.That(exception.Message, Does.Contain("'AddRecord'"));
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace AmplaData.Modules.Metrics
             model.TotalTonnes += 100;
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Update(model));
-            Assert.That(exception.Message, Is.StringContaining("'ModifyRecord'"));
+            Assert.That(exception.Message, Does.Contain("'ModifyRecord'"));
         }
 
 
@@ -85,7 +85,7 @@ namespace AmplaData.Modules.Metrics
             model.TotalTonnes += 100;
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Confirm(model));
-            Assert.That(exception.Message, Is.StringContaining("'ConfirmRecord'"));
+            Assert.That(exception.Message, Does.Contain("'ConfirmRecord'"));
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace AmplaData.Modules.Metrics
             model.TotalTonnes += 100;
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Unconfirm(model));
-            Assert.That(exception.Message, Is.StringContaining("'UnconfirmRecord'"));
+            Assert.That(exception.Message, Does.Contain("'UnconfirmRecord'"));
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace AmplaData.Modules.Metrics
             model.TotalTonnes += 100;
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Repository.Delete(model));
-            Assert.That(exception.Message, Is.StringContaining("'DeleteRecord'"));
+            Assert.That(exception.Message, Does.Contain("'DeleteRecord'"));
         }
 
     }

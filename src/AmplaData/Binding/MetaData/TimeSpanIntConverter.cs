@@ -11,17 +11,17 @@ namespace AmplaData.Binding.MetaData
     {
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            return destinationType == typeof (TimeSpan)
-                   || destinationType == typeof (int)
-                   || destinationType == typeof (double)
+            return destinationType == typeof(TimeSpan)
+                   || destinationType == typeof(int)
+                   || destinationType == typeof(double)
                    || base.CanConvertTo(context, destinationType);
         }
 
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return sourceType == typeof (TimeSpan)
-                   || sourceType == typeof (int)
-                   || sourceType == typeof (double)
+            return sourceType == typeof(TimeSpan)
+                   || sourceType == typeof(int)
+                   || sourceType == typeof(double)
                    || base.CanConvertFrom(context, sourceType);
         }
 
@@ -63,32 +63,32 @@ namespace AmplaData.Binding.MetaData
         {
             if (context == null)
             {
-                if (destinationType == typeof (string) && CultureInfo.InvariantCulture.Equals(culture))
+                if (destinationType == typeof(string) && CultureInfo.InvariantCulture.Equals(culture))
                 {
-                    TimeSpan timeSpan = (TimeSpan) value;
+                    TimeSpan timeSpan = (TimeSpan)value;
                     int seconds = Convert.ToInt32(timeSpan.TotalSeconds);
                     return Convert.ToString(seconds);
                 }
 
                 if (value is TimeSpan)
                 {
-                    TimeSpan timeSpanValue = (TimeSpan) value;
-                    if (destinationType == typeof (TimeSpan))
+                    TimeSpan timeSpanValue = (TimeSpan)value;
+                    if (destinationType == typeof(TimeSpan))
                     {
                         return TimeSpan.FromTicks(timeSpanValue.Ticks);
                     }
-                    if (destinationType == typeof (double))
+                    if (destinationType == typeof(double))
                     {
                         return timeSpanValue.TotalSeconds;
                     }
-                    if (destinationType == typeof (int))
+                    if (destinationType == typeof(int))
                     {
                         return Convert.ToInt32(timeSpanValue.TotalSeconds);
                     }
                 }
                 if (value is double || value is int)
                 {
-                    if (destinationType == typeof (TimeSpan))
+                    if (destinationType == typeof(TimeSpan))
                     {
                         return TimeSpan.FromSeconds(Convert.ToDouble(value));
                     }

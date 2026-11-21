@@ -10,12 +10,12 @@ namespace AmplaData.Modules.Downtime
         public static GetView StandardView()
         {
             GetView view = new GetView
-                {
-                    name = "Downtime.StandardView",
-                    DisplayName = "Downtime",
-                    Fields = StandardFieldsPlus(),
-                    AllowedOperations = AllowAll(),
-                };
+            {
+                name = "Downtime.StandardView",
+                DisplayName = "Downtime",
+                Fields = StandardFieldsPlus(),
+                AllowedOperations = AllowAll(),
+            };
             return view;
         }
 

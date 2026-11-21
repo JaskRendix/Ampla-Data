@@ -10,9 +10,10 @@ namespace AmplaData.Modules.Maintenance
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(MaintenanceViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Maintenance", Module = "Maintenance"
-                };
+            {
+                Location = "Enterprise.Site.Area.Maintenance",
+                Module = "Maintenance"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);

@@ -10,10 +10,10 @@ namespace AmplaData.Modules.Production
         public static InMemoryRecord NewRecord()
         {
             InMemoryRecord record = new InMemoryRecord(ProductionViews.StandardView())
-                {
-                    Location = "Enterprise.Site.Area.Production",
-                    Module = "Production"
-                };
+            {
+                Location = "Enterprise.Site.Area.Production",
+                Module = "Production"
+            };
             record.SetFieldValue("IsManual", false);
             record.SetFieldValue("Deleted", false);
             record.SetFieldValue("Confirmed", false);
