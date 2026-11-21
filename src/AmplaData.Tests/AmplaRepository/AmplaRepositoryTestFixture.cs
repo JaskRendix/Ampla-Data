@@ -109,7 +109,10 @@ namespace AmplaData.AmplaRepository
                                                                Func<TModel, object> modelFunc,
                                                                IResolveConstraint expectedConstraint)
         {
-            Assert.That(modelVersions.Versions.Count, Is.GreaterThan(index), "Unable to find Version {0}", index);
+            Assert.That(
+                modelVersions.Versions.Count,
+                Is.GreaterThan(index),
+                $"Unable to find Version {index}");
             ModelVersion modelVersion = modelVersions.Versions[index];
             ModelVersion<TModel> typedModel = (ModelVersion<TModel>)modelVersion;
             Assert.That(modelFunc(typedModel.Model), expectedConstraint);

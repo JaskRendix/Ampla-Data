@@ -614,15 +614,20 @@ namespace AmplaData.AmplaData2008
         {
             Assert.That(points, Is.Not.Empty, parent);
             Assert.That(points.Length, Is.EqualTo(names.Length), parent);
+
             for (int i = 0; i < names.Length; i++)
             {
-                string name = names[0];
+                string name = names[i];
+                string message = $"[{i}] {parent}";
 
-                Assert.That(points[i].DisplayName, Is.EqualTo(name), "[{0}] {1}", i, parent);
-                Assert.That(points[i].LocalizedDisplayName, Is.EqualTo(name), "[{0}] {1}", i, parent);
-                Assert.That(points[i].id, Is.EqualTo((parent.Length > 0 ? parent + "." : "") + name), "[{0}] {1}", i, parent);
-                Assert.That(points[i].ViewPoints, Is.Not.Null, "[{0}] {1}", i, parent);
-                Assert.That(points[i].ReportingPoints, Is.Not.Null, "[{0}] {1}", i, parent);
+                Assert.That(points[i].DisplayName, Is.EqualTo(name), message);
+                Assert.That(points[i].LocalizedDisplayName, Is.EqualTo(name), message);
+                Assert.That(
+                    points[i].id,
+                    Is.EqualTo((parent.Length > 0 ? parent + "." : "") + name),
+                    message);
+                Assert.That(points[i].ViewPoints, Is.Not.Null, message);
+                Assert.That(points[i].ReportingPoints, Is.Not.Null, message);
             }
         }
 

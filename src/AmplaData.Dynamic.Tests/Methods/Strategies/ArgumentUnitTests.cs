@@ -65,7 +65,9 @@ namespace AmplaData.Dynamic.Methods.Strategies
             Argument argument = Argument.Position<dynamic>(0);
             InvokeMemberBinder binder = Binder.GetMemberBinder("Save", 1);
             dynamic model = new { Location = "Enterprise.Site.Area.Production", Value = 100 };
-            Assert.That(argument.Matches(binder.CallInfo, new object[] { model }), "Argument: {0}", argument);
+            Assert.That(
+                argument.Matches(binder.CallInfo, new object[] { model }),
+                $"Argument: {argument}");
         }
     }
 }
