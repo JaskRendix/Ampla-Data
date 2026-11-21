@@ -7,7 +7,6 @@ namespace AmplaData.Binding.MetaData
     public class AllowEmptyStringConverterUnitTests : TestFixture
     {
         private AllowEmptyStringConverter<int> intTypeConverter;
-        private AllowEmptyStringConverter<string> stringTypeConverter;
 
         protected override void OnSetUp()
         {
