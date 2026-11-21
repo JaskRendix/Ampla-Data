@@ -6609,20 +6609,11 @@ namespace AmplaData.AmplaData2008 {
         public DataWebServiceClient() {
         }
         
-        public DataWebServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public DataWebServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public DataWebServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public DataWebServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public DataWebServiceClient(
+            System.ServiceModel.Channels.Binding binding,
+            System.ServiceModel.EndpointAddress remoteAddress)
+            : base(binding, remoteAddress)
+        {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

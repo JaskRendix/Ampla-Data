@@ -384,21 +384,12 @@ namespace AmplaData.AmplaSecurity2007 {
         
         public SecurityWebServiceClient() {
         }
-        
-        public SecurityWebServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public SecurityWebServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public SecurityWebServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public SecurityWebServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+
+        public SecurityWebServiceClient(
+            System.ServiceModel.Channels.Binding binding,
+            System.ServiceModel.EndpointAddress remoteAddress)
+            : base(binding, remoteAddress)
+        {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
